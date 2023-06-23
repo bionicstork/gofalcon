@@ -50,7 +50,7 @@ type ClientService interface {
 
 	GetCombinedCloudClusters(params *GetCombinedCloudClustersParams, opts ...ClientOption) (*GetCombinedCloudClustersOK, *GetCombinedCloudClustersMultiStatus, error)
 
-	GetHelmValuesYaml(params *GetHelmValuesYamlParams, opts ...ClientOption) (*GetHelmValuesYamlOK, error)
+	GetHelmValuesYAML(params *GetHelmValuesYAMLParams, opts ...ClientOption) (*GetHelmValuesYAMLOK, error)
 
 	GetLocations(params *GetLocationsParams, opts ...ClientOption) (*GetLocationsOK, *GetLocationsMultiStatus, error)
 
@@ -70,7 +70,7 @@ type ClientService interface {
 }
 
 /*
-CreateAWSAccount creates a new a w s account in our system for a customer and generates the installation script
+CreateAWSAccount creates a new AWS account in our system for a customer and generates the installation script
 */
 func (a *Client) CreateAWSAccount(params *CreateAWSAccountParams, opts ...ClientOption) (*CreateAWSAccountCreated, *CreateAWSAccountMultiStatus, error) {
 	// TODO: Validate the params before sending
@@ -148,7 +148,7 @@ func (a *Client) CreateAzureSubscription(params *CreateAzureSubscriptionParams, 
 }
 
 /*
-DeleteAWSAccountsMixin0 deletes a w s accounts
+DeleteAWSAccountsMixin0 deletes AWS accounts
 */
 func (a *Client) DeleteAWSAccountsMixin0(params *DeleteAWSAccountsMixin0Params, opts ...ClientOption) (*DeleteAWSAccountsMixin0OK, *DeleteAWSAccountsMixin0MultiStatus, error) {
 	// TODO: Validate the params before sending
@@ -181,9 +181,9 @@ func (a *Client) DeleteAWSAccountsMixin0(params *DeleteAWSAccountsMixin0Params, 
 	case *DeleteAWSAccountsMixin0MultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*DeleteAWSAccountsMixin0Default)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for kubernetes_protection: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -226,7 +226,7 @@ func (a *Client) DeleteAzureSubscription(params *DeleteAzureSubscriptionParams, 
 }
 
 /*
-GetAWSAccountsMixin0 provides a list of a w s accounts
+GetAWSAccountsMixin0 provides a list of AWS accounts
 */
 func (a *Client) GetAWSAccountsMixin0(params *GetAWSAccountsMixin0Params, opts ...ClientOption) (*GetAWSAccountsMixin0OK, *GetAWSAccountsMixin0MultiStatus, error) {
 	// TODO: Validate the params before sending
@@ -259,9 +259,9 @@ func (a *Client) GetAWSAccountsMixin0(params *GetAWSAccountsMixin0Params, opts .
 	case *GetAWSAccountsMixin0MultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*GetAWSAccountsMixin0Default)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for kubernetes_protection: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -415,9 +415,9 @@ func (a *Client) GetClusters(params *GetClustersParams, opts ...ClientOption) (*
 	case *GetClustersMultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*GetClustersDefault)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for kubernetes_protection: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -460,12 +460,12 @@ func (a *Client) GetCombinedCloudClusters(params *GetCombinedCloudClustersParams
 }
 
 /*
-GetHelmValuesYaml provides a sample helm values yaml file for a customer to install alongside the agent helm chart
+GetHelmValuesYAML provides a sample helm values yaml file for a customer to install alongside the agent helm chart
 */
-func (a *Client) GetHelmValuesYaml(params *GetHelmValuesYamlParams, opts ...ClientOption) (*GetHelmValuesYamlOK, error) {
+func (a *Client) GetHelmValuesYAML(params *GetHelmValuesYAMLParams, opts ...ClientOption) (*GetHelmValuesYAMLOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetHelmValuesYamlParams()
+		params = NewGetHelmValuesYAMLParams()
 	}
 	op := &runtime.ClientOperation{
 		ID:                 "GetHelmValuesYaml",
@@ -475,7 +475,7 @@ func (a *Client) GetHelmValuesYaml(params *GetHelmValuesYamlParams, opts ...Clie
 		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetHelmValuesYamlReader{formats: a.formats},
+		Reader:             &GetHelmValuesYAMLReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -487,13 +487,14 @@ func (a *Client) GetHelmValuesYaml(params *GetHelmValuesYamlParams, opts ...Clie
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetHelmValuesYamlOK)
+	success, ok := result.(*GetHelmValuesYAMLOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*GetHelmValuesYamlDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetHelmValuesYaml: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -530,9 +531,9 @@ func (a *Client) GetLocations(params *GetLocationsParams, opts ...ClientOption) 
 	case *GetLocationsMultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*GetLocationsDefault)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for kubernetes_protection: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -686,9 +687,9 @@ func (a *Client) RegenerateAPIKey(params *RegenerateAPIKeyParams, opts ...Client
 	case *RegenerateAPIKeyMultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*RegenerateAPIKeyDefault)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for kubernetes_protection: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -731,7 +732,7 @@ func (a *Client) TriggerScan(params *TriggerScanParams, opts ...ClientOption) (*
 }
 
 /*
-UpdateAWSAccount updates the a w s account per the query parameters provided
+UpdateAWSAccount updates the AWS account per the query parameters provided
 */
 func (a *Client) UpdateAWSAccount(params *UpdateAWSAccountParams, opts ...ClientOption) (*UpdateAWSAccountOK, *UpdateAWSAccountMultiStatus, error) {
 	// TODO: Validate the params before sending
@@ -764,9 +765,9 @@ func (a *Client) UpdateAWSAccount(params *UpdateAWSAccountParams, opts ...Client
 	case *UpdateAWSAccountMultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*UpdateAWSAccountDefault)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for kubernetes_protection: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 // SetTransport changes the transport on the client

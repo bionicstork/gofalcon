@@ -44,14 +44,7 @@ func (o *GetDeviceDetailsReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return nil, result
 	default:
-		result := NewGetDeviceDetailsDefault(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return nil, result
+		return nil, runtime.NewAPIError("[GET /devices/entities/devices/v1] GetDeviceDetails", response, response.Code())
 	}
 }
 
@@ -67,6 +60,24 @@ OK
 */
 type GetDeviceDetailsOK struct {
 
+	/* Date/Time when deprecation will be final.
+
+	   Format: dateTime
+	*/
+	XAPIDeprecationFinalDate string
+
+	/* Date/Time when deprecation started.
+
+	   Format: dateTime
+	*/
+	XAPIDeprecationStartDate string
+
+	/* Endpoint deprecation warning message which should include a link to the new endpoint.
+
+	   Format: string
+	*/
+	XAPIDeprecationWarning string
+
 	/* Trace-ID: submit to support if resolving an issue
 	 */
 	XCSTRACEID string
@@ -79,7 +90,7 @@ type GetDeviceDetailsOK struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.DomainDeviceDetailsResponseSwagger
+	Payload *models.DeviceapiDeviceDetailsResponseSwagger
 }
 
 // IsSuccess returns true when this get device details o k response has a 2xx status code
@@ -113,18 +124,39 @@ func (o *GetDeviceDetailsOK) Code() int {
 }
 
 func (o *GetDeviceDetailsOK) Error() string {
-	return fmt.Sprintf("[GET /devices/entities/devices//v2][%d] getDeviceDetailsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /devices/entities/devices/v1][%d] getDeviceDetailsOK  %+v", 200, o.Payload)
 }
 
 func (o *GetDeviceDetailsOK) String() string {
-	return fmt.Sprintf("[GET /devices/entities/devices//v2][%d] getDeviceDetailsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /devices/entities/devices/v1][%d] getDeviceDetailsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetDeviceDetailsOK) GetPayload() *models.DomainDeviceDetailsResponseSwagger {
+func (o *GetDeviceDetailsOK) GetPayload() *models.DeviceapiDeviceDetailsResponseSwagger {
 	return o.Payload
 }
 
 func (o *GetDeviceDetailsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header X-Api-Deprecation-Final-Date
+	hdrXAPIDeprecationFinalDate := response.GetHeader("X-Api-Deprecation-Final-Date")
+
+	if hdrXAPIDeprecationFinalDate != "" {
+		o.XAPIDeprecationFinalDate = hdrXAPIDeprecationFinalDate
+	}
+
+	// hydrates response header X-Api-Deprecation-Start-Date
+	hdrXAPIDeprecationStartDate := response.GetHeader("X-Api-Deprecation-Start-Date")
+
+	if hdrXAPIDeprecationStartDate != "" {
+		o.XAPIDeprecationStartDate = hdrXAPIDeprecationStartDate
+	}
+
+	// hydrates response header X-Api-Deprecation-Warning
+	hdrXAPIDeprecationWarning := response.GetHeader("X-Api-Deprecation-Warning")
+
+	if hdrXAPIDeprecationWarning != "" {
+		o.XAPIDeprecationWarning = hdrXAPIDeprecationWarning
+	}
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -155,7 +187,7 @@ func (o *GetDeviceDetailsOK) readResponse(response runtime.ClientResponse, consu
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.DomainDeviceDetailsResponseSwagger)
+	o.Payload = new(models.DeviceapiDeviceDetailsResponseSwagger)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -223,11 +255,11 @@ func (o *GetDeviceDetailsForbidden) Code() int {
 }
 
 func (o *GetDeviceDetailsForbidden) Error() string {
-	return fmt.Sprintf("[GET /devices/entities/devices//v2][%d] getDeviceDetailsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /devices/entities/devices/v1][%d] getDeviceDetailsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetDeviceDetailsForbidden) String() string {
-	return fmt.Sprintf("[GET /devices/entities/devices//v2][%d] getDeviceDetailsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /devices/entities/devices/v1][%d] getDeviceDetailsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetDeviceDetailsForbidden) GetPayload() *models.MsaReplyMetaOnly {
@@ -337,11 +369,11 @@ func (o *GetDeviceDetailsTooManyRequests) Code() int {
 }
 
 func (o *GetDeviceDetailsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /devices/entities/devices//v2][%d] getDeviceDetailsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /devices/entities/devices/v1][%d] getDeviceDetailsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetDeviceDetailsTooManyRequests) String() string {
-	return fmt.Sprintf("[GET /devices/entities/devices//v2][%d] getDeviceDetailsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /devices/entities/devices/v1][%d] getDeviceDetailsTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *GetDeviceDetailsTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
@@ -391,78 +423,6 @@ func (o *GetDeviceDetailsTooManyRequests) readResponse(response runtime.ClientRe
 	}
 
 	o.Payload = new(models.MsaReplyMetaOnly)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewGetDeviceDetailsDefault creates a GetDeviceDetailsDefault with default headers values
-func NewGetDeviceDetailsDefault(code int) *GetDeviceDetailsDefault {
-	return &GetDeviceDetailsDefault{
-		_statusCode: code,
-	}
-}
-
-/*
-GetDeviceDetailsDefault describes a response with status code -1, with default header values.
-
-OK
-*/
-type GetDeviceDetailsDefault struct {
-	_statusCode int
-
-	Payload *models.DomainDeviceDetailsResponseSwagger
-}
-
-// IsSuccess returns true when this get device details default response has a 2xx status code
-func (o *GetDeviceDetailsDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this get device details default response has a 3xx status code
-func (o *GetDeviceDetailsDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this get device details default response has a 4xx status code
-func (o *GetDeviceDetailsDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this get device details default response has a 5xx status code
-func (o *GetDeviceDetailsDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this get device details default response a status code equal to that given
-func (o *GetDeviceDetailsDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
-// Code gets the status code for the get device details default response
-func (o *GetDeviceDetailsDefault) Code() int {
-	return o._statusCode
-}
-
-func (o *GetDeviceDetailsDefault) Error() string {
-	return fmt.Sprintf("[GET /devices/entities/devices//v2][%d] GetDeviceDetails default  %+v", o._statusCode, o.Payload)
-}
-
-func (o *GetDeviceDetailsDefault) String() string {
-	return fmt.Sprintf("[GET /devices/entities/devices//v2][%d] GetDeviceDetails default  %+v", o._statusCode, o.Payload)
-}
-
-func (o *GetDeviceDetailsDefault) GetPayload() *models.DomainDeviceDetailsResponseSwagger {
-	return o.Payload
-}
-
-func (o *GetDeviceDetailsDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(models.DomainDeviceDetailsResponseSwagger)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

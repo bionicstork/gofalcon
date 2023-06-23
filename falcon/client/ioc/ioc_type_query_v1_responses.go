@@ -17,55 +17,48 @@ import (
 	"github.com/crowdstrike/gofalcon/falcon/models"
 )
 
-// IocTypeQueryV1Reader is a Reader for the IocTypeQueryV1 structure.
-type IocTypeQueryV1Reader struct {
+// IOCTypeQueryV1Reader is a Reader for the IOCTypeQueryV1 structure.
+type IOCTypeQueryV1Reader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *IocTypeQueryV1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *IOCTypeQueryV1Reader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewIocTypeQueryV1OK()
+		result := NewIOCTypeQueryV1OK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 403:
-		result := NewIocTypeQueryV1Forbidden()
+		result := NewIOCTypeQueryV1Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 429:
-		result := NewIocTypeQueryV1TooManyRequests()
+		result := NewIOCTypeQueryV1TooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	default:
-		result := NewIocTypeQueryV1Default(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return nil, result
+		return nil, runtime.NewAPIError("[GET /iocs/queries/ioc-types/v1] ioc_type.query.v1", response, response.Code())
 	}
 }
 
-// NewIocTypeQueryV1OK creates a IocTypeQueryV1OK with default headers values
-func NewIocTypeQueryV1OK() *IocTypeQueryV1OK {
-	return &IocTypeQueryV1OK{}
+// NewIOCTypeQueryV1OK creates a IOCTypeQueryV1OK with default headers values
+func NewIOCTypeQueryV1OK() *IOCTypeQueryV1OK {
+	return &IOCTypeQueryV1OK{}
 }
 
 /*
-IocTypeQueryV1OK describes a response with status code 200, with default header values.
+IOCTypeQueryV1OK describes a response with status code 200, with default header values.
 
 OK
 */
-type IocTypeQueryV1OK struct {
+type IOCTypeQueryV1OK struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -83,48 +76,48 @@ type IocTypeQueryV1OK struct {
 }
 
 // IsSuccess returns true when this ioc type query v1 o k response has a 2xx status code
-func (o *IocTypeQueryV1OK) IsSuccess() bool {
+func (o *IOCTypeQueryV1OK) IsSuccess() bool {
 	return true
 }
 
 // IsRedirect returns true when this ioc type query v1 o k response has a 3xx status code
-func (o *IocTypeQueryV1OK) IsRedirect() bool {
+func (o *IOCTypeQueryV1OK) IsRedirect() bool {
 	return false
 }
 
 // IsClientError returns true when this ioc type query v1 o k response has a 4xx status code
-func (o *IocTypeQueryV1OK) IsClientError() bool {
+func (o *IOCTypeQueryV1OK) IsClientError() bool {
 	return false
 }
 
 // IsServerError returns true when this ioc type query v1 o k response has a 5xx status code
-func (o *IocTypeQueryV1OK) IsServerError() bool {
+func (o *IOCTypeQueryV1OK) IsServerError() bool {
 	return false
 }
 
 // IsCode returns true when this ioc type query v1 o k response a status code equal to that given
-func (o *IocTypeQueryV1OK) IsCode(code int) bool {
+func (o *IOCTypeQueryV1OK) IsCode(code int) bool {
 	return code == 200
 }
 
 // Code gets the status code for the ioc type query v1 o k response
-func (o *IocTypeQueryV1OK) Code() int {
+func (o *IOCTypeQueryV1OK) Code() int {
 	return 200
 }
 
-func (o *IocTypeQueryV1OK) Error() string {
+func (o *IOCTypeQueryV1OK) Error() string {
 	return fmt.Sprintf("[GET /iocs/queries/ioc-types/v1][%d] iocTypeQueryV1OK  %+v", 200, o.Payload)
 }
 
-func (o *IocTypeQueryV1OK) String() string {
+func (o *IOCTypeQueryV1OK) String() string {
 	return fmt.Sprintf("[GET /iocs/queries/ioc-types/v1][%d] iocTypeQueryV1OK  %+v", 200, o.Payload)
 }
 
-func (o *IocTypeQueryV1OK) GetPayload() *models.APIIndicatorQueryRespV1 {
+func (o *IOCTypeQueryV1OK) GetPayload() *models.APIIndicatorQueryRespV1 {
 	return o.Payload
 }
 
-func (o *IocTypeQueryV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *IOCTypeQueryV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -165,17 +158,17 @@ func (o *IocTypeQueryV1OK) readResponse(response runtime.ClientResponse, consume
 	return nil
 }
 
-// NewIocTypeQueryV1Forbidden creates a IocTypeQueryV1Forbidden with default headers values
-func NewIocTypeQueryV1Forbidden() *IocTypeQueryV1Forbidden {
-	return &IocTypeQueryV1Forbidden{}
+// NewIOCTypeQueryV1Forbidden creates a IOCTypeQueryV1Forbidden with default headers values
+func NewIOCTypeQueryV1Forbidden() *IOCTypeQueryV1Forbidden {
+	return &IOCTypeQueryV1Forbidden{}
 }
 
 /*
-IocTypeQueryV1Forbidden describes a response with status code 403, with default header values.
+IOCTypeQueryV1Forbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
-type IocTypeQueryV1Forbidden struct {
+type IOCTypeQueryV1Forbidden struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -193,48 +186,48 @@ type IocTypeQueryV1Forbidden struct {
 }
 
 // IsSuccess returns true when this ioc type query v1 forbidden response has a 2xx status code
-func (o *IocTypeQueryV1Forbidden) IsSuccess() bool {
+func (o *IOCTypeQueryV1Forbidden) IsSuccess() bool {
 	return false
 }
 
 // IsRedirect returns true when this ioc type query v1 forbidden response has a 3xx status code
-func (o *IocTypeQueryV1Forbidden) IsRedirect() bool {
+func (o *IOCTypeQueryV1Forbidden) IsRedirect() bool {
 	return false
 }
 
 // IsClientError returns true when this ioc type query v1 forbidden response has a 4xx status code
-func (o *IocTypeQueryV1Forbidden) IsClientError() bool {
+func (o *IOCTypeQueryV1Forbidden) IsClientError() bool {
 	return true
 }
 
 // IsServerError returns true when this ioc type query v1 forbidden response has a 5xx status code
-func (o *IocTypeQueryV1Forbidden) IsServerError() bool {
+func (o *IOCTypeQueryV1Forbidden) IsServerError() bool {
 	return false
 }
 
 // IsCode returns true when this ioc type query v1 forbidden response a status code equal to that given
-func (o *IocTypeQueryV1Forbidden) IsCode(code int) bool {
+func (o *IOCTypeQueryV1Forbidden) IsCode(code int) bool {
 	return code == 403
 }
 
 // Code gets the status code for the ioc type query v1 forbidden response
-func (o *IocTypeQueryV1Forbidden) Code() int {
+func (o *IOCTypeQueryV1Forbidden) Code() int {
 	return 403
 }
 
-func (o *IocTypeQueryV1Forbidden) Error() string {
+func (o *IOCTypeQueryV1Forbidden) Error() string {
 	return fmt.Sprintf("[GET /iocs/queries/ioc-types/v1][%d] iocTypeQueryV1Forbidden  %+v", 403, o.Payload)
 }
 
-func (o *IocTypeQueryV1Forbidden) String() string {
+func (o *IOCTypeQueryV1Forbidden) String() string {
 	return fmt.Sprintf("[GET /iocs/queries/ioc-types/v1][%d] iocTypeQueryV1Forbidden  %+v", 403, o.Payload)
 }
 
-func (o *IocTypeQueryV1Forbidden) GetPayload() *models.MsaReplyMetaOnly {
+func (o *IOCTypeQueryV1Forbidden) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *IocTypeQueryV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *IOCTypeQueryV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -275,17 +268,17 @@ func (o *IocTypeQueryV1Forbidden) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
-// NewIocTypeQueryV1TooManyRequests creates a IocTypeQueryV1TooManyRequests with default headers values
-func NewIocTypeQueryV1TooManyRequests() *IocTypeQueryV1TooManyRequests {
-	return &IocTypeQueryV1TooManyRequests{}
+// NewIOCTypeQueryV1TooManyRequests creates a IOCTypeQueryV1TooManyRequests with default headers values
+func NewIOCTypeQueryV1TooManyRequests() *IOCTypeQueryV1TooManyRequests {
+	return &IOCTypeQueryV1TooManyRequests{}
 }
 
 /*
-IocTypeQueryV1TooManyRequests describes a response with status code 429, with default header values.
+IOCTypeQueryV1TooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
-type IocTypeQueryV1TooManyRequests struct {
+type IOCTypeQueryV1TooManyRequests struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -307,48 +300,48 @@ type IocTypeQueryV1TooManyRequests struct {
 }
 
 // IsSuccess returns true when this ioc type query v1 too many requests response has a 2xx status code
-func (o *IocTypeQueryV1TooManyRequests) IsSuccess() bool {
+func (o *IOCTypeQueryV1TooManyRequests) IsSuccess() bool {
 	return false
 }
 
 // IsRedirect returns true when this ioc type query v1 too many requests response has a 3xx status code
-func (o *IocTypeQueryV1TooManyRequests) IsRedirect() bool {
+func (o *IOCTypeQueryV1TooManyRequests) IsRedirect() bool {
 	return false
 }
 
 // IsClientError returns true when this ioc type query v1 too many requests response has a 4xx status code
-func (o *IocTypeQueryV1TooManyRequests) IsClientError() bool {
+func (o *IOCTypeQueryV1TooManyRequests) IsClientError() bool {
 	return true
 }
 
 // IsServerError returns true when this ioc type query v1 too many requests response has a 5xx status code
-func (o *IocTypeQueryV1TooManyRequests) IsServerError() bool {
+func (o *IOCTypeQueryV1TooManyRequests) IsServerError() bool {
 	return false
 }
 
 // IsCode returns true when this ioc type query v1 too many requests response a status code equal to that given
-func (o *IocTypeQueryV1TooManyRequests) IsCode(code int) bool {
+func (o *IOCTypeQueryV1TooManyRequests) IsCode(code int) bool {
 	return code == 429
 }
 
 // Code gets the status code for the ioc type query v1 too many requests response
-func (o *IocTypeQueryV1TooManyRequests) Code() int {
+func (o *IOCTypeQueryV1TooManyRequests) Code() int {
 	return 429
 }
 
-func (o *IocTypeQueryV1TooManyRequests) Error() string {
+func (o *IOCTypeQueryV1TooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /iocs/queries/ioc-types/v1][%d] iocTypeQueryV1TooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *IocTypeQueryV1TooManyRequests) String() string {
+func (o *IOCTypeQueryV1TooManyRequests) String() string {
 	return fmt.Sprintf("[GET /iocs/queries/ioc-types/v1][%d] iocTypeQueryV1TooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *IocTypeQueryV1TooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
+func (o *IOCTypeQueryV1TooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *IocTypeQueryV1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *IOCTypeQueryV1TooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -391,78 +384,6 @@ func (o *IocTypeQueryV1TooManyRequests) readResponse(response runtime.ClientResp
 	}
 
 	o.Payload = new(models.MsaReplyMetaOnly)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewIocTypeQueryV1Default creates a IocTypeQueryV1Default with default headers values
-func NewIocTypeQueryV1Default(code int) *IocTypeQueryV1Default {
-	return &IocTypeQueryV1Default{
-		_statusCode: code,
-	}
-}
-
-/*
-IocTypeQueryV1Default describes a response with status code -1, with default header values.
-
-OK
-*/
-type IocTypeQueryV1Default struct {
-	_statusCode int
-
-	Payload *models.APIIndicatorQueryRespV1
-}
-
-// IsSuccess returns true when this ioc type query v1 default response has a 2xx status code
-func (o *IocTypeQueryV1Default) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this ioc type query v1 default response has a 3xx status code
-func (o *IocTypeQueryV1Default) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this ioc type query v1 default response has a 4xx status code
-func (o *IocTypeQueryV1Default) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this ioc type query v1 default response has a 5xx status code
-func (o *IocTypeQueryV1Default) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this ioc type query v1 default response a status code equal to that given
-func (o *IocTypeQueryV1Default) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
-// Code gets the status code for the ioc type query v1 default response
-func (o *IocTypeQueryV1Default) Code() int {
-	return o._statusCode
-}
-
-func (o *IocTypeQueryV1Default) Error() string {
-	return fmt.Sprintf("[GET /iocs/queries/ioc-types/v1][%d] ioc_type.query.v1 default  %+v", o._statusCode, o.Payload)
-}
-
-func (o *IocTypeQueryV1Default) String() string {
-	return fmt.Sprintf("[GET /iocs/queries/ioc-types/v1][%d] ioc_type.query.v1 default  %+v", o._statusCode, o.Payload)
-}
-
-func (o *IocTypeQueryV1Default) GetPayload() *models.APIIndicatorQueryRespV1 {
-	return o.Payload
-}
-
-func (o *IocTypeQueryV1Default) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(models.APIIndicatorQueryRespV1)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

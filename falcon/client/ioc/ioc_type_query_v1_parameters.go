@@ -17,50 +17,50 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewIocTypeQueryV1Params creates a new IocTypeQueryV1Params object,
+// NewIOCTypeQueryV1Params creates a new IOCTypeQueryV1Params object,
 // with the default timeout for this client.
 //
 // Default values are not hydrated, since defaults are normally applied by the API server side.
 //
 // To enforce default values in parameter, use SetDefaults or WithDefaults.
-func NewIocTypeQueryV1Params() *IocTypeQueryV1Params {
-	return &IocTypeQueryV1Params{
+func NewIOCTypeQueryV1Params() *IOCTypeQueryV1Params {
+	return &IOCTypeQueryV1Params{
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewIocTypeQueryV1ParamsWithTimeout creates a new IocTypeQueryV1Params object
+// NewIOCTypeQueryV1ParamsWithTimeout creates a new IOCTypeQueryV1Params object
 // with the ability to set a timeout on a request.
-func NewIocTypeQueryV1ParamsWithTimeout(timeout time.Duration) *IocTypeQueryV1Params {
-	return &IocTypeQueryV1Params{
+func NewIOCTypeQueryV1ParamsWithTimeout(timeout time.Duration) *IOCTypeQueryV1Params {
+	return &IOCTypeQueryV1Params{
 		timeout: timeout,
 	}
 }
 
-// NewIocTypeQueryV1ParamsWithContext creates a new IocTypeQueryV1Params object
+// NewIOCTypeQueryV1ParamsWithContext creates a new IOCTypeQueryV1Params object
 // with the ability to set a context for a request.
-func NewIocTypeQueryV1ParamsWithContext(ctx context.Context) *IocTypeQueryV1Params {
-	return &IocTypeQueryV1Params{
+func NewIOCTypeQueryV1ParamsWithContext(ctx context.Context) *IOCTypeQueryV1Params {
+	return &IOCTypeQueryV1Params{
 		Context: ctx,
 	}
 }
 
-// NewIocTypeQueryV1ParamsWithHTTPClient creates a new IocTypeQueryV1Params object
+// NewIOCTypeQueryV1ParamsWithHTTPClient creates a new IOCTypeQueryV1Params object
 // with the ability to set a custom HTTPClient for a request.
-func NewIocTypeQueryV1ParamsWithHTTPClient(client *http.Client) *IocTypeQueryV1Params {
-	return &IocTypeQueryV1Params{
+func NewIOCTypeQueryV1ParamsWithHTTPClient(client *http.Client) *IOCTypeQueryV1Params {
+	return &IOCTypeQueryV1Params{
 		HTTPClient: client,
 	}
 }
 
 /*
-IocTypeQueryV1Params contains all the parameters to send to the API endpoint
+IOCTypeQueryV1Params contains all the parameters to send to the API endpoint
 
 	for the ioc type query v1 operation.
 
 	Typically these are written to a http.Request.
 */
-type IocTypeQueryV1Params struct {
+type IOCTypeQueryV1Params struct {
 
 	/* Limit.
 
@@ -82,7 +82,7 @@ type IocTypeQueryV1Params struct {
 // WithDefaults hydrates default values in the ioc type query v1 params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *IocTypeQueryV1Params) WithDefaults() *IocTypeQueryV1Params {
+func (o *IOCTypeQueryV1Params) WithDefaults() *IOCTypeQueryV1Params {
 	o.SetDefaults()
 	return o
 }
@@ -90,67 +90,67 @@ func (o *IocTypeQueryV1Params) WithDefaults() *IocTypeQueryV1Params {
 // SetDefaults hydrates default values in the ioc type query v1 params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *IocTypeQueryV1Params) SetDefaults() {
+func (o *IOCTypeQueryV1Params) SetDefaults() {
 	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the ioc type query v1 params
-func (o *IocTypeQueryV1Params) WithTimeout(timeout time.Duration) *IocTypeQueryV1Params {
+func (o *IOCTypeQueryV1Params) WithTimeout(timeout time.Duration) *IOCTypeQueryV1Params {
 	o.SetTimeout(timeout)
 	return o
 }
 
 // SetTimeout adds the timeout to the ioc type query v1 params
-func (o *IocTypeQueryV1Params) SetTimeout(timeout time.Duration) {
+func (o *IOCTypeQueryV1Params) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
 // WithContext adds the context to the ioc type query v1 params
-func (o *IocTypeQueryV1Params) WithContext(ctx context.Context) *IocTypeQueryV1Params {
+func (o *IOCTypeQueryV1Params) WithContext(ctx context.Context) *IOCTypeQueryV1Params {
 	o.SetContext(ctx)
 	return o
 }
 
 // SetContext adds the context to the ioc type query v1 params
-func (o *IocTypeQueryV1Params) SetContext(ctx context.Context) {
+func (o *IOCTypeQueryV1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
 // WithHTTPClient adds the HTTPClient to the ioc type query v1 params
-func (o *IocTypeQueryV1Params) WithHTTPClient(client *http.Client) *IocTypeQueryV1Params {
+func (o *IOCTypeQueryV1Params) WithHTTPClient(client *http.Client) *IOCTypeQueryV1Params {
 	o.SetHTTPClient(client)
 	return o
 }
 
 // SetHTTPClient adds the HTTPClient to the ioc type query v1 params
-func (o *IocTypeQueryV1Params) SetHTTPClient(client *http.Client) {
+func (o *IOCTypeQueryV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
 // WithLimit adds the limit to the ioc type query v1 params
-func (o *IocTypeQueryV1Params) WithLimit(limit *int64) *IocTypeQueryV1Params {
+func (o *IOCTypeQueryV1Params) WithLimit(limit *int64) *IOCTypeQueryV1Params {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the ioc type query v1 params
-func (o *IocTypeQueryV1Params) SetLimit(limit *int64) {
+func (o *IOCTypeQueryV1Params) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
 // WithOffset adds the offset to the ioc type query v1 params
-func (o *IocTypeQueryV1Params) WithOffset(offset *string) *IocTypeQueryV1Params {
+func (o *IOCTypeQueryV1Params) WithOffset(offset *string) *IOCTypeQueryV1Params {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the ioc type query v1 params
-func (o *IocTypeQueryV1Params) SetOffset(offset *string) {
+func (o *IOCTypeQueryV1Params) SetOffset(offset *string) {
 	o.Offset = offset
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *IocTypeQueryV1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *IOCTypeQueryV1Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

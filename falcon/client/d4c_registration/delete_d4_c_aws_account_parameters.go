@@ -17,50 +17,50 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewDeleteD4CAwsAccountParams creates a new DeleteD4CAwsAccountParams object,
+// NewDeleteD4CAWSAccountParams creates a new DeleteD4CAWSAccountParams object,
 // with the default timeout for this client.
 //
 // Default values are not hydrated, since defaults are normally applied by the API server side.
 //
 // To enforce default values in parameter, use SetDefaults or WithDefaults.
-func NewDeleteD4CAwsAccountParams() *DeleteD4CAwsAccountParams {
-	return &DeleteD4CAwsAccountParams{
+func NewDeleteD4CAWSAccountParams() *DeleteD4CAWSAccountParams {
+	return &DeleteD4CAWSAccountParams{
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewDeleteD4CAwsAccountParamsWithTimeout creates a new DeleteD4CAwsAccountParams object
+// NewDeleteD4CAWSAccountParamsWithTimeout creates a new DeleteD4CAWSAccountParams object
 // with the ability to set a timeout on a request.
-func NewDeleteD4CAwsAccountParamsWithTimeout(timeout time.Duration) *DeleteD4CAwsAccountParams {
-	return &DeleteD4CAwsAccountParams{
+func NewDeleteD4CAWSAccountParamsWithTimeout(timeout time.Duration) *DeleteD4CAWSAccountParams {
+	return &DeleteD4CAWSAccountParams{
 		timeout: timeout,
 	}
 }
 
-// NewDeleteD4CAwsAccountParamsWithContext creates a new DeleteD4CAwsAccountParams object
+// NewDeleteD4CAWSAccountParamsWithContext creates a new DeleteD4CAWSAccountParams object
 // with the ability to set a context for a request.
-func NewDeleteD4CAwsAccountParamsWithContext(ctx context.Context) *DeleteD4CAwsAccountParams {
-	return &DeleteD4CAwsAccountParams{
+func NewDeleteD4CAWSAccountParamsWithContext(ctx context.Context) *DeleteD4CAWSAccountParams {
+	return &DeleteD4CAWSAccountParams{
 		Context: ctx,
 	}
 }
 
-// NewDeleteD4CAwsAccountParamsWithHTTPClient creates a new DeleteD4CAwsAccountParams object
+// NewDeleteD4CAWSAccountParamsWithHTTPClient creates a new DeleteD4CAWSAccountParams object
 // with the ability to set a custom HTTPClient for a request.
-func NewDeleteD4CAwsAccountParamsWithHTTPClient(client *http.Client) *DeleteD4CAwsAccountParams {
-	return &DeleteD4CAwsAccountParams{
+func NewDeleteD4CAWSAccountParamsWithHTTPClient(client *http.Client) *DeleteD4CAWSAccountParams {
+	return &DeleteD4CAWSAccountParams{
 		HTTPClient: client,
 	}
 }
 
 /*
-DeleteD4CAwsAccountParams contains all the parameters to send to the API endpoint
+DeleteD4CAWSAccountParams contains all the parameters to send to the API endpoint
 
-	for the delete d4 c aws account operation.
+	for the delete d4 c Aws account operation.
 
 	Typically these are written to a http.Request.
 */
-type DeleteD4CAwsAccountParams struct {
+type DeleteD4CAWSAccountParams struct {
 
 	/* Ids.
 
@@ -79,78 +79,78 @@ type DeleteD4CAwsAccountParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the delete d4 c aws account params (not the query body).
+// WithDefaults hydrates default values in the delete d4 c Aws account params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *DeleteD4CAwsAccountParams) WithDefaults() *DeleteD4CAwsAccountParams {
+func (o *DeleteD4CAWSAccountParams) WithDefaults() *DeleteD4CAWSAccountParams {
 	o.SetDefaults()
 	return o
 }
 
-// SetDefaults hydrates default values in the delete d4 c aws account params (not the query body).
+// SetDefaults hydrates default values in the delete d4 c Aws account params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *DeleteD4CAwsAccountParams) SetDefaults() {
+func (o *DeleteD4CAWSAccountParams) SetDefaults() {
 	// no default values defined for this parameter
 }
 
-// WithTimeout adds the timeout to the delete d4 c aws account params
-func (o *DeleteD4CAwsAccountParams) WithTimeout(timeout time.Duration) *DeleteD4CAwsAccountParams {
+// WithTimeout adds the timeout to the delete d4 c Aws account params
+func (o *DeleteD4CAWSAccountParams) WithTimeout(timeout time.Duration) *DeleteD4CAWSAccountParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the delete d4 c aws account params
-func (o *DeleteD4CAwsAccountParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the delete d4 c Aws account params
+func (o *DeleteD4CAWSAccountParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the delete d4 c aws account params
-func (o *DeleteD4CAwsAccountParams) WithContext(ctx context.Context) *DeleteD4CAwsAccountParams {
+// WithContext adds the context to the delete d4 c Aws account params
+func (o *DeleteD4CAWSAccountParams) WithContext(ctx context.Context) *DeleteD4CAWSAccountParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the delete d4 c aws account params
-func (o *DeleteD4CAwsAccountParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the delete d4 c Aws account params
+func (o *DeleteD4CAWSAccountParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the delete d4 c aws account params
-func (o *DeleteD4CAwsAccountParams) WithHTTPClient(client *http.Client) *DeleteD4CAwsAccountParams {
+// WithHTTPClient adds the HTTPClient to the delete d4 c Aws account params
+func (o *DeleteD4CAWSAccountParams) WithHTTPClient(client *http.Client) *DeleteD4CAWSAccountParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the delete d4 c aws account params
-func (o *DeleteD4CAwsAccountParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the delete d4 c Aws account params
+func (o *DeleteD4CAWSAccountParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithIds adds the ids to the delete d4 c aws account params
-func (o *DeleteD4CAwsAccountParams) WithIds(ids []string) *DeleteD4CAwsAccountParams {
+// WithIds adds the ids to the delete d4 c Aws account params
+func (o *DeleteD4CAWSAccountParams) WithIds(ids []string) *DeleteD4CAWSAccountParams {
 	o.SetIds(ids)
 	return o
 }
 
-// SetIds adds the ids to the delete d4 c aws account params
-func (o *DeleteD4CAwsAccountParams) SetIds(ids []string) {
+// SetIds adds the ids to the delete d4 c Aws account params
+func (o *DeleteD4CAWSAccountParams) SetIds(ids []string) {
 	o.Ids = ids
 }
 
-// WithOrganizationIds adds the organizationIds to the delete d4 c aws account params
-func (o *DeleteD4CAwsAccountParams) WithOrganizationIds(organizationIds []string) *DeleteD4CAwsAccountParams {
+// WithOrganizationIds adds the organizationIds to the delete d4 c Aws account params
+func (o *DeleteD4CAWSAccountParams) WithOrganizationIds(organizationIds []string) *DeleteD4CAWSAccountParams {
 	o.SetOrganizationIds(organizationIds)
 	return o
 }
 
-// SetOrganizationIds adds the organizationIds to the delete d4 c aws account params
-func (o *DeleteD4CAwsAccountParams) SetOrganizationIds(organizationIds []string) {
+// SetOrganizationIds adds the organizationIds to the delete d4 c Aws account params
+func (o *DeleteD4CAWSAccountParams) SetOrganizationIds(organizationIds []string) {
 	o.OrganizationIds = organizationIds
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *DeleteD4CAwsAccountParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *DeleteD4CAWSAccountParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err
@@ -185,8 +185,8 @@ func (o *DeleteD4CAwsAccountParams) WriteToRequest(r runtime.ClientRequest, reg 
 	return nil
 }
 
-// bindParamDeleteD4CAwsAccount binds the parameter ids
-func (o *DeleteD4CAwsAccountParams) bindParamIds(formats strfmt.Registry) []string {
+// bindParamDeleteD4CAWSAccount binds the parameter ids
+func (o *DeleteD4CAWSAccountParams) bindParamIds(formats strfmt.Registry) []string {
 	idsIR := o.Ids
 
 	var idsIC []string
@@ -202,8 +202,8 @@ func (o *DeleteD4CAwsAccountParams) bindParamIds(formats strfmt.Registry) []stri
 	return idsIS
 }
 
-// bindParamDeleteD4CAwsAccount binds the parameter organization-ids
-func (o *DeleteD4CAwsAccountParams) bindParamOrganizationIds(formats strfmt.Registry) []string {
+// bindParamDeleteD4CAWSAccount binds the parameter organization-ids
+func (o *DeleteD4CAWSAccountParams) bindParamOrganizationIds(formats strfmt.Registry) []string {
 	organizationIdsIR := o.OrganizationIds
 
 	var organizationIdsIC []string

@@ -23,7 +23,7 @@ type DeviceControlPolicyV1 struct {
 
 	// The customer id associated with the policy
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// The email of the user which created the policy
 	// Required: true
@@ -77,7 +77,7 @@ type DeviceControlPolicyV1 struct {
 func (m *DeviceControlPolicyV1) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -131,9 +131,9 @@ func (m *DeviceControlPolicyV1) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DeviceControlPolicyV1) validateCid(formats strfmt.Registry) error {
+func (m *DeviceControlPolicyV1) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 
@@ -336,6 +336,11 @@ func (m *DeviceControlPolicyV1) contextValidateGroups(ctx context.Context, forma
 	for i := 0; i < len(m.Groups); i++ {
 
 		if m.Groups[i] != nil {
+
+			if swag.IsZero(m.Groups[i]) { // not required
+				return nil
+			}
+
 			if err := m.Groups[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("groups" + "." + strconv.Itoa(i))
@@ -354,6 +359,7 @@ func (m *DeviceControlPolicyV1) contextValidateGroups(ctx context.Context, forma
 func (m *DeviceControlPolicyV1) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Settings != nil {
+
 		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("settings")

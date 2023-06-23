@@ -20,7 +20,7 @@ import (
 type StateOnlineStateResultV1 struct {
 
 	// cid
-	Cid string `json:"cid,omitempty"`
+	CID string `json:"cid,omitempty"`
 
 	// id
 	// Required: true

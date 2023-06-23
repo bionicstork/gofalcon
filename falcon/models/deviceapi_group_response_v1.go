@@ -24,7 +24,7 @@ type DeviceapiGroupResponseV1 struct {
 
 	// cid
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// created by
 	// Required: true
@@ -68,7 +68,7 @@ type DeviceapiGroupResponseV1 struct {
 func (m *DeviceapiGroupResponseV1) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -114,9 +114,9 @@ func (m *DeviceapiGroupResponseV1) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DeviceapiGroupResponseV1) validateCid(formats strfmt.Registry) error {
+func (m *DeviceapiGroupResponseV1) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 
@@ -239,6 +239,11 @@ func (m *DeviceapiGroupResponseV1) ContextValidate(ctx context.Context, formats 
 func (m *DeviceapiGroupResponseV1) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("meta")

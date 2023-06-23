@@ -21,7 +21,7 @@ type FwmgrAPINetworkLocationSummaryV1 struct {
 
 	// cid
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// created by
 	CreatedBy string `json:"created_by,omitempty"`
@@ -60,7 +60,7 @@ type FwmgrAPINetworkLocationSummaryV1 struct {
 func (m *FwmgrAPINetworkLocationSummaryV1) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -90,9 +90,9 @@ func (m *FwmgrAPINetworkLocationSummaryV1) Validate(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *FwmgrAPINetworkLocationSummaryV1) validateCid(formats strfmt.Registry) error {
+func (m *FwmgrAPINetworkLocationSummaryV1) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 

@@ -20,14 +20,13 @@ import (
 // DownloadSensorInstallerByIDReader is a Reader for the DownloadSensorInstallerByID structure.
 type DownloadSensorInstallerByIDReader struct {
 	formats strfmt.Registry
-	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *DownloadSensorInstallerByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewDownloadSensorInstallerByIDOK(o.writer)
+		result := NewDownloadSensorInstallerByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -57,23 +56,13 @@ func (o *DownloadSensorInstallerByIDReader) ReadResponse(response runtime.Client
 		}
 		return nil, result
 	default:
-		result := NewDownloadSensorInstallerByIDDefault(response.Code(), o.writer)
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return nil, result
+		return nil, runtime.NewAPIError("[GET /sensors/entities/download-installer/v1] DownloadSensorInstallerById", response, response.Code())
 	}
 }
 
 // NewDownloadSensorInstallerByIDOK creates a DownloadSensorInstallerByIDOK with default headers values
-func NewDownloadSensorInstallerByIDOK(writer io.Writer) *DownloadSensorInstallerByIDOK {
-	return &DownloadSensorInstallerByIDOK{
-
-		Payload: writer,
-	}
+func NewDownloadSensorInstallerByIDOK() *DownloadSensorInstallerByIDOK {
+	return &DownloadSensorInstallerByIDOK{}
 }
 
 /*
@@ -83,6 +72,10 @@ OK
 */
 type DownloadSensorInstallerByIDOK struct {
 
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
+
 	/* Request limit per minute.
 	 */
 	XRateLimitLimit int64
@@ -91,7 +84,7 @@ type DownloadSensorInstallerByIDOK struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload io.Writer
+	Payload models.DomainDownloadItem
 }
 
 // IsSuccess returns true when this download sensor installer by Id o k response has a 2xx status code
@@ -132,11 +125,18 @@ func (o *DownloadSensorInstallerByIDOK) String() string {
 	return fmt.Sprintf("[GET /sensors/entities/download-installer/v1][%d] downloadSensorInstallerByIdOK  %+v", 200, o.Payload)
 }
 
-func (o *DownloadSensorInstallerByIDOK) GetPayload() io.Writer {
+func (o *DownloadSensorInstallerByIDOK) GetPayload() models.DomainDownloadItem {
 	return o.Payload
 }
 
 func (o *DownloadSensorInstallerByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
 
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
@@ -161,7 +161,7 @@ func (o *DownloadSensorInstallerByIDOK) readResponse(response runtime.ClientResp
 	}
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
@@ -180,6 +180,10 @@ Bad Request
 */
 type DownloadSensorInstallerByIDBadRequest struct {
 
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
+
 	/* Request limit per minute.
 	 */
 	XRateLimitLimit int64
@@ -188,7 +192,7 @@ type DownloadSensorInstallerByIDBadRequest struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.MsaQueryResponse
+	Payload *models.MsaspecQueryResponse
 }
 
 // IsSuccess returns true when this download sensor installer by Id bad request response has a 2xx status code
@@ -229,11 +233,18 @@ func (o *DownloadSensorInstallerByIDBadRequest) String() string {
 	return fmt.Sprintf("[GET /sensors/entities/download-installer/v1][%d] downloadSensorInstallerByIdBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *DownloadSensorInstallerByIDBadRequest) GetPayload() *models.MsaQueryResponse {
+func (o *DownloadSensorInstallerByIDBadRequest) GetPayload() *models.MsaspecQueryResponse {
 	return o.Payload
 }
 
 func (o *DownloadSensorInstallerByIDBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
 
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
@@ -257,7 +268,7 @@ func (o *DownloadSensorInstallerByIDBadRequest) readResponse(response runtime.Cl
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.MsaQueryResponse)
+	o.Payload = new(models.MsaspecQueryResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -278,6 +289,10 @@ DownloadSensorInstallerByIDForbidden describes a response with status code 403, 
 Forbidden
 */
 type DownloadSensorInstallerByIDForbidden struct {
+
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
 
 	/* Request limit per minute.
 	 */
@@ -334,6 +349,13 @@ func (o *DownloadSensorInstallerByIDForbidden) GetPayload() *models.MsaReplyMeta
 
 func (o *DownloadSensorInstallerByIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
+
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
 
@@ -378,6 +400,10 @@ Not Found
 */
 type DownloadSensorInstallerByIDNotFound struct {
 
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
+
 	/* Request limit per minute.
 	 */
 	XRateLimitLimit int64
@@ -386,7 +412,7 @@ type DownloadSensorInstallerByIDNotFound struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.MsaQueryResponse
+	Payload *models.MsaspecQueryResponse
 }
 
 // IsSuccess returns true when this download sensor installer by Id not found response has a 2xx status code
@@ -427,11 +453,18 @@ func (o *DownloadSensorInstallerByIDNotFound) String() string {
 	return fmt.Sprintf("[GET /sensors/entities/download-installer/v1][%d] downloadSensorInstallerByIdNotFound  %+v", 404, o.Payload)
 }
 
-func (o *DownloadSensorInstallerByIDNotFound) GetPayload() *models.MsaQueryResponse {
+func (o *DownloadSensorInstallerByIDNotFound) GetPayload() *models.MsaspecQueryResponse {
 	return o.Payload
 }
 
 func (o *DownloadSensorInstallerByIDNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
 
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
@@ -455,7 +488,7 @@ func (o *DownloadSensorInstallerByIDNotFound) readResponse(response runtime.Clie
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.MsaQueryResponse)
+	o.Payload = new(models.MsaspecQueryResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -476,6 +509,10 @@ DownloadSensorInstallerByIDTooManyRequests describes a response with status code
 Too Many Requests
 */
 type DownloadSensorInstallerByIDTooManyRequests struct {
+
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
 
 	/* Request limit per minute.
 	 */
@@ -536,6 +573,13 @@ func (o *DownloadSensorInstallerByIDTooManyRequests) GetPayload() *models.MsaRep
 
 func (o *DownloadSensorInstallerByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
+
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
 
@@ -570,78 +614,6 @@ func (o *DownloadSensorInstallerByIDTooManyRequests) readResponse(response runti
 	}
 
 	o.Payload = new(models.MsaReplyMetaOnly)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewDownloadSensorInstallerByIDDefault creates a DownloadSensorInstallerByIDDefault with default headers values
-func NewDownloadSensorInstallerByIDDefault(code int, writer io.Writer) *DownloadSensorInstallerByIDDefault {
-	return &DownloadSensorInstallerByIDDefault{
-		_statusCode: code,
-
-		Payload: writer,
-	}
-}
-
-/*
-DownloadSensorInstallerByIDDefault describes a response with status code -1, with default header values.
-
-OK
-*/
-type DownloadSensorInstallerByIDDefault struct {
-	_statusCode int
-
-	Payload io.Writer
-}
-
-// IsSuccess returns true when this download sensor installer by Id default response has a 2xx status code
-func (o *DownloadSensorInstallerByIDDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this download sensor installer by Id default response has a 3xx status code
-func (o *DownloadSensorInstallerByIDDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this download sensor installer by Id default response has a 4xx status code
-func (o *DownloadSensorInstallerByIDDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this download sensor installer by Id default response has a 5xx status code
-func (o *DownloadSensorInstallerByIDDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this download sensor installer by Id default response a status code equal to that given
-func (o *DownloadSensorInstallerByIDDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
-// Code gets the status code for the download sensor installer by Id default response
-func (o *DownloadSensorInstallerByIDDefault) Code() int {
-	return o._statusCode
-}
-
-func (o *DownloadSensorInstallerByIDDefault) Error() string {
-	return fmt.Sprintf("[GET /sensors/entities/download-installer/v1][%d] DownloadSensorInstallerById default  %+v", o._statusCode, o.Payload)
-}
-
-func (o *DownloadSensorInstallerByIDDefault) String() string {
-	return fmt.Sprintf("[GET /sensors/entities/download-installer/v1][%d] DownloadSensorInstallerById default  %+v", o._statusCode, o.Payload)
-}
-
-func (o *DownloadSensorInstallerByIDDefault) GetPayload() io.Writer {
-	return o.Payload
-}
-
-func (o *DownloadSensorInstallerByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

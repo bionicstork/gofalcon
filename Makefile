@@ -9,7 +9,32 @@ build:
 clean-generate: remove-generated generate
 
 generate: specs/swagger-stripped-oauth.json
-	$(GO) run github.com/go-swagger/go-swagger/cmd/swagger generate client --skip-validation -f $^ -t falcon
+	$(GO) run github.com/go-swagger/go-swagger/cmd/swagger generate client \
+			-f $^ \
+			-t falcon \
+			--additional-initialism=CSPM \
+			--additional-initialism=AWS \
+			--additional-initialism=DDOS \
+			--additional-initialism=IOM \
+			--additional-initialism=GCP \
+			--additional-initialism=IOA \
+			--additional-initialism=API \
+			--additional-initialism=DACL \
+			--additional-initialism=ACL \
+			--additional-initialism=YAML \
+			--additional-initialism=IOC \
+			--additional-initialism=ICMP \
+			--additional-initialism=HTTPS \
+			--additional-initialism=DNS \
+			--additional-initialism=MITRE \
+			--additional-initialism=AMSI \
+			--additional-initialism=ODS \
+			--additional-initialism=PF \
+			--additional-initialism=XDR \
+			--additional-initialism=SPAPI \
+			--additional-initialism=MSSP \
+			--additional-initialism=CSIX \
+			--additional-initialism=CID
 
 .PHONY: build generate remove-generated
 

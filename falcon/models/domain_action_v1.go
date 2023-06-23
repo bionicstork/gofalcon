@@ -21,7 +21,7 @@ type DomainActionV1 struct {
 
 	// The ID of the customer who created the action
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// The level of detail in which the content will be delivered. It can be either 'standard' or 'enhanced'
 	// Required: true
@@ -74,7 +74,7 @@ type DomainActionV1 struct {
 func (m *DomainActionV1) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -128,9 +128,9 @@ func (m *DomainActionV1) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DomainActionV1) validateCid(formats strfmt.Registry) error {
+func (m *DomainActionV1) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 

@@ -16,54 +16,54 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewQueryMitreAttacksParams creates a new QueryMitreAttacksParams object,
+// NewQueryMITREAttacksParams creates a new QueryMITREAttacksParams object,
 // with the default timeout for this client.
 //
 // Default values are not hydrated, since defaults are normally applied by the API server side.
 //
 // To enforce default values in parameter, use SetDefaults or WithDefaults.
-func NewQueryMitreAttacksParams() *QueryMitreAttacksParams {
-	return &QueryMitreAttacksParams{
+func NewQueryMITREAttacksParams() *QueryMITREAttacksParams {
+	return &QueryMITREAttacksParams{
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewQueryMitreAttacksParamsWithTimeout creates a new QueryMitreAttacksParams object
+// NewQueryMITREAttacksParamsWithTimeout creates a new QueryMITREAttacksParams object
 // with the ability to set a timeout on a request.
-func NewQueryMitreAttacksParamsWithTimeout(timeout time.Duration) *QueryMitreAttacksParams {
-	return &QueryMitreAttacksParams{
+func NewQueryMITREAttacksParamsWithTimeout(timeout time.Duration) *QueryMITREAttacksParams {
+	return &QueryMITREAttacksParams{
 		timeout: timeout,
 	}
 }
 
-// NewQueryMitreAttacksParamsWithContext creates a new QueryMitreAttacksParams object
+// NewQueryMITREAttacksParamsWithContext creates a new QueryMITREAttacksParams object
 // with the ability to set a context for a request.
-func NewQueryMitreAttacksParamsWithContext(ctx context.Context) *QueryMitreAttacksParams {
-	return &QueryMitreAttacksParams{
+func NewQueryMITREAttacksParamsWithContext(ctx context.Context) *QueryMITREAttacksParams {
+	return &QueryMITREAttacksParams{
 		Context: ctx,
 	}
 }
 
-// NewQueryMitreAttacksParamsWithHTTPClient creates a new QueryMitreAttacksParams object
+// NewQueryMITREAttacksParamsWithHTTPClient creates a new QueryMITREAttacksParams object
 // with the ability to set a custom HTTPClient for a request.
-func NewQueryMitreAttacksParamsWithHTTPClient(client *http.Client) *QueryMitreAttacksParams {
-	return &QueryMitreAttacksParams{
+func NewQueryMITREAttacksParamsWithHTTPClient(client *http.Client) *QueryMITREAttacksParams {
+	return &QueryMITREAttacksParams{
 		HTTPClient: client,
 	}
 }
 
 /*
-QueryMitreAttacksParams contains all the parameters to send to the API endpoint
+QueryMITREAttacksParams contains all the parameters to send to the API endpoint
 
-	for the query mitre attacks operation.
+	for the query Mitre attacks operation.
 
 	Typically these are written to a http.Request.
 */
-type QueryMitreAttacksParams struct {
+type QueryMITREAttacksParams struct {
 
 	/* ID.
 
-	   The actor ID(derived from the actor's name) for which to retrieve a list of attacks.
+	   The actor ID(derived from the actor's name) for which to retrieve a list of attacks, for example: fancy-bear.
 	*/
 	ID string
 
@@ -72,67 +72,67 @@ type QueryMitreAttacksParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the query mitre attacks params (not the query body).
+// WithDefaults hydrates default values in the query Mitre attacks params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *QueryMitreAttacksParams) WithDefaults() *QueryMitreAttacksParams {
+func (o *QueryMITREAttacksParams) WithDefaults() *QueryMITREAttacksParams {
 	o.SetDefaults()
 	return o
 }
 
-// SetDefaults hydrates default values in the query mitre attacks params (not the query body).
+// SetDefaults hydrates default values in the query Mitre attacks params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *QueryMitreAttacksParams) SetDefaults() {
+func (o *QueryMITREAttacksParams) SetDefaults() {
 	// no default values defined for this parameter
 }
 
-// WithTimeout adds the timeout to the query mitre attacks params
-func (o *QueryMitreAttacksParams) WithTimeout(timeout time.Duration) *QueryMitreAttacksParams {
+// WithTimeout adds the timeout to the query Mitre attacks params
+func (o *QueryMITREAttacksParams) WithTimeout(timeout time.Duration) *QueryMITREAttacksParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the query mitre attacks params
-func (o *QueryMitreAttacksParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the query Mitre attacks params
+func (o *QueryMITREAttacksParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the query mitre attacks params
-func (o *QueryMitreAttacksParams) WithContext(ctx context.Context) *QueryMitreAttacksParams {
+// WithContext adds the context to the query Mitre attacks params
+func (o *QueryMITREAttacksParams) WithContext(ctx context.Context) *QueryMITREAttacksParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the query mitre attacks params
-func (o *QueryMitreAttacksParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the query Mitre attacks params
+func (o *QueryMITREAttacksParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the query mitre attacks params
-func (o *QueryMitreAttacksParams) WithHTTPClient(client *http.Client) *QueryMitreAttacksParams {
+// WithHTTPClient adds the HTTPClient to the query Mitre attacks params
+func (o *QueryMITREAttacksParams) WithHTTPClient(client *http.Client) *QueryMITREAttacksParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the query mitre attacks params
-func (o *QueryMitreAttacksParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the query Mitre attacks params
+func (o *QueryMITREAttacksParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithID adds the id to the query mitre attacks params
-func (o *QueryMitreAttacksParams) WithID(id string) *QueryMitreAttacksParams {
+// WithID adds the id to the query Mitre attacks params
+func (o *QueryMITREAttacksParams) WithID(id string) *QueryMITREAttacksParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the query mitre attacks params
-func (o *QueryMitreAttacksParams) SetID(id string) {
+// SetID adds the id to the query Mitre attacks params
+func (o *QueryMITREAttacksParams) SetID(id string) {
 	o.ID = id
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *QueryMitreAttacksParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *QueryMITREAttacksParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

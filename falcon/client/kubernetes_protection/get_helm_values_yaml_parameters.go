@@ -14,52 +14,53 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
-// NewGetHelmValuesYamlParams creates a new GetHelmValuesYamlParams object,
+// NewGetHelmValuesYAMLParams creates a new GetHelmValuesYAMLParams object,
 // with the default timeout for this client.
 //
 // Default values are not hydrated, since defaults are normally applied by the API server side.
 //
 // To enforce default values in parameter, use SetDefaults or WithDefaults.
-func NewGetHelmValuesYamlParams() *GetHelmValuesYamlParams {
-	return &GetHelmValuesYamlParams{
+func NewGetHelmValuesYAMLParams() *GetHelmValuesYAMLParams {
+	return &GetHelmValuesYAMLParams{
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewGetHelmValuesYamlParamsWithTimeout creates a new GetHelmValuesYamlParams object
+// NewGetHelmValuesYAMLParamsWithTimeout creates a new GetHelmValuesYAMLParams object
 // with the ability to set a timeout on a request.
-func NewGetHelmValuesYamlParamsWithTimeout(timeout time.Duration) *GetHelmValuesYamlParams {
-	return &GetHelmValuesYamlParams{
+func NewGetHelmValuesYAMLParamsWithTimeout(timeout time.Duration) *GetHelmValuesYAMLParams {
+	return &GetHelmValuesYAMLParams{
 		timeout: timeout,
 	}
 }
 
-// NewGetHelmValuesYamlParamsWithContext creates a new GetHelmValuesYamlParams object
+// NewGetHelmValuesYAMLParamsWithContext creates a new GetHelmValuesYAMLParams object
 // with the ability to set a context for a request.
-func NewGetHelmValuesYamlParamsWithContext(ctx context.Context) *GetHelmValuesYamlParams {
-	return &GetHelmValuesYamlParams{
+func NewGetHelmValuesYAMLParamsWithContext(ctx context.Context) *GetHelmValuesYAMLParams {
+	return &GetHelmValuesYAMLParams{
 		Context: ctx,
 	}
 }
 
-// NewGetHelmValuesYamlParamsWithHTTPClient creates a new GetHelmValuesYamlParams object
+// NewGetHelmValuesYAMLParamsWithHTTPClient creates a new GetHelmValuesYAMLParams object
 // with the ability to set a custom HTTPClient for a request.
-func NewGetHelmValuesYamlParamsWithHTTPClient(client *http.Client) *GetHelmValuesYamlParams {
-	return &GetHelmValuesYamlParams{
+func NewGetHelmValuesYAMLParamsWithHTTPClient(client *http.Client) *GetHelmValuesYAMLParams {
+	return &GetHelmValuesYAMLParams{
 		HTTPClient: client,
 	}
 }
 
 /*
-GetHelmValuesYamlParams contains all the parameters to send to the API endpoint
+GetHelmValuesYAMLParams contains all the parameters to send to the API endpoint
 
-	for the get helm values yaml operation.
+	for the get helm values Yaml operation.
 
 	Typically these are written to a http.Request.
 */
-type GetHelmValuesYamlParams struct {
+type GetHelmValuesYAMLParams struct {
 
 	/* ClusterName.
 
@@ -67,72 +68,89 @@ type GetHelmValuesYamlParams struct {
 	*/
 	ClusterName string
 
+	/* IsSelfManagedCluster.
+
+	   Set to true if the cluster is not managed by a cloud provider, false if it is.
+	*/
+	IsSelfManagedCluster *bool
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the get helm values yaml params (not the query body).
+// WithDefaults hydrates default values in the get helm values Yaml params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *GetHelmValuesYamlParams) WithDefaults() *GetHelmValuesYamlParams {
+func (o *GetHelmValuesYAMLParams) WithDefaults() *GetHelmValuesYAMLParams {
 	o.SetDefaults()
 	return o
 }
 
-// SetDefaults hydrates default values in the get helm values yaml params (not the query body).
+// SetDefaults hydrates default values in the get helm values Yaml params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *GetHelmValuesYamlParams) SetDefaults() {
+func (o *GetHelmValuesYAMLParams) SetDefaults() {
 	// no default values defined for this parameter
 }
 
-// WithTimeout adds the timeout to the get helm values yaml params
-func (o *GetHelmValuesYamlParams) WithTimeout(timeout time.Duration) *GetHelmValuesYamlParams {
+// WithTimeout adds the timeout to the get helm values Yaml params
+func (o *GetHelmValuesYAMLParams) WithTimeout(timeout time.Duration) *GetHelmValuesYAMLParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the get helm values yaml params
-func (o *GetHelmValuesYamlParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the get helm values Yaml params
+func (o *GetHelmValuesYAMLParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the get helm values yaml params
-func (o *GetHelmValuesYamlParams) WithContext(ctx context.Context) *GetHelmValuesYamlParams {
+// WithContext adds the context to the get helm values Yaml params
+func (o *GetHelmValuesYAMLParams) WithContext(ctx context.Context) *GetHelmValuesYAMLParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the get helm values yaml params
-func (o *GetHelmValuesYamlParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the get helm values Yaml params
+func (o *GetHelmValuesYAMLParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the get helm values yaml params
-func (o *GetHelmValuesYamlParams) WithHTTPClient(client *http.Client) *GetHelmValuesYamlParams {
+// WithHTTPClient adds the HTTPClient to the get helm values Yaml params
+func (o *GetHelmValuesYAMLParams) WithHTTPClient(client *http.Client) *GetHelmValuesYAMLParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the get helm values yaml params
-func (o *GetHelmValuesYamlParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the get helm values Yaml params
+func (o *GetHelmValuesYAMLParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithClusterName adds the clusterName to the get helm values yaml params
-func (o *GetHelmValuesYamlParams) WithClusterName(clusterName string) *GetHelmValuesYamlParams {
+// WithClusterName adds the clusterName to the get helm values Yaml params
+func (o *GetHelmValuesYAMLParams) WithClusterName(clusterName string) *GetHelmValuesYAMLParams {
 	o.SetClusterName(clusterName)
 	return o
 }
 
-// SetClusterName adds the clusterName to the get helm values yaml params
-func (o *GetHelmValuesYamlParams) SetClusterName(clusterName string) {
+// SetClusterName adds the clusterName to the get helm values Yaml params
+func (o *GetHelmValuesYAMLParams) SetClusterName(clusterName string) {
 	o.ClusterName = clusterName
 }
 
+// WithIsSelfManagedCluster adds the isSelfManagedCluster to the get helm values Yaml params
+func (o *GetHelmValuesYAMLParams) WithIsSelfManagedCluster(isSelfManagedCluster *bool) *GetHelmValuesYAMLParams {
+	o.SetIsSelfManagedCluster(isSelfManagedCluster)
+	return o
+}
+
+// SetIsSelfManagedCluster adds the isSelfManagedCluster to the get helm values Yaml params
+func (o *GetHelmValuesYAMLParams) SetIsSelfManagedCluster(isSelfManagedCluster *bool) {
+	o.IsSelfManagedCluster = isSelfManagedCluster
+}
+
 // WriteToRequest writes these params to a swagger request
-func (o *GetHelmValuesYamlParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *GetHelmValuesYAMLParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err
@@ -146,6 +164,23 @@ func (o *GetHelmValuesYamlParams) WriteToRequest(r runtime.ClientRequest, reg st
 
 		if err := r.SetQueryParam("cluster_name", qClusterName); err != nil {
 			return err
+		}
+	}
+
+	if o.IsSelfManagedCluster != nil {
+
+		// query param is_self_managed_cluster
+		var qrIsSelfManagedCluster bool
+
+		if o.IsSelfManagedCluster != nil {
+			qrIsSelfManagedCluster = *o.IsSelfManagedCluster
+		}
+		qIsSelfManagedCluster := swag.FormatBool(qrIsSelfManagedCluster)
+		if qIsSelfManagedCluster != "" {
+
+			if err := r.SetQueryParam("is_self_managed_cluster", qIsSelfManagedCluster); err != nil {
+				return err
+			}
 		}
 	}
 

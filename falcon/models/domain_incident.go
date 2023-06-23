@@ -28,7 +28,7 @@ type DomainIncident struct {
 
 	// cid
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// created
 	// Required: true
@@ -37,6 +37,9 @@ type DomainIncident struct {
 
 	// description
 	Description string `json:"description,omitempty"`
+
+	// email state
+	EmailState string `json:"email_state,omitempty"`
 
 	// end
 	// Required: true
@@ -69,6 +72,15 @@ type DomainIncident struct {
 
 	// lm hosts capped
 	LmHostsCapped bool `json:"lm_hosts_capped,omitempty"`
+
+	// lm types
+	LmTypes int64 `json:"lm_types,omitempty"`
+
+	// lmra host ids
+	LmraHostIds []string `json:"lmra_host_ids"`
+
+	// lmra hosts capped
+	LmraHostsCapped bool `json:"lmra_hosts_capped,omitempty"`
 
 	// modified timestamp
 	// Format: date-time
@@ -112,7 +124,7 @@ type DomainIncident struct {
 func (m *DomainIncident) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -162,9 +174,9 @@ func (m *DomainIncident) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DomainIncident) validateCid(formats strfmt.Registry) error {
+func (m *DomainIncident) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 
@@ -333,6 +345,11 @@ func (m *DomainIncident) contextValidateEventsHistogram(ctx context.Context, for
 	for i := 0; i < len(m.EventsHistogram); i++ {
 
 		if m.EventsHistogram[i] != nil {
+
+			if swag.IsZero(m.EventsHistogram[i]) { // not required
+				return nil
+			}
+
 			if err := m.EventsHistogram[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("events_histogram" + "." + strconv.Itoa(i))
@@ -353,6 +370,11 @@ func (m *DomainIncident) contextValidateHosts(ctx context.Context, formats strfm
 	for i := 0; i < len(m.Hosts); i++ {
 
 		if m.Hosts[i] != nil {
+
+			if swag.IsZero(m.Hosts[i]) { // not required
+				return nil
+			}
+
 			if err := m.Hosts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("hosts" + "." + strconv.Itoa(i))

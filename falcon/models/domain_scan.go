@@ -24,7 +24,7 @@ type DomainScan struct {
 	AffectedHostsCount int32 `json:"affected_hosts_count,omitempty"`
 
 	// cid
-	Cid string `json:"cid,omitempty"`
+	CID string `json:"cid,omitempty"`
 
 	// cloud ml level detection
 	CloudMlLevelDetection int32 `json:"cloud_ml_level_detection,omitempty"`
@@ -283,6 +283,11 @@ func (m *DomainScan) ContextValidate(ctx context.Context, formats strfmt.Registr
 func (m *DomainScan) contextValidateFilecount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Filecount != nil {
+
+		if swag.IsZero(m.Filecount) { // not required
+			return nil
+		}
+
 		if err := m.Filecount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filecount")
@@ -301,6 +306,11 @@ func (m *DomainScan) contextValidateMetadata(ctx context.Context, formats strfmt
 	for i := 0; i < len(m.Metadata); i++ {
 
 		if m.Metadata[i] != nil {
+
+			if swag.IsZero(m.Metadata[i]) { // not required
+				return nil
+			}
+
 			if err := m.Metadata[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metadata" + "." + strconv.Itoa(i))

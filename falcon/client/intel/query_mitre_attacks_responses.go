@@ -17,48 +17,48 @@ import (
 	"github.com/crowdstrike/gofalcon/falcon/models"
 )
 
-// QueryMitreAttacksReader is a Reader for the QueryMitreAttacks structure.
-type QueryMitreAttacksReader struct {
+// QueryMITREAttacksReader is a Reader for the QueryMITREAttacks structure.
+type QueryMITREAttacksReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *QueryMitreAttacksReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *QueryMITREAttacksReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewQueryMitreAttacksOK()
+		result := NewQueryMITREAttacksOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 403:
-		result := NewQueryMitreAttacksForbidden()
+		result := NewQueryMITREAttacksForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 429:
-		result := NewQueryMitreAttacksTooManyRequests()
+		result := NewQueryMITREAttacksTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /intel/queries/mitre/v1] QueryMitreAttacks", response, response.Code())
 	}
 }
 
-// NewQueryMitreAttacksOK creates a QueryMitreAttacksOK with default headers values
-func NewQueryMitreAttacksOK() *QueryMitreAttacksOK {
-	return &QueryMitreAttacksOK{}
+// NewQueryMITREAttacksOK creates a QueryMITREAttacksOK with default headers values
+func NewQueryMITREAttacksOK() *QueryMITREAttacksOK {
+	return &QueryMITREAttacksOK{}
 }
 
 /*
-QueryMitreAttacksOK describes a response with status code 200, with default header values.
+QueryMITREAttacksOK describes a response with status code 200, with default header values.
 
 OK
 */
-type QueryMitreAttacksOK struct {
+type QueryMITREAttacksOK struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -71,47 +71,53 @@ type QueryMitreAttacksOK struct {
 	/* The number of requests remaining for the sliding one minute window.
 	 */
 	XRateLimitRemaining int64
+
+	Payload *models.DomainQueryMITREAttacksResponse
 }
 
-// IsSuccess returns true when this query mitre attacks o k response has a 2xx status code
-func (o *QueryMitreAttacksOK) IsSuccess() bool {
+// IsSuccess returns true when this query Mitre attacks o k response has a 2xx status code
+func (o *QueryMITREAttacksOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this query mitre attacks o k response has a 3xx status code
-func (o *QueryMitreAttacksOK) IsRedirect() bool {
+// IsRedirect returns true when this query Mitre attacks o k response has a 3xx status code
+func (o *QueryMITREAttacksOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this query mitre attacks o k response has a 4xx status code
-func (o *QueryMitreAttacksOK) IsClientError() bool {
+// IsClientError returns true when this query Mitre attacks o k response has a 4xx status code
+func (o *QueryMITREAttacksOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this query mitre attacks o k response has a 5xx status code
-func (o *QueryMitreAttacksOK) IsServerError() bool {
+// IsServerError returns true when this query Mitre attacks o k response has a 5xx status code
+func (o *QueryMITREAttacksOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this query mitre attacks o k response a status code equal to that given
-func (o *QueryMitreAttacksOK) IsCode(code int) bool {
+// IsCode returns true when this query Mitre attacks o k response a status code equal to that given
+func (o *QueryMITREAttacksOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the query mitre attacks o k response
-func (o *QueryMitreAttacksOK) Code() int {
+// Code gets the status code for the query Mitre attacks o k response
+func (o *QueryMITREAttacksOK) Code() int {
 	return 200
 }
 
-func (o *QueryMitreAttacksOK) Error() string {
-	return fmt.Sprintf("[GET /intel/queries/mitre/v1][%d] queryMitreAttacksOK ", 200)
+func (o *QueryMITREAttacksOK) Error() string {
+	return fmt.Sprintf("[GET /intel/queries/mitre/v1][%d] queryMitreAttacksOK  %+v", 200, o.Payload)
 }
 
-func (o *QueryMitreAttacksOK) String() string {
-	return fmt.Sprintf("[GET /intel/queries/mitre/v1][%d] queryMitreAttacksOK ", 200)
+func (o *QueryMITREAttacksOK) String() string {
+	return fmt.Sprintf("[GET /intel/queries/mitre/v1][%d] queryMitreAttacksOK  %+v", 200, o.Payload)
 }
 
-func (o *QueryMitreAttacksOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *QueryMITREAttacksOK) GetPayload() *models.DomainQueryMITREAttacksResponse {
+	return o.Payload
+}
+
+func (o *QueryMITREAttacksOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -142,20 +148,27 @@ func (o *QueryMitreAttacksOK) readResponse(response runtime.ClientResponse, cons
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
+	o.Payload = new(models.DomainQueryMITREAttacksResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
 	return nil
 }
 
-// NewQueryMitreAttacksForbidden creates a QueryMitreAttacksForbidden with default headers values
-func NewQueryMitreAttacksForbidden() *QueryMitreAttacksForbidden {
-	return &QueryMitreAttacksForbidden{}
+// NewQueryMITREAttacksForbidden creates a QueryMITREAttacksForbidden with default headers values
+func NewQueryMITREAttacksForbidden() *QueryMITREAttacksForbidden {
+	return &QueryMITREAttacksForbidden{}
 }
 
 /*
-QueryMitreAttacksForbidden describes a response with status code 403, with default header values.
+QueryMITREAttacksForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
-type QueryMitreAttacksForbidden struct {
+type QueryMITREAttacksForbidden struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -172,49 +185,49 @@ type QueryMitreAttacksForbidden struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this query mitre attacks forbidden response has a 2xx status code
-func (o *QueryMitreAttacksForbidden) IsSuccess() bool {
+// IsSuccess returns true when this query Mitre attacks forbidden response has a 2xx status code
+func (o *QueryMITREAttacksForbidden) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this query mitre attacks forbidden response has a 3xx status code
-func (o *QueryMitreAttacksForbidden) IsRedirect() bool {
+// IsRedirect returns true when this query Mitre attacks forbidden response has a 3xx status code
+func (o *QueryMITREAttacksForbidden) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this query mitre attacks forbidden response has a 4xx status code
-func (o *QueryMitreAttacksForbidden) IsClientError() bool {
+// IsClientError returns true when this query Mitre attacks forbidden response has a 4xx status code
+func (o *QueryMITREAttacksForbidden) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this query mitre attacks forbidden response has a 5xx status code
-func (o *QueryMitreAttacksForbidden) IsServerError() bool {
+// IsServerError returns true when this query Mitre attacks forbidden response has a 5xx status code
+func (o *QueryMITREAttacksForbidden) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this query mitre attacks forbidden response a status code equal to that given
-func (o *QueryMitreAttacksForbidden) IsCode(code int) bool {
+// IsCode returns true when this query Mitre attacks forbidden response a status code equal to that given
+func (o *QueryMITREAttacksForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
-// Code gets the status code for the query mitre attacks forbidden response
-func (o *QueryMitreAttacksForbidden) Code() int {
+// Code gets the status code for the query Mitre attacks forbidden response
+func (o *QueryMITREAttacksForbidden) Code() int {
 	return 403
 }
 
-func (o *QueryMitreAttacksForbidden) Error() string {
+func (o *QueryMITREAttacksForbidden) Error() string {
 	return fmt.Sprintf("[GET /intel/queries/mitre/v1][%d] queryMitreAttacksForbidden  %+v", 403, o.Payload)
 }
 
-func (o *QueryMitreAttacksForbidden) String() string {
+func (o *QueryMITREAttacksForbidden) String() string {
 	return fmt.Sprintf("[GET /intel/queries/mitre/v1][%d] queryMitreAttacksForbidden  %+v", 403, o.Payload)
 }
 
-func (o *QueryMitreAttacksForbidden) GetPayload() *models.MsaReplyMetaOnly {
+func (o *QueryMITREAttacksForbidden) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *QueryMitreAttacksForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *QueryMITREAttacksForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -255,17 +268,17 @@ func (o *QueryMitreAttacksForbidden) readResponse(response runtime.ClientRespons
 	return nil
 }
 
-// NewQueryMitreAttacksTooManyRequests creates a QueryMitreAttacksTooManyRequests with default headers values
-func NewQueryMitreAttacksTooManyRequests() *QueryMitreAttacksTooManyRequests {
-	return &QueryMitreAttacksTooManyRequests{}
+// NewQueryMITREAttacksTooManyRequests creates a QueryMITREAttacksTooManyRequests with default headers values
+func NewQueryMITREAttacksTooManyRequests() *QueryMITREAttacksTooManyRequests {
+	return &QueryMITREAttacksTooManyRequests{}
 }
 
 /*
-QueryMitreAttacksTooManyRequests describes a response with status code 429, with default header values.
+QueryMITREAttacksTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
-type QueryMitreAttacksTooManyRequests struct {
+type QueryMITREAttacksTooManyRequests struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -286,49 +299,49 @@ type QueryMitreAttacksTooManyRequests struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this query mitre attacks too many requests response has a 2xx status code
-func (o *QueryMitreAttacksTooManyRequests) IsSuccess() bool {
+// IsSuccess returns true when this query Mitre attacks too many requests response has a 2xx status code
+func (o *QueryMITREAttacksTooManyRequests) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this query mitre attacks too many requests response has a 3xx status code
-func (o *QueryMitreAttacksTooManyRequests) IsRedirect() bool {
+// IsRedirect returns true when this query Mitre attacks too many requests response has a 3xx status code
+func (o *QueryMITREAttacksTooManyRequests) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this query mitre attacks too many requests response has a 4xx status code
-func (o *QueryMitreAttacksTooManyRequests) IsClientError() bool {
+// IsClientError returns true when this query Mitre attacks too many requests response has a 4xx status code
+func (o *QueryMITREAttacksTooManyRequests) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this query mitre attacks too many requests response has a 5xx status code
-func (o *QueryMitreAttacksTooManyRequests) IsServerError() bool {
+// IsServerError returns true when this query Mitre attacks too many requests response has a 5xx status code
+func (o *QueryMITREAttacksTooManyRequests) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this query mitre attacks too many requests response a status code equal to that given
-func (o *QueryMitreAttacksTooManyRequests) IsCode(code int) bool {
+// IsCode returns true when this query Mitre attacks too many requests response a status code equal to that given
+func (o *QueryMITREAttacksTooManyRequests) IsCode(code int) bool {
 	return code == 429
 }
 
-// Code gets the status code for the query mitre attacks too many requests response
-func (o *QueryMitreAttacksTooManyRequests) Code() int {
+// Code gets the status code for the query Mitre attacks too many requests response
+func (o *QueryMITREAttacksTooManyRequests) Code() int {
 	return 429
 }
 
-func (o *QueryMitreAttacksTooManyRequests) Error() string {
+func (o *QueryMITREAttacksTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /intel/queries/mitre/v1][%d] queryMitreAttacksTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *QueryMitreAttacksTooManyRequests) String() string {
+func (o *QueryMITREAttacksTooManyRequests) String() string {
 	return fmt.Sprintf("[GET /intel/queries/mitre/v1][%d] queryMitreAttacksTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *QueryMitreAttacksTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
+func (o *QueryMITREAttacksTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *QueryMitreAttacksTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *QueryMITREAttacksTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")

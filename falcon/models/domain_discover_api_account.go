@@ -30,7 +30,7 @@ type DomainDiscoverAPIAccount struct {
 
 	// The account's customer ID.
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// The first time the account was seen successfully logging in to your environment.
 	FirstSeenTimestamp string `json:"first_seen_timestamp,omitempty"`
@@ -66,6 +66,9 @@ type DomainDiscoverAPIAccount struct {
 	// The type of the account's most recent successful login. <ul><li>Interactive</li><li>Service</li><li>Terminal server</li><li>Cached credentials</li><li>Auditing</li></ul>
 	LastSuccessfulLoginType string `json:"last_successful_login_type,omitempty"`
 
+	// Whether the account has local administrator privileges (Yes, No).
+	LocalAdminPrivileges string `json:"local_admin_privileges,omitempty"`
+
 	// The domain of the asset the account successfully logged in to.
 	LoginDomain string `json:"login_domain,omitempty"`
 
@@ -83,7 +86,7 @@ type DomainDiscoverAPIAccount struct {
 func (m *DomainDiscoverAPIAccount) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -97,9 +100,9 @@ func (m *DomainDiscoverAPIAccount) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DomainDiscoverAPIAccount) validateCid(formats strfmt.Registry) error {
+func (m *DomainDiscoverAPIAccount) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 

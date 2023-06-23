@@ -17,67 +17,60 @@ import (
 	"github.com/crowdstrike/gofalcon/falcon/models"
 )
 
-// GetHelmValuesYamlReader is a Reader for the GetHelmValuesYaml structure.
-type GetHelmValuesYamlReader struct {
+// GetHelmValuesYAMLReader is a Reader for the GetHelmValuesYAML structure.
+type GetHelmValuesYAMLReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *GetHelmValuesYamlReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *GetHelmValuesYAMLReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewGetHelmValuesYamlOK()
+		result := NewGetHelmValuesYAMLOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 400:
-		result := NewGetHelmValuesYamlBadRequest()
+		result := NewGetHelmValuesYAMLBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 403:
-		result := NewGetHelmValuesYamlForbidden()
+		result := NewGetHelmValuesYAMLForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 429:
-		result := NewGetHelmValuesYamlTooManyRequests()
+		result := NewGetHelmValuesYAMLTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 500:
-		result := NewGetHelmValuesYamlInternalServerError()
+		result := NewGetHelmValuesYAMLInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	default:
-		result := NewGetHelmValuesYamlDefault(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return nil, result
+		return nil, runtime.NewAPIError("[GET /kubernetes-protection/entities/integration/agent/v1] GetHelmValuesYaml", response, response.Code())
 	}
 }
 
-// NewGetHelmValuesYamlOK creates a GetHelmValuesYamlOK with default headers values
-func NewGetHelmValuesYamlOK() *GetHelmValuesYamlOK {
-	return &GetHelmValuesYamlOK{}
+// NewGetHelmValuesYAMLOK creates a GetHelmValuesYAMLOK with default headers values
+func NewGetHelmValuesYAMLOK() *GetHelmValuesYAMLOK {
+	return &GetHelmValuesYAMLOK{}
 }
 
 /*
-GetHelmValuesYamlOK describes a response with status code 200, with default header values.
+GetHelmValuesYAMLOK describes a response with status code 200, with default header values.
 
 OK
 */
-type GetHelmValuesYamlOK struct {
+type GetHelmValuesYAMLOK struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -94,49 +87,49 @@ type GetHelmValuesYamlOK struct {
 	Payload models.K8sregHelmYAMLResp
 }
 
-// IsSuccess returns true when this get helm values yaml o k response has a 2xx status code
-func (o *GetHelmValuesYamlOK) IsSuccess() bool {
+// IsSuccess returns true when this get helm values Yaml o k response has a 2xx status code
+func (o *GetHelmValuesYAMLOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get helm values yaml o k response has a 3xx status code
-func (o *GetHelmValuesYamlOK) IsRedirect() bool {
+// IsRedirect returns true when this get helm values Yaml o k response has a 3xx status code
+func (o *GetHelmValuesYAMLOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get helm values yaml o k response has a 4xx status code
-func (o *GetHelmValuesYamlOK) IsClientError() bool {
+// IsClientError returns true when this get helm values Yaml o k response has a 4xx status code
+func (o *GetHelmValuesYAMLOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get helm values yaml o k response has a 5xx status code
-func (o *GetHelmValuesYamlOK) IsServerError() bool {
+// IsServerError returns true when this get helm values Yaml o k response has a 5xx status code
+func (o *GetHelmValuesYAMLOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get helm values yaml o k response a status code equal to that given
-func (o *GetHelmValuesYamlOK) IsCode(code int) bool {
+// IsCode returns true when this get helm values Yaml o k response a status code equal to that given
+func (o *GetHelmValuesYAMLOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get helm values yaml o k response
-func (o *GetHelmValuesYamlOK) Code() int {
+// Code gets the status code for the get helm values Yaml o k response
+func (o *GetHelmValuesYAMLOK) Code() int {
 	return 200
 }
 
-func (o *GetHelmValuesYamlOK) Error() string {
+func (o *GetHelmValuesYAMLOK) Error() string {
 	return fmt.Sprintf("[GET /kubernetes-protection/entities/integration/agent/v1][%d] getHelmValuesYamlOK  %+v", 200, o.Payload)
 }
 
-func (o *GetHelmValuesYamlOK) String() string {
+func (o *GetHelmValuesYAMLOK) String() string {
 	return fmt.Sprintf("[GET /kubernetes-protection/entities/integration/agent/v1][%d] getHelmValuesYamlOK  %+v", 200, o.Payload)
 }
 
-func (o *GetHelmValuesYamlOK) GetPayload() models.K8sregHelmYAMLResp {
+func (o *GetHelmValuesYAMLOK) GetPayload() models.K8sregHelmYAMLResp {
 	return o.Payload
 }
 
-func (o *GetHelmValuesYamlOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetHelmValuesYAMLOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -175,17 +168,17 @@ func (o *GetHelmValuesYamlOK) readResponse(response runtime.ClientResponse, cons
 	return nil
 }
 
-// NewGetHelmValuesYamlBadRequest creates a GetHelmValuesYamlBadRequest with default headers values
-func NewGetHelmValuesYamlBadRequest() *GetHelmValuesYamlBadRequest {
-	return &GetHelmValuesYamlBadRequest{}
+// NewGetHelmValuesYAMLBadRequest creates a GetHelmValuesYAMLBadRequest with default headers values
+func NewGetHelmValuesYAMLBadRequest() *GetHelmValuesYAMLBadRequest {
+	return &GetHelmValuesYAMLBadRequest{}
 }
 
 /*
-GetHelmValuesYamlBadRequest describes a response with status code 400, with default header values.
+GetHelmValuesYAMLBadRequest describes a response with status code 400, with default header values.
 
 Bad Request
 */
-type GetHelmValuesYamlBadRequest struct {
+type GetHelmValuesYAMLBadRequest struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -202,49 +195,49 @@ type GetHelmValuesYamlBadRequest struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this get helm values yaml bad request response has a 2xx status code
-func (o *GetHelmValuesYamlBadRequest) IsSuccess() bool {
+// IsSuccess returns true when this get helm values Yaml bad request response has a 2xx status code
+func (o *GetHelmValuesYAMLBadRequest) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this get helm values yaml bad request response has a 3xx status code
-func (o *GetHelmValuesYamlBadRequest) IsRedirect() bool {
+// IsRedirect returns true when this get helm values Yaml bad request response has a 3xx status code
+func (o *GetHelmValuesYAMLBadRequest) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get helm values yaml bad request response has a 4xx status code
-func (o *GetHelmValuesYamlBadRequest) IsClientError() bool {
+// IsClientError returns true when this get helm values Yaml bad request response has a 4xx status code
+func (o *GetHelmValuesYAMLBadRequest) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this get helm values yaml bad request response has a 5xx status code
-func (o *GetHelmValuesYamlBadRequest) IsServerError() bool {
+// IsServerError returns true when this get helm values Yaml bad request response has a 5xx status code
+func (o *GetHelmValuesYAMLBadRequest) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get helm values yaml bad request response a status code equal to that given
-func (o *GetHelmValuesYamlBadRequest) IsCode(code int) bool {
+// IsCode returns true when this get helm values Yaml bad request response a status code equal to that given
+func (o *GetHelmValuesYAMLBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
-// Code gets the status code for the get helm values yaml bad request response
-func (o *GetHelmValuesYamlBadRequest) Code() int {
+// Code gets the status code for the get helm values Yaml bad request response
+func (o *GetHelmValuesYAMLBadRequest) Code() int {
 	return 400
 }
 
-func (o *GetHelmValuesYamlBadRequest) Error() string {
+func (o *GetHelmValuesYAMLBadRequest) Error() string {
 	return fmt.Sprintf("[GET /kubernetes-protection/entities/integration/agent/v1][%d] getHelmValuesYamlBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetHelmValuesYamlBadRequest) String() string {
+func (o *GetHelmValuesYAMLBadRequest) String() string {
 	return fmt.Sprintf("[GET /kubernetes-protection/entities/integration/agent/v1][%d] getHelmValuesYamlBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetHelmValuesYamlBadRequest) GetPayload() *models.MsaReplyMetaOnly {
+func (o *GetHelmValuesYAMLBadRequest) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *GetHelmValuesYamlBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetHelmValuesYAMLBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -285,17 +278,17 @@ func (o *GetHelmValuesYamlBadRequest) readResponse(response runtime.ClientRespon
 	return nil
 }
 
-// NewGetHelmValuesYamlForbidden creates a GetHelmValuesYamlForbidden with default headers values
-func NewGetHelmValuesYamlForbidden() *GetHelmValuesYamlForbidden {
-	return &GetHelmValuesYamlForbidden{}
+// NewGetHelmValuesYAMLForbidden creates a GetHelmValuesYAMLForbidden with default headers values
+func NewGetHelmValuesYAMLForbidden() *GetHelmValuesYAMLForbidden {
+	return &GetHelmValuesYAMLForbidden{}
 }
 
 /*
-GetHelmValuesYamlForbidden describes a response with status code 403, with default header values.
+GetHelmValuesYAMLForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
-type GetHelmValuesYamlForbidden struct {
+type GetHelmValuesYAMLForbidden struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -312,49 +305,49 @@ type GetHelmValuesYamlForbidden struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this get helm values yaml forbidden response has a 2xx status code
-func (o *GetHelmValuesYamlForbidden) IsSuccess() bool {
+// IsSuccess returns true when this get helm values Yaml forbidden response has a 2xx status code
+func (o *GetHelmValuesYAMLForbidden) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this get helm values yaml forbidden response has a 3xx status code
-func (o *GetHelmValuesYamlForbidden) IsRedirect() bool {
+// IsRedirect returns true when this get helm values Yaml forbidden response has a 3xx status code
+func (o *GetHelmValuesYAMLForbidden) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get helm values yaml forbidden response has a 4xx status code
-func (o *GetHelmValuesYamlForbidden) IsClientError() bool {
+// IsClientError returns true when this get helm values Yaml forbidden response has a 4xx status code
+func (o *GetHelmValuesYAMLForbidden) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this get helm values yaml forbidden response has a 5xx status code
-func (o *GetHelmValuesYamlForbidden) IsServerError() bool {
+// IsServerError returns true when this get helm values Yaml forbidden response has a 5xx status code
+func (o *GetHelmValuesYAMLForbidden) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get helm values yaml forbidden response a status code equal to that given
-func (o *GetHelmValuesYamlForbidden) IsCode(code int) bool {
+// IsCode returns true when this get helm values Yaml forbidden response a status code equal to that given
+func (o *GetHelmValuesYAMLForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
-// Code gets the status code for the get helm values yaml forbidden response
-func (o *GetHelmValuesYamlForbidden) Code() int {
+// Code gets the status code for the get helm values Yaml forbidden response
+func (o *GetHelmValuesYAMLForbidden) Code() int {
 	return 403
 }
 
-func (o *GetHelmValuesYamlForbidden) Error() string {
+func (o *GetHelmValuesYAMLForbidden) Error() string {
 	return fmt.Sprintf("[GET /kubernetes-protection/entities/integration/agent/v1][%d] getHelmValuesYamlForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetHelmValuesYamlForbidden) String() string {
+func (o *GetHelmValuesYAMLForbidden) String() string {
 	return fmt.Sprintf("[GET /kubernetes-protection/entities/integration/agent/v1][%d] getHelmValuesYamlForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetHelmValuesYamlForbidden) GetPayload() *models.MsaReplyMetaOnly {
+func (o *GetHelmValuesYAMLForbidden) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *GetHelmValuesYamlForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetHelmValuesYAMLForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -395,17 +388,17 @@ func (o *GetHelmValuesYamlForbidden) readResponse(response runtime.ClientRespons
 	return nil
 }
 
-// NewGetHelmValuesYamlTooManyRequests creates a GetHelmValuesYamlTooManyRequests with default headers values
-func NewGetHelmValuesYamlTooManyRequests() *GetHelmValuesYamlTooManyRequests {
-	return &GetHelmValuesYamlTooManyRequests{}
+// NewGetHelmValuesYAMLTooManyRequests creates a GetHelmValuesYAMLTooManyRequests with default headers values
+func NewGetHelmValuesYAMLTooManyRequests() *GetHelmValuesYAMLTooManyRequests {
+	return &GetHelmValuesYAMLTooManyRequests{}
 }
 
 /*
-GetHelmValuesYamlTooManyRequests describes a response with status code 429, with default header values.
+GetHelmValuesYAMLTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
-type GetHelmValuesYamlTooManyRequests struct {
+type GetHelmValuesYAMLTooManyRequests struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -426,49 +419,49 @@ type GetHelmValuesYamlTooManyRequests struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this get helm values yaml too many requests response has a 2xx status code
-func (o *GetHelmValuesYamlTooManyRequests) IsSuccess() bool {
+// IsSuccess returns true when this get helm values Yaml too many requests response has a 2xx status code
+func (o *GetHelmValuesYAMLTooManyRequests) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this get helm values yaml too many requests response has a 3xx status code
-func (o *GetHelmValuesYamlTooManyRequests) IsRedirect() bool {
+// IsRedirect returns true when this get helm values Yaml too many requests response has a 3xx status code
+func (o *GetHelmValuesYAMLTooManyRequests) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get helm values yaml too many requests response has a 4xx status code
-func (o *GetHelmValuesYamlTooManyRequests) IsClientError() bool {
+// IsClientError returns true when this get helm values Yaml too many requests response has a 4xx status code
+func (o *GetHelmValuesYAMLTooManyRequests) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this get helm values yaml too many requests response has a 5xx status code
-func (o *GetHelmValuesYamlTooManyRequests) IsServerError() bool {
+// IsServerError returns true when this get helm values Yaml too many requests response has a 5xx status code
+func (o *GetHelmValuesYAMLTooManyRequests) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get helm values yaml too many requests response a status code equal to that given
-func (o *GetHelmValuesYamlTooManyRequests) IsCode(code int) bool {
+// IsCode returns true when this get helm values Yaml too many requests response a status code equal to that given
+func (o *GetHelmValuesYAMLTooManyRequests) IsCode(code int) bool {
 	return code == 429
 }
 
-// Code gets the status code for the get helm values yaml too many requests response
-func (o *GetHelmValuesYamlTooManyRequests) Code() int {
+// Code gets the status code for the get helm values Yaml too many requests response
+func (o *GetHelmValuesYAMLTooManyRequests) Code() int {
 	return 429
 }
 
-func (o *GetHelmValuesYamlTooManyRequests) Error() string {
+func (o *GetHelmValuesYAMLTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /kubernetes-protection/entities/integration/agent/v1][%d] getHelmValuesYamlTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *GetHelmValuesYamlTooManyRequests) String() string {
+func (o *GetHelmValuesYAMLTooManyRequests) String() string {
 	return fmt.Sprintf("[GET /kubernetes-protection/entities/integration/agent/v1][%d] getHelmValuesYamlTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *GetHelmValuesYamlTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
+func (o *GetHelmValuesYAMLTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *GetHelmValuesYamlTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetHelmValuesYAMLTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -520,17 +513,17 @@ func (o *GetHelmValuesYamlTooManyRequests) readResponse(response runtime.ClientR
 	return nil
 }
 
-// NewGetHelmValuesYamlInternalServerError creates a GetHelmValuesYamlInternalServerError with default headers values
-func NewGetHelmValuesYamlInternalServerError() *GetHelmValuesYamlInternalServerError {
-	return &GetHelmValuesYamlInternalServerError{}
+// NewGetHelmValuesYAMLInternalServerError creates a GetHelmValuesYAMLInternalServerError with default headers values
+func NewGetHelmValuesYAMLInternalServerError() *GetHelmValuesYAMLInternalServerError {
+	return &GetHelmValuesYAMLInternalServerError{}
 }
 
 /*
-GetHelmValuesYamlInternalServerError describes a response with status code 500, with default header values.
+GetHelmValuesYAMLInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
-type GetHelmValuesYamlInternalServerError struct {
+type GetHelmValuesYAMLInternalServerError struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -547,49 +540,49 @@ type GetHelmValuesYamlInternalServerError struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this get helm values yaml internal server error response has a 2xx status code
-func (o *GetHelmValuesYamlInternalServerError) IsSuccess() bool {
+// IsSuccess returns true when this get helm values Yaml internal server error response has a 2xx status code
+func (o *GetHelmValuesYAMLInternalServerError) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this get helm values yaml internal server error response has a 3xx status code
-func (o *GetHelmValuesYamlInternalServerError) IsRedirect() bool {
+// IsRedirect returns true when this get helm values Yaml internal server error response has a 3xx status code
+func (o *GetHelmValuesYAMLInternalServerError) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get helm values yaml internal server error response has a 4xx status code
-func (o *GetHelmValuesYamlInternalServerError) IsClientError() bool {
+// IsClientError returns true when this get helm values Yaml internal server error response has a 4xx status code
+func (o *GetHelmValuesYAMLInternalServerError) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get helm values yaml internal server error response has a 5xx status code
-func (o *GetHelmValuesYamlInternalServerError) IsServerError() bool {
+// IsServerError returns true when this get helm values Yaml internal server error response has a 5xx status code
+func (o *GetHelmValuesYAMLInternalServerError) IsServerError() bool {
 	return true
 }
 
-// IsCode returns true when this get helm values yaml internal server error response a status code equal to that given
-func (o *GetHelmValuesYamlInternalServerError) IsCode(code int) bool {
+// IsCode returns true when this get helm values Yaml internal server error response a status code equal to that given
+func (o *GetHelmValuesYAMLInternalServerError) IsCode(code int) bool {
 	return code == 500
 }
 
-// Code gets the status code for the get helm values yaml internal server error response
-func (o *GetHelmValuesYamlInternalServerError) Code() int {
+// Code gets the status code for the get helm values Yaml internal server error response
+func (o *GetHelmValuesYAMLInternalServerError) Code() int {
 	return 500
 }
 
-func (o *GetHelmValuesYamlInternalServerError) Error() string {
+func (o *GetHelmValuesYAMLInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /kubernetes-protection/entities/integration/agent/v1][%d] getHelmValuesYamlInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *GetHelmValuesYamlInternalServerError) String() string {
+func (o *GetHelmValuesYAMLInternalServerError) String() string {
 	return fmt.Sprintf("[GET /kubernetes-protection/entities/integration/agent/v1][%d] getHelmValuesYamlInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *GetHelmValuesYamlInternalServerError) GetPayload() *models.MsaReplyMetaOnly {
+func (o *GetHelmValuesYAMLInternalServerError) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *GetHelmValuesYamlInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetHelmValuesYAMLInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -624,76 +617,6 @@ func (o *GetHelmValuesYamlInternalServerError) readResponse(response runtime.Cli
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewGetHelmValuesYamlDefault creates a GetHelmValuesYamlDefault with default headers values
-func NewGetHelmValuesYamlDefault(code int) *GetHelmValuesYamlDefault {
-	return &GetHelmValuesYamlDefault{
-		_statusCode: code,
-	}
-}
-
-/*
-GetHelmValuesYamlDefault describes a response with status code -1, with default header values.
-
-OK
-*/
-type GetHelmValuesYamlDefault struct {
-	_statusCode int
-
-	Payload models.K8sregHelmYAMLResp
-}
-
-// IsSuccess returns true when this get helm values yaml default response has a 2xx status code
-func (o *GetHelmValuesYamlDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this get helm values yaml default response has a 3xx status code
-func (o *GetHelmValuesYamlDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this get helm values yaml default response has a 4xx status code
-func (o *GetHelmValuesYamlDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this get helm values yaml default response has a 5xx status code
-func (o *GetHelmValuesYamlDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this get helm values yaml default response a status code equal to that given
-func (o *GetHelmValuesYamlDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
-// Code gets the status code for the get helm values yaml default response
-func (o *GetHelmValuesYamlDefault) Code() int {
-	return o._statusCode
-}
-
-func (o *GetHelmValuesYamlDefault) Error() string {
-	return fmt.Sprintf("[GET /kubernetes-protection/entities/integration/agent/v1][%d] GetHelmValuesYaml default  %+v", o._statusCode, o.Payload)
-}
-
-func (o *GetHelmValuesYamlDefault) String() string {
-	return fmt.Sprintf("[GET /kubernetes-protection/entities/integration/agent/v1][%d] GetHelmValuesYaml default  %+v", o._statusCode, o.Payload)
-}
-
-func (o *GetHelmValuesYamlDefault) GetPayload() models.K8sregHelmYAMLResp {
-	return o.Payload
-}
-
-func (o *GetHelmValuesYamlDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

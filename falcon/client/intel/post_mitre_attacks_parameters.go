@@ -18,50 +18,50 @@ import (
 	"github.com/crowdstrike/gofalcon/falcon/models"
 )
 
-// NewPostMitreAttacksParams creates a new PostMitreAttacksParams object,
+// NewPostMITREAttacksParams creates a new PostMITREAttacksParams object,
 // with the default timeout for this client.
 //
 // Default values are not hydrated, since defaults are normally applied by the API server side.
 //
 // To enforce default values in parameter, use SetDefaults or WithDefaults.
-func NewPostMitreAttacksParams() *PostMitreAttacksParams {
-	return &PostMitreAttacksParams{
+func NewPostMITREAttacksParams() *PostMITREAttacksParams {
+	return &PostMITREAttacksParams{
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewPostMitreAttacksParamsWithTimeout creates a new PostMitreAttacksParams object
+// NewPostMITREAttacksParamsWithTimeout creates a new PostMITREAttacksParams object
 // with the ability to set a timeout on a request.
-func NewPostMitreAttacksParamsWithTimeout(timeout time.Duration) *PostMitreAttacksParams {
-	return &PostMitreAttacksParams{
+func NewPostMITREAttacksParamsWithTimeout(timeout time.Duration) *PostMITREAttacksParams {
+	return &PostMITREAttacksParams{
 		timeout: timeout,
 	}
 }
 
-// NewPostMitreAttacksParamsWithContext creates a new PostMitreAttacksParams object
+// NewPostMITREAttacksParamsWithContext creates a new PostMITREAttacksParams object
 // with the ability to set a context for a request.
-func NewPostMitreAttacksParamsWithContext(ctx context.Context) *PostMitreAttacksParams {
-	return &PostMitreAttacksParams{
+func NewPostMITREAttacksParamsWithContext(ctx context.Context) *PostMITREAttacksParams {
+	return &PostMITREAttacksParams{
 		Context: ctx,
 	}
 }
 
-// NewPostMitreAttacksParamsWithHTTPClient creates a new PostMitreAttacksParams object
+// NewPostMITREAttacksParamsWithHTTPClient creates a new PostMITREAttacksParams object
 // with the ability to set a custom HTTPClient for a request.
-func NewPostMitreAttacksParamsWithHTTPClient(client *http.Client) *PostMitreAttacksParams {
-	return &PostMitreAttacksParams{
+func NewPostMITREAttacksParamsWithHTTPClient(client *http.Client) *PostMITREAttacksParams {
+	return &PostMITREAttacksParams{
 		HTTPClient: client,
 	}
 }
 
 /*
-PostMitreAttacksParams contains all the parameters to send to the API endpoint
+PostMITREAttacksParams contains all the parameters to send to the API endpoint
 
-	for the post mitre attacks operation.
+	for the post Mitre attacks operation.
 
 	Typically these are written to a http.Request.
 */
-type PostMitreAttacksParams struct {
+type PostMITREAttacksParams struct {
 
 	// Body.
 	Body *models.MsaIdsRequest
@@ -71,67 +71,67 @@ type PostMitreAttacksParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the post mitre attacks params (not the query body).
+// WithDefaults hydrates default values in the post Mitre attacks params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *PostMitreAttacksParams) WithDefaults() *PostMitreAttacksParams {
+func (o *PostMITREAttacksParams) WithDefaults() *PostMITREAttacksParams {
 	o.SetDefaults()
 	return o
 }
 
-// SetDefaults hydrates default values in the post mitre attacks params (not the query body).
+// SetDefaults hydrates default values in the post Mitre attacks params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *PostMitreAttacksParams) SetDefaults() {
+func (o *PostMITREAttacksParams) SetDefaults() {
 	// no default values defined for this parameter
 }
 
-// WithTimeout adds the timeout to the post mitre attacks params
-func (o *PostMitreAttacksParams) WithTimeout(timeout time.Duration) *PostMitreAttacksParams {
+// WithTimeout adds the timeout to the post Mitre attacks params
+func (o *PostMITREAttacksParams) WithTimeout(timeout time.Duration) *PostMITREAttacksParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the post mitre attacks params
-func (o *PostMitreAttacksParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the post Mitre attacks params
+func (o *PostMITREAttacksParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the post mitre attacks params
-func (o *PostMitreAttacksParams) WithContext(ctx context.Context) *PostMitreAttacksParams {
+// WithContext adds the context to the post Mitre attacks params
+func (o *PostMITREAttacksParams) WithContext(ctx context.Context) *PostMITREAttacksParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the post mitre attacks params
-func (o *PostMitreAttacksParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the post Mitre attacks params
+func (o *PostMITREAttacksParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the post mitre attacks params
-func (o *PostMitreAttacksParams) WithHTTPClient(client *http.Client) *PostMitreAttacksParams {
+// WithHTTPClient adds the HTTPClient to the post Mitre attacks params
+func (o *PostMITREAttacksParams) WithHTTPClient(client *http.Client) *PostMITREAttacksParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the post mitre attacks params
-func (o *PostMitreAttacksParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the post Mitre attacks params
+func (o *PostMITREAttacksParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithBody adds the body to the post mitre attacks params
-func (o *PostMitreAttacksParams) WithBody(body *models.MsaIdsRequest) *PostMitreAttacksParams {
+// WithBody adds the body to the post Mitre attacks params
+func (o *PostMITREAttacksParams) WithBody(body *models.MsaIdsRequest) *PostMITREAttacksParams {
 	o.SetBody(body)
 	return o
 }
 
-// SetBody adds the body to the post mitre attacks params
-func (o *PostMitreAttacksParams) SetBody(body *models.MsaIdsRequest) {
+// SetBody adds the body to the post Mitre attacks params
+func (o *PostMITREAttacksParams) SetBody(body *models.MsaIdsRequest) {
 	o.Body = body
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *PostMitreAttacksParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *PostMITREAttacksParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

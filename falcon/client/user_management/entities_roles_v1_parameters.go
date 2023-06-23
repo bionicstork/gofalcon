@@ -62,11 +62,11 @@ EntitiesRolesV1Params contains all the parameters to send to the API endpoint
 */
 type EntitiesRolesV1Params struct {
 
-	/* Cid.
+	/* CID.
 
 	   Customer ID to get available roles for. Empty CID would result in Role IDs for current CID in view.
 	*/
-	Cid *string
+	CID *string
 
 	/* Ids.
 
@@ -127,15 +127,15 @@ func (o *EntitiesRolesV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCid adds the cid to the entities roles v1 params
-func (o *EntitiesRolesV1Params) WithCid(cid *string) *EntitiesRolesV1Params {
-	o.SetCid(cid)
+// WithCID adds the cid to the entities roles v1 params
+func (o *EntitiesRolesV1Params) WithCID(cid *string) *EntitiesRolesV1Params {
+	o.SetCID(cid)
 	return o
 }
 
-// SetCid adds the cid to the entities roles v1 params
-func (o *EntitiesRolesV1Params) SetCid(cid *string) {
-	o.Cid = cid
+// SetCID adds the cid to the entities roles v1 params
+func (o *EntitiesRolesV1Params) SetCID(cid *string) {
+	o.CID = cid
 }
 
 // WithIds adds the ids to the entities roles v1 params
@@ -157,18 +157,18 @@ func (o *EntitiesRolesV1Params) WriteToRequest(r runtime.ClientRequest, reg strf
 	}
 	var res []error
 
-	if o.Cid != nil {
+	if o.CID != nil {
 
 		// query param cid
-		var qrCid string
+		var qrCID string
 
-		if o.Cid != nil {
-			qrCid = *o.Cid
+		if o.CID != nil {
+			qrCID = *o.CID
 		}
-		qCid := qrCid
-		if qCid != "" {
+		qCID := qrCID
+		if qCID != "" {
 
-			if err := r.SetQueryParam("cid", qCid); err != nil {
+			if err := r.SetQueryParam("cid", qCID); err != nil {
 				return err
 			}
 		}

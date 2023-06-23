@@ -76,7 +76,7 @@ type QuerySensorUpdateKernelsDistinctParams struct {
 
 	/* Limit.
 
-	   The maximum records to return. [1-5000]
+	   The maximum records to return. [1-500]
 	*/
 	Limit *int64
 
@@ -191,8 +191,8 @@ func (o *QuerySensorUpdateKernelsDistinctParams) WriteToRequest(r runtime.Client
 	}
 	var res []error
 
-	// path param distinct_field
-	if err := r.SetPathParam("distinct_field", o.DistinctField); err != nil {
+	// path param distinct-field
+	if err := r.SetPathParam("distinct-field", o.DistinctField); err != nil {
 		return err
 	}
 

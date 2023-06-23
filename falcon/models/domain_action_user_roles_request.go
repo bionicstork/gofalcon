@@ -21,7 +21,7 @@ type DomainActionUserRolesRequest struct {
 	Action string `json:"action,omitempty"`
 
 	// cid
-	Cid string `json:"cid,omitempty"`
+	CID string `json:"cid,omitempty"`
 
 	// role ids
 	RoleIds []string `json:"role_ids"`

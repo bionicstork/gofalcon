@@ -25,7 +25,7 @@ type SadomainRule struct {
 
 	// cid
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// The creation time for a given rule
 	// Required: true
@@ -94,7 +94,7 @@ func (m *SadomainRule) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -161,9 +161,9 @@ func (m *SadomainRule) validateBreachMonitoringEnabled(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *SadomainRule) validateCid(formats strfmt.Registry) error {
+func (m *SadomainRule) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 
@@ -313,6 +313,11 @@ func (m *SadomainRule) ContextValidate(ctx context.Context, formats strfmt.Regis
 func (m *SadomainRule) contextValidateOwnershipAssets(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OwnershipAssets != nil {
+
+		if swag.IsZero(m.OwnershipAssets) { // not required
+			return nil
+		}
+
 		if err := m.OwnershipAssets.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ownership_assets")

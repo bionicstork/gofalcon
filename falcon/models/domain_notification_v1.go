@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -33,7 +34,7 @@ type DomainNotificationV1 struct {
 
 	// cid
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// The date when the notification was generated
 	// Required: true
@@ -71,6 +72,9 @@ type DomainNotificationV1 struct {
 	// Type of the item which matched the rule: `post`, `reply`, `botnet_config`, `breach`, etc.
 	// Required: true
 	ItemType *string `json:"item_type"`
+
+	// notes
+	Notes []*SadomainNotificationNote `json:"notes"`
 
 	// ID of the raw intel item that matched the rule
 	// Required: true
@@ -116,7 +120,7 @@ func (m *DomainNotificationV1) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -137,6 +141,10 @@ func (m *DomainNotificationV1) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateItemType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNotes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -197,9 +205,9 @@ func (m *DomainNotificationV1) validateBreachSummary(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *DomainNotificationV1) validateCid(formats strfmt.Registry) error {
+func (m *DomainNotificationV1) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 
@@ -254,6 +262,32 @@ func (m *DomainNotificationV1) validateItemType(formats strfmt.Registry) error {
 
 	if err := validate.Required("item_type", "body", m.ItemType); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *DomainNotificationV1) validateNotes(formats strfmt.Registry) error {
+	if swag.IsZero(m.Notes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Notes); i++ {
+		if swag.IsZero(m.Notes[i]) { // not required
+			continue
+		}
+
+		if m.Notes[i] != nil {
+			if err := m.Notes[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("notes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("notes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -353,6 +387,10 @@ func (m *DomainNotificationV1) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateNotes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTyposquatting(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -366,6 +404,11 @@ func (m *DomainNotificationV1) ContextValidate(ctx context.Context, formats strf
 func (m *DomainNotificationV1) contextValidateBreachSummary(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BreachSummary != nil {
+
+		if swag.IsZero(m.BreachSummary) { // not required
+			return nil
+		}
+
 		if err := m.BreachSummary.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("breach_summary")
@@ -379,9 +422,39 @@ func (m *DomainNotificationV1) contextValidateBreachSummary(ctx context.Context,
 	return nil
 }
 
+func (m *DomainNotificationV1) contextValidateNotes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Notes); i++ {
+
+		if m.Notes[i] != nil {
+
+			if swag.IsZero(m.Notes[i]) { // not required
+				return nil
+			}
+
+			if err := m.Notes[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("notes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("notes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *DomainNotificationV1) contextValidateTyposquatting(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Typosquatting != nil {
+
+		if swag.IsZero(m.Typosquatting) { // not required
+			return nil
+		}
+
 		if err := m.Typosquatting.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("typosquatting")

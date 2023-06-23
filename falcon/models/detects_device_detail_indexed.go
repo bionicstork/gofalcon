@@ -36,7 +36,7 @@ type DetectsDeviceDetailIndexed struct {
 
 	// cid
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// config id base
 	ConfigIDBase string `json:"config_id_base,omitempty"`
@@ -164,7 +164,7 @@ type DetectsDeviceDetailIndexed struct {
 func (m *DetectsDeviceDetailIndexed) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -178,9 +178,9 @@ func (m *DetectsDeviceDetailIndexed) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DetectsDeviceDetailIndexed) validateCid(formats strfmt.Registry) error {
+func (m *DetectsDeviceDetailIndexed) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 

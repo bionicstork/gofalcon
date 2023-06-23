@@ -27,7 +27,7 @@ type DomainDiscoverAPIApplication struct {
 
 	// The customer ID of this application.
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// Timestamp when this application was first seen by the cloud.
 	FirstSeenTimestamp string `json:"first_seen_timestamp,omitempty"`
@@ -95,7 +95,7 @@ type DomainDiscoverAPIApplication struct {
 func (m *DomainDiscoverAPIApplication) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -113,9 +113,9 @@ func (m *DomainDiscoverAPIApplication) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DomainDiscoverAPIApplication) validateCid(formats strfmt.Registry) error {
+func (m *DomainDiscoverAPIApplication) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 
@@ -167,6 +167,11 @@ func (m *DomainDiscoverAPIApplication) ContextValidate(ctx context.Context, form
 func (m *DomainDiscoverAPIApplication) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Host != nil {
+
+		if swag.IsZero(m.Host) { // not required
+			return nil
+		}
+
 		if err := m.Host.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")

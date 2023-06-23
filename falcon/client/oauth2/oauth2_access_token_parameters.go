@@ -73,11 +73,11 @@ type Oauth2AccessTokenParams struct {
 	*/
 	ClientSecret string
 
-	/* MemberCid.
+	/* MemberCID.
 
 	   For MSSP Master CIDs, optionally lock the token to act on behalf of this member CID
 	*/
-	MemberCid *string
+	MemberCID *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -154,15 +154,15 @@ func (o *Oauth2AccessTokenParams) SetClientSecret(clientSecret string) {
 	o.ClientSecret = clientSecret
 }
 
-// WithMemberCid adds the memberCid to the oauth2 access token params
-func (o *Oauth2AccessTokenParams) WithMemberCid(memberCid *string) *Oauth2AccessTokenParams {
-	o.SetMemberCid(memberCid)
+// WithMemberCID adds the memberCID to the oauth2 access token params
+func (o *Oauth2AccessTokenParams) WithMemberCID(memberCID *string) *Oauth2AccessTokenParams {
+	o.SetMemberCID(memberCID)
 	return o
 }
 
-// SetMemberCid adds the memberCid to the oauth2 access token params
-func (o *Oauth2AccessTokenParams) SetMemberCid(memberCid *string) {
-	o.MemberCid = memberCid
+// SetMemberCID adds the memberCid to the oauth2 access token params
+func (o *Oauth2AccessTokenParams) SetMemberCID(memberCID *string) {
+	o.MemberCID = memberCID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -191,16 +191,16 @@ func (o *Oauth2AccessTokenParams) WriteToRequest(r runtime.ClientRequest, reg st
 		}
 	}
 
-	if o.MemberCid != nil {
+	if o.MemberCID != nil {
 
 		// form param member_cid
-		var frMemberCid string
-		if o.MemberCid != nil {
-			frMemberCid = *o.MemberCid
+		var frMemberCID string
+		if o.MemberCID != nil {
+			frMemberCID = *o.MemberCID
 		}
-		fMemberCid := frMemberCid
-		if fMemberCid != "" {
-			if err := r.SetFormParam("member_cid", fMemberCid); err != nil {
+		fMemberCID := frMemberCID
+		if fMemberCID != "" {
+			if err := r.SetFormParam("member_cid", fMemberCID); err != nil {
 				return err
 			}
 		}

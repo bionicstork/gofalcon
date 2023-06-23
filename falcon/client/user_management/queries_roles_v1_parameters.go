@@ -61,11 +61,19 @@ QueriesRolesV1Params contains all the parameters to send to the API endpoint
 */
 type QueriesRolesV1Params struct {
 
-	/* Cid.
+	/* Action.
+
+	   Actionable purpose of the query
+
+	   Default: "grant"
+	*/
+	Action *string
+
+	/* CID.
 
 	   Customer ID to get available roles for. Empty CID would result in Role IDs for current CID in view.
 	*/
-	Cid *string
+	CID *string
 
 	/* UserUUID.
 
@@ -90,7 +98,18 @@ func (o *QueriesRolesV1Params) WithDefaults() *QueriesRolesV1Params {
 //
 // All values with no default are reset to their zero value.
 func (o *QueriesRolesV1Params) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		actionDefault = string("grant")
+	)
+
+	val := QueriesRolesV1Params{
+		Action: &actionDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the queries roles v1 params
@@ -126,15 +145,26 @@ func (o *QueriesRolesV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCid adds the cid to the queries roles v1 params
-func (o *QueriesRolesV1Params) WithCid(cid *string) *QueriesRolesV1Params {
-	o.SetCid(cid)
+// WithAction adds the action to the queries roles v1 params
+func (o *QueriesRolesV1Params) WithAction(action *string) *QueriesRolesV1Params {
+	o.SetAction(action)
 	return o
 }
 
-// SetCid adds the cid to the queries roles v1 params
-func (o *QueriesRolesV1Params) SetCid(cid *string) {
-	o.Cid = cid
+// SetAction adds the action to the queries roles v1 params
+func (o *QueriesRolesV1Params) SetAction(action *string) {
+	o.Action = action
+}
+
+// WithCID adds the cid to the queries roles v1 params
+func (o *QueriesRolesV1Params) WithCID(cid *string) *QueriesRolesV1Params {
+	o.SetCID(cid)
+	return o
+}
+
+// SetCID adds the cid to the queries roles v1 params
+func (o *QueriesRolesV1Params) SetCID(cid *string) {
+	o.CID = cid
 }
 
 // WithUserUUID adds the userUUID to the queries roles v1 params
@@ -156,18 +186,35 @@ func (o *QueriesRolesV1Params) WriteToRequest(r runtime.ClientRequest, reg strfm
 	}
 	var res []error
 
-	if o.Cid != nil {
+	if o.Action != nil {
+
+		// query param action
+		var qrAction string
+
+		if o.Action != nil {
+			qrAction = *o.Action
+		}
+		qAction := qrAction
+		if qAction != "" {
+
+			if err := r.SetQueryParam("action", qAction); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.CID != nil {
 
 		// query param cid
-		var qrCid string
+		var qrCID string
 
-		if o.Cid != nil {
-			qrCid = *o.Cid
+		if o.CID != nil {
+			qrCID = *o.CID
 		}
-		qCid := qrCid
-		if qCid != "" {
+		qCID := qrCID
+		if qCID != "" {
 
-			if err := r.SetQueryParam("cid", qCid); err != nil {
+			if err := r.SetQueryParam("cid", qCID); err != nil {
 				return err
 			}
 		}

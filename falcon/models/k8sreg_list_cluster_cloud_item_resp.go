@@ -24,7 +24,7 @@ type K8sregListClusterCloudItemResp struct {
 	AccountID *string `json:"account_id"`
 
 	// aws meta
-	AwsMeta *K8sregAWSClusterItemResp `json:"aws_meta,omitempty"`
+	AWSMeta *K8sregAWSClusterItemResp `json:"aws_meta,omitempty"`
 
 	// azure meta
 	AzureMeta *K8sregAzureAcctClusterItemResp `json:"azure_meta,omitempty"`
@@ -44,7 +44,7 @@ type K8sregListClusterCloudItemResp struct {
 	ClusterStatus string `json:"cluster_status,omitempty"`
 
 	// from cspm
-	FromCspm bool `json:"from_cspm,omitempty"`
+	FromCSPM bool `json:"from_cspm,omitempty"`
 
 	// location
 	Location string `json:"location,omitempty"`
@@ -58,7 +58,7 @@ func (m *K8sregListClusterCloudItemResp) Validate(formats strfmt.Registry) error
 		res = append(res, err)
 	}
 
-	if err := m.validateAwsMeta(formats); err != nil {
+	if err := m.validateAWSMeta(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -89,13 +89,13 @@ func (m *K8sregListClusterCloudItemResp) validateAccountID(formats strfmt.Regist
 	return nil
 }
 
-func (m *K8sregListClusterCloudItemResp) validateAwsMeta(formats strfmt.Registry) error {
-	if swag.IsZero(m.AwsMeta) { // not required
+func (m *K8sregListClusterCloudItemResp) validateAWSMeta(formats strfmt.Registry) error {
+	if swag.IsZero(m.AWSMeta) { // not required
 		return nil
 	}
 
-	if m.AwsMeta != nil {
-		if err := m.AwsMeta.Validate(formats); err != nil {
+	if m.AWSMeta != nil {
+		if err := m.AWSMeta.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("aws_meta")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -149,7 +149,7 @@ func (m *K8sregListClusterCloudItemResp) validateClusterService(formats strfmt.R
 func (m *K8sregListClusterCloudItemResp) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateAwsMeta(ctx, formats); err != nil {
+	if err := m.contextValidateAWSMeta(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -163,10 +163,15 @@ func (m *K8sregListClusterCloudItemResp) ContextValidate(ctx context.Context, fo
 	return nil
 }
 
-func (m *K8sregListClusterCloudItemResp) contextValidateAwsMeta(ctx context.Context, formats strfmt.Registry) error {
+func (m *K8sregListClusterCloudItemResp) contextValidateAWSMeta(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.AwsMeta != nil {
-		if err := m.AwsMeta.ContextValidate(ctx, formats); err != nil {
+	if m.AWSMeta != nil {
+
+		if swag.IsZero(m.AWSMeta) { // not required
+			return nil
+		}
+
+		if err := m.AWSMeta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("aws_meta")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -182,6 +187,11 @@ func (m *K8sregListClusterCloudItemResp) contextValidateAwsMeta(ctx context.Cont
 func (m *K8sregListClusterCloudItemResp) contextValidateAzureMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AzureMeta != nil {
+
+		if swag.IsZero(m.AzureMeta) { // not required
+			return nil
+		}
+
 		if err := m.AzureMeta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("azure_meta")

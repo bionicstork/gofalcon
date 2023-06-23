@@ -20,14 +20,13 @@ import (
 // GetIntelReportPDFReader is a Reader for the GetIntelReportPDF structure.
 type GetIntelReportPDFReader struct {
 	formats strfmt.Registry
-	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *GetIntelReportPDFReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewGetIntelReportPDFOK(o.writer)
+		result := NewGetIntelReportPDFOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -57,23 +56,13 @@ func (o *GetIntelReportPDFReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 	default:
-		result := NewGetIntelReportPDFDefault(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return nil, result
+		return nil, runtime.NewAPIError("[GET /intel/entities/report-files/v1] GetIntelReportPDF", response, response.Code())
 	}
 }
 
 // NewGetIntelReportPDFOK creates a GetIntelReportPDFOK with default headers values
-func NewGetIntelReportPDFOK(writer io.Writer) *GetIntelReportPDFOK {
-	return &GetIntelReportPDFOK{
-
-		Payload: writer,
-	}
+func NewGetIntelReportPDFOK() *GetIntelReportPDFOK {
+	return &GetIntelReportPDFOK{}
 }
 
 /*
@@ -83,6 +72,10 @@ OK
 */
 type GetIntelReportPDFOK struct {
 
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
+
 	/* Request limit per minute.
 	 */
 	XRateLimitLimit int64
@@ -90,8 +83,6 @@ type GetIntelReportPDFOK struct {
 	/* The number of requests remaining for the sliding one minute window.
 	 */
 	XRateLimitRemaining int64
-
-	Payload io.Writer
 }
 
 // IsSuccess returns true when this get intel report p d f o k response has a 2xx status code
@@ -125,18 +116,21 @@ func (o *GetIntelReportPDFOK) Code() int {
 }
 
 func (o *GetIntelReportPDFOK) Error() string {
-	return fmt.Sprintf("[GET /intel/entities/report-files/v1][%d] getIntelReportPDFOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /intel/entities/report-files/v1][%d] getIntelReportPDFOK ", 200)
 }
 
 func (o *GetIntelReportPDFOK) String() string {
-	return fmt.Sprintf("[GET /intel/entities/report-files/v1][%d] getIntelReportPDFOK  %+v", 200, o.Payload)
-}
-
-func (o *GetIntelReportPDFOK) GetPayload() io.Writer {
-	return o.Payload
+	return fmt.Sprintf("[GET /intel/entities/report-files/v1][%d] getIntelReportPDFOK ", 200)
 }
 
 func (o *GetIntelReportPDFOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
 
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
@@ -160,11 +154,6 @@ func (o *GetIntelReportPDFOK) readResponse(response runtime.ClientResponse, cons
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
 	return nil
 }
 
@@ -179,6 +168,10 @@ GetIntelReportPDFBadRequest describes a response with status code 400, with defa
 Bad Request
 */
 type GetIntelReportPDFBadRequest struct {
+
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
 
 	/* Request limit per minute.
 	 */
@@ -235,6 +228,13 @@ func (o *GetIntelReportPDFBadRequest) GetPayload() *models.MsaErrorsOnly {
 
 func (o *GetIntelReportPDFBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
+
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
 
@@ -278,6 +278,10 @@ GetIntelReportPDFForbidden describes a response with status code 403, with defau
 Forbidden
 */
 type GetIntelReportPDFForbidden struct {
+
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
 
 	/* Request limit per minute.
 	 */
@@ -334,6 +338,13 @@ func (o *GetIntelReportPDFForbidden) GetPayload() *models.MsaReplyMetaOnly {
 
 func (o *GetIntelReportPDFForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
+
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
 
@@ -377,6 +388,10 @@ GetIntelReportPDFTooManyRequests describes a response with status code 429, with
 Too Many Requests
 */
 type GetIntelReportPDFTooManyRequests struct {
+
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
 
 	/* Request limit per minute.
 	 */
@@ -437,6 +452,13 @@ func (o *GetIntelReportPDFTooManyRequests) GetPayload() *models.MsaReplyMetaOnly
 
 func (o *GetIntelReportPDFTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
+
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
 
@@ -491,6 +513,10 @@ GetIntelReportPDFInternalServerError describes a response with status code 500, 
 Internal Server Error
 */
 type GetIntelReportPDFInternalServerError struct {
+
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
 
 	/* Request limit per minute.
 	 */
@@ -547,6 +573,13 @@ func (o *GetIntelReportPDFInternalServerError) GetPayload() *models.MsaErrorsOnl
 
 func (o *GetIntelReportPDFInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
+
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
 
@@ -575,65 +608,6 @@ func (o *GetIntelReportPDFInternalServerError) readResponse(response runtime.Cli
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
-
-	return nil
-}
-
-// NewGetIntelReportPDFDefault creates a GetIntelReportPDFDefault with default headers values
-func NewGetIntelReportPDFDefault(code int) *GetIntelReportPDFDefault {
-	return &GetIntelReportPDFDefault{
-		_statusCode: code,
-	}
-}
-
-/*
-GetIntelReportPDFDefault describes a response with status code -1, with default header values.
-
-OK
-*/
-type GetIntelReportPDFDefault struct {
-	_statusCode int
-}
-
-// IsSuccess returns true when this get intel report p d f default response has a 2xx status code
-func (o *GetIntelReportPDFDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this get intel report p d f default response has a 3xx status code
-func (o *GetIntelReportPDFDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this get intel report p d f default response has a 4xx status code
-func (o *GetIntelReportPDFDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this get intel report p d f default response has a 5xx status code
-func (o *GetIntelReportPDFDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this get intel report p d f default response a status code equal to that given
-func (o *GetIntelReportPDFDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
-// Code gets the status code for the get intel report p d f default response
-func (o *GetIntelReportPDFDefault) Code() int {
-	return o._statusCode
-}
-
-func (o *GetIntelReportPDFDefault) Error() string {
-	return fmt.Sprintf("[GET /intel/entities/report-files/v1][%d] GetIntelReportPDF default ", o._statusCode)
-}
-
-func (o *GetIntelReportPDFDefault) String() string {
-	return fmt.Sprintf("[GET /intel/entities/report-files/v1][%d] GetIntelReportPDF default ", o._statusCode)
-}
-
-func (o *GetIntelReportPDFDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

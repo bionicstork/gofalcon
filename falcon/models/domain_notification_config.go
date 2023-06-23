@@ -19,6 +19,10 @@ import (
 // swagger:model domain.NotificationConfig
 type DomainNotificationConfig struct {
 
+	// cid
+	// Required: true
+	CID *string `json:"cid"`
+
 	// config id
 	// Required: true
 	ConfigID *string `json:"config_id"`
@@ -40,6 +44,10 @@ type DomainNotificationConfig struct {
 func (m *DomainNotificationConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCID(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateConfigID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -59,6 +67,15 @@ func (m *DomainNotificationConfig) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *DomainNotificationConfig) validateCID(formats strfmt.Registry) error {
+
+	if err := validate.Required("cid", "body", m.CID); err != nil {
+		return err
+	}
+
 	return nil
 }
 

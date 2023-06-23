@@ -17,50 +17,50 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewGetD4CAwsAccountParams creates a new GetD4CAwsAccountParams object,
+// NewGetD4CAWSAccountParams creates a new GetD4CAWSAccountParams object,
 // with the default timeout for this client.
 //
 // Default values are not hydrated, since defaults are normally applied by the API server side.
 //
 // To enforce default values in parameter, use SetDefaults or WithDefaults.
-func NewGetD4CAwsAccountParams() *GetD4CAwsAccountParams {
-	return &GetD4CAwsAccountParams{
+func NewGetD4CAWSAccountParams() *GetD4CAWSAccountParams {
+	return &GetD4CAWSAccountParams{
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewGetD4CAwsAccountParamsWithTimeout creates a new GetD4CAwsAccountParams object
+// NewGetD4CAWSAccountParamsWithTimeout creates a new GetD4CAWSAccountParams object
 // with the ability to set a timeout on a request.
-func NewGetD4CAwsAccountParamsWithTimeout(timeout time.Duration) *GetD4CAwsAccountParams {
-	return &GetD4CAwsAccountParams{
+func NewGetD4CAWSAccountParamsWithTimeout(timeout time.Duration) *GetD4CAWSAccountParams {
+	return &GetD4CAWSAccountParams{
 		timeout: timeout,
 	}
 }
 
-// NewGetD4CAwsAccountParamsWithContext creates a new GetD4CAwsAccountParams object
+// NewGetD4CAWSAccountParamsWithContext creates a new GetD4CAWSAccountParams object
 // with the ability to set a context for a request.
-func NewGetD4CAwsAccountParamsWithContext(ctx context.Context) *GetD4CAwsAccountParams {
-	return &GetD4CAwsAccountParams{
+func NewGetD4CAWSAccountParamsWithContext(ctx context.Context) *GetD4CAWSAccountParams {
+	return &GetD4CAWSAccountParams{
 		Context: ctx,
 	}
 }
 
-// NewGetD4CAwsAccountParamsWithHTTPClient creates a new GetD4CAwsAccountParams object
+// NewGetD4CAWSAccountParamsWithHTTPClient creates a new GetD4CAWSAccountParams object
 // with the ability to set a custom HTTPClient for a request.
-func NewGetD4CAwsAccountParamsWithHTTPClient(client *http.Client) *GetD4CAwsAccountParams {
-	return &GetD4CAwsAccountParams{
+func NewGetD4CAWSAccountParamsWithHTTPClient(client *http.Client) *GetD4CAWSAccountParams {
+	return &GetD4CAWSAccountParams{
 		HTTPClient: client,
 	}
 }
 
 /*
-GetD4CAwsAccountParams contains all the parameters to send to the API endpoint
+GetD4CAWSAccountParams contains all the parameters to send to the API endpoint
 
-	for the get d4 c aws account operation.
+	for the get d4 c Aws account operation.
 
 	Typically these are written to a http.Request.
 */
-type GetD4CAwsAccountParams struct {
+type GetD4CAWSAccountParams struct {
 
 	/* Ids.
 
@@ -111,23 +111,23 @@ type GetD4CAwsAccountParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the get d4 c aws account params (not the query body).
+// WithDefaults hydrates default values in the get d4 c Aws account params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *GetD4CAwsAccountParams) WithDefaults() *GetD4CAwsAccountParams {
+func (o *GetD4CAWSAccountParams) WithDefaults() *GetD4CAWSAccountParams {
 	o.SetDefaults()
 	return o
 }
 
-// SetDefaults hydrates default values in the get d4 c aws account params (not the query body).
+// SetDefaults hydrates default values in the get d4 c Aws account params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *GetD4CAwsAccountParams) SetDefaults() {
+func (o *GetD4CAWSAccountParams) SetDefaults() {
 	var (
 		limitDefault = int64(100)
 	)
 
-	val := GetD4CAwsAccountParams{
+	val := GetD4CAWSAccountParams{
 		Limit: &limitDefault,
 	}
 
@@ -137,118 +137,118 @@ func (o *GetD4CAwsAccountParams) SetDefaults() {
 	*o = val
 }
 
-// WithTimeout adds the timeout to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) WithTimeout(timeout time.Duration) *GetD4CAwsAccountParams {
+// WithTimeout adds the timeout to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) WithTimeout(timeout time.Duration) *GetD4CAWSAccountParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) WithContext(ctx context.Context) *GetD4CAwsAccountParams {
+// WithContext adds the context to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) WithContext(ctx context.Context) *GetD4CAWSAccountParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) WithHTTPClient(client *http.Client) *GetD4CAwsAccountParams {
+// WithHTTPClient adds the HTTPClient to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) WithHTTPClient(client *http.Client) *GetD4CAWSAccountParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithIds adds the ids to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) WithIds(ids []string) *GetD4CAwsAccountParams {
+// WithIds adds the ids to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) WithIds(ids []string) *GetD4CAWSAccountParams {
 	o.SetIds(ids)
 	return o
 }
 
-// SetIds adds the ids to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) SetIds(ids []string) {
+// SetIds adds the ids to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) SetIds(ids []string) {
 	o.Ids = ids
 }
 
-// WithLimit adds the limit to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) WithLimit(limit *int64) *GetD4CAwsAccountParams {
+// WithLimit adds the limit to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) WithLimit(limit *int64) *GetD4CAWSAccountParams {
 	o.SetLimit(limit)
 	return o
 }
 
-// SetLimit adds the limit to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) SetLimit(limit *int64) {
+// SetLimit adds the limit to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
-// WithMigrated adds the migrated to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) WithMigrated(migrated *string) *GetD4CAwsAccountParams {
+// WithMigrated adds the migrated to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) WithMigrated(migrated *string) *GetD4CAWSAccountParams {
 	o.SetMigrated(migrated)
 	return o
 }
 
-// SetMigrated adds the migrated to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) SetMigrated(migrated *string) {
+// SetMigrated adds the migrated to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) SetMigrated(migrated *string) {
 	o.Migrated = migrated
 }
 
-// WithOffset adds the offset to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) WithOffset(offset *int64) *GetD4CAwsAccountParams {
+// WithOffset adds the offset to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) WithOffset(offset *int64) *GetD4CAWSAccountParams {
 	o.SetOffset(offset)
 	return o
 }
 
-// SetOffset adds the offset to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) SetOffset(offset *int64) {
+// SetOffset adds the offset to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
-// WithOrganizationIds adds the organizationIds to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) WithOrganizationIds(organizationIds []string) *GetD4CAwsAccountParams {
+// WithOrganizationIds adds the organizationIds to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) WithOrganizationIds(organizationIds []string) *GetD4CAWSAccountParams {
 	o.SetOrganizationIds(organizationIds)
 	return o
 }
 
-// SetOrganizationIds adds the organizationIds to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) SetOrganizationIds(organizationIds []string) {
+// SetOrganizationIds adds the organizationIds to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) SetOrganizationIds(organizationIds []string) {
 	o.OrganizationIds = organizationIds
 }
 
-// WithScanType adds the scanType to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) WithScanType(scanType *string) *GetD4CAwsAccountParams {
+// WithScanType adds the scanType to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) WithScanType(scanType *string) *GetD4CAWSAccountParams {
 	o.SetScanType(scanType)
 	return o
 }
 
-// SetScanType adds the scanType to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) SetScanType(scanType *string) {
+// SetScanType adds the scanType to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) SetScanType(scanType *string) {
 	o.ScanType = scanType
 }
 
-// WithStatus adds the status to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) WithStatus(status *string) *GetD4CAwsAccountParams {
+// WithStatus adds the status to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) WithStatus(status *string) *GetD4CAWSAccountParams {
 	o.SetStatus(status)
 	return o
 }
 
-// SetStatus adds the status to the get d4 c aws account params
-func (o *GetD4CAwsAccountParams) SetStatus(status *string) {
+// SetStatus adds the status to the get d4 c Aws account params
+func (o *GetD4CAWSAccountParams) SetStatus(status *string) {
 	o.Status = status
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetD4CAwsAccountParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *GetD4CAWSAccountParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err
@@ -368,8 +368,8 @@ func (o *GetD4CAwsAccountParams) WriteToRequest(r runtime.ClientRequest, reg str
 	return nil
 }
 
-// bindParamGetD4CAwsAccount binds the parameter ids
-func (o *GetD4CAwsAccountParams) bindParamIds(formats strfmt.Registry) []string {
+// bindParamGetD4CAWSAccount binds the parameter ids
+func (o *GetD4CAWSAccountParams) bindParamIds(formats strfmt.Registry) []string {
 	idsIR := o.Ids
 
 	var idsIC []string
@@ -385,8 +385,8 @@ func (o *GetD4CAwsAccountParams) bindParamIds(formats strfmt.Registry) []string 
 	return idsIS
 }
 
-// bindParamGetD4CAwsAccount binds the parameter organization-ids
-func (o *GetD4CAwsAccountParams) bindParamOrganizationIds(formats strfmt.Registry) []string {
+// bindParamGetD4CAWSAccount binds the parameter organization-ids
+func (o *GetD4CAWSAccountParams) bindParamOrganizationIds(formats strfmt.Registry) []string {
 	organizationIdsIR := o.OrganizationIds
 
 	var organizationIdsIC []string

@@ -17,48 +17,48 @@ import (
 	"github.com/crowdstrike/gofalcon/falcon/models"
 )
 
-// PostMitreAttacksReader is a Reader for the PostMitreAttacks structure.
-type PostMitreAttacksReader struct {
+// PostMITREAttacksReader is a Reader for the PostMITREAttacks structure.
+type PostMITREAttacksReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *PostMitreAttacksReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *PostMITREAttacksReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewPostMitreAttacksOK()
+		result := NewPostMITREAttacksOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 403:
-		result := NewPostMitreAttacksForbidden()
+		result := NewPostMITREAttacksForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 429:
-		result := NewPostMitreAttacksTooManyRequests()
+		result := NewPostMITREAttacksTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /intel/entities/mitre/v1] PostMitreAttacks", response, response.Code())
 	}
 }
 
-// NewPostMitreAttacksOK creates a PostMitreAttacksOK with default headers values
-func NewPostMitreAttacksOK() *PostMitreAttacksOK {
-	return &PostMitreAttacksOK{}
+// NewPostMITREAttacksOK creates a PostMITREAttacksOK with default headers values
+func NewPostMITREAttacksOK() *PostMITREAttacksOK {
+	return &PostMITREAttacksOK{}
 }
 
 /*
-PostMitreAttacksOK describes a response with status code 200, with default header values.
+PostMITREAttacksOK describes a response with status code 200, with default header values.
 
 OK
 */
-type PostMitreAttacksOK struct {
+type PostMITREAttacksOK struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -73,45 +73,45 @@ type PostMitreAttacksOK struct {
 	XRateLimitRemaining int64
 }
 
-// IsSuccess returns true when this post mitre attacks o k response has a 2xx status code
-func (o *PostMitreAttacksOK) IsSuccess() bool {
+// IsSuccess returns true when this post Mitre attacks o k response has a 2xx status code
+func (o *PostMITREAttacksOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this post mitre attacks o k response has a 3xx status code
-func (o *PostMitreAttacksOK) IsRedirect() bool {
+// IsRedirect returns true when this post Mitre attacks o k response has a 3xx status code
+func (o *PostMITREAttacksOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this post mitre attacks o k response has a 4xx status code
-func (o *PostMitreAttacksOK) IsClientError() bool {
+// IsClientError returns true when this post Mitre attacks o k response has a 4xx status code
+func (o *PostMITREAttacksOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this post mitre attacks o k response has a 5xx status code
-func (o *PostMitreAttacksOK) IsServerError() bool {
+// IsServerError returns true when this post Mitre attacks o k response has a 5xx status code
+func (o *PostMITREAttacksOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this post mitre attacks o k response a status code equal to that given
-func (o *PostMitreAttacksOK) IsCode(code int) bool {
+// IsCode returns true when this post Mitre attacks o k response a status code equal to that given
+func (o *PostMITREAttacksOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the post mitre attacks o k response
-func (o *PostMitreAttacksOK) Code() int {
+// Code gets the status code for the post Mitre attacks o k response
+func (o *PostMITREAttacksOK) Code() int {
 	return 200
 }
 
-func (o *PostMitreAttacksOK) Error() string {
+func (o *PostMITREAttacksOK) Error() string {
 	return fmt.Sprintf("[POST /intel/entities/mitre/v1][%d] postMitreAttacksOK ", 200)
 }
 
-func (o *PostMitreAttacksOK) String() string {
+func (o *PostMITREAttacksOK) String() string {
 	return fmt.Sprintf("[POST /intel/entities/mitre/v1][%d] postMitreAttacksOK ", 200)
 }
 
-func (o *PostMitreAttacksOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PostMITREAttacksOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -145,17 +145,17 @@ func (o *PostMitreAttacksOK) readResponse(response runtime.ClientResponse, consu
 	return nil
 }
 
-// NewPostMitreAttacksForbidden creates a PostMitreAttacksForbidden with default headers values
-func NewPostMitreAttacksForbidden() *PostMitreAttacksForbidden {
-	return &PostMitreAttacksForbidden{}
+// NewPostMITREAttacksForbidden creates a PostMITREAttacksForbidden with default headers values
+func NewPostMITREAttacksForbidden() *PostMITREAttacksForbidden {
+	return &PostMITREAttacksForbidden{}
 }
 
 /*
-PostMitreAttacksForbidden describes a response with status code 403, with default header values.
+PostMITREAttacksForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
-type PostMitreAttacksForbidden struct {
+type PostMITREAttacksForbidden struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -172,49 +172,49 @@ type PostMitreAttacksForbidden struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this post mitre attacks forbidden response has a 2xx status code
-func (o *PostMitreAttacksForbidden) IsSuccess() bool {
+// IsSuccess returns true when this post Mitre attacks forbidden response has a 2xx status code
+func (o *PostMITREAttacksForbidden) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this post mitre attacks forbidden response has a 3xx status code
-func (o *PostMitreAttacksForbidden) IsRedirect() bool {
+// IsRedirect returns true when this post Mitre attacks forbidden response has a 3xx status code
+func (o *PostMITREAttacksForbidden) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this post mitre attacks forbidden response has a 4xx status code
-func (o *PostMitreAttacksForbidden) IsClientError() bool {
+// IsClientError returns true when this post Mitre attacks forbidden response has a 4xx status code
+func (o *PostMITREAttacksForbidden) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this post mitre attacks forbidden response has a 5xx status code
-func (o *PostMitreAttacksForbidden) IsServerError() bool {
+// IsServerError returns true when this post Mitre attacks forbidden response has a 5xx status code
+func (o *PostMITREAttacksForbidden) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this post mitre attacks forbidden response a status code equal to that given
-func (o *PostMitreAttacksForbidden) IsCode(code int) bool {
+// IsCode returns true when this post Mitre attacks forbidden response a status code equal to that given
+func (o *PostMITREAttacksForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
-// Code gets the status code for the post mitre attacks forbidden response
-func (o *PostMitreAttacksForbidden) Code() int {
+// Code gets the status code for the post Mitre attacks forbidden response
+func (o *PostMITREAttacksForbidden) Code() int {
 	return 403
 }
 
-func (o *PostMitreAttacksForbidden) Error() string {
+func (o *PostMITREAttacksForbidden) Error() string {
 	return fmt.Sprintf("[POST /intel/entities/mitre/v1][%d] postMitreAttacksForbidden  %+v", 403, o.Payload)
 }
 
-func (o *PostMitreAttacksForbidden) String() string {
+func (o *PostMITREAttacksForbidden) String() string {
 	return fmt.Sprintf("[POST /intel/entities/mitre/v1][%d] postMitreAttacksForbidden  %+v", 403, o.Payload)
 }
 
-func (o *PostMitreAttacksForbidden) GetPayload() *models.MsaReplyMetaOnly {
+func (o *PostMITREAttacksForbidden) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *PostMitreAttacksForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PostMITREAttacksForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -255,17 +255,17 @@ func (o *PostMitreAttacksForbidden) readResponse(response runtime.ClientResponse
 	return nil
 }
 
-// NewPostMitreAttacksTooManyRequests creates a PostMitreAttacksTooManyRequests with default headers values
-func NewPostMitreAttacksTooManyRequests() *PostMitreAttacksTooManyRequests {
-	return &PostMitreAttacksTooManyRequests{}
+// NewPostMITREAttacksTooManyRequests creates a PostMITREAttacksTooManyRequests with default headers values
+func NewPostMITREAttacksTooManyRequests() *PostMITREAttacksTooManyRequests {
+	return &PostMITREAttacksTooManyRequests{}
 }
 
 /*
-PostMitreAttacksTooManyRequests describes a response with status code 429, with default header values.
+PostMITREAttacksTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
-type PostMitreAttacksTooManyRequests struct {
+type PostMITREAttacksTooManyRequests struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -286,49 +286,49 @@ type PostMitreAttacksTooManyRequests struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this post mitre attacks too many requests response has a 2xx status code
-func (o *PostMitreAttacksTooManyRequests) IsSuccess() bool {
+// IsSuccess returns true when this post Mitre attacks too many requests response has a 2xx status code
+func (o *PostMITREAttacksTooManyRequests) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this post mitre attacks too many requests response has a 3xx status code
-func (o *PostMitreAttacksTooManyRequests) IsRedirect() bool {
+// IsRedirect returns true when this post Mitre attacks too many requests response has a 3xx status code
+func (o *PostMITREAttacksTooManyRequests) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this post mitre attacks too many requests response has a 4xx status code
-func (o *PostMitreAttacksTooManyRequests) IsClientError() bool {
+// IsClientError returns true when this post Mitre attacks too many requests response has a 4xx status code
+func (o *PostMITREAttacksTooManyRequests) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this post mitre attacks too many requests response has a 5xx status code
-func (o *PostMitreAttacksTooManyRequests) IsServerError() bool {
+// IsServerError returns true when this post Mitre attacks too many requests response has a 5xx status code
+func (o *PostMITREAttacksTooManyRequests) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this post mitre attacks too many requests response a status code equal to that given
-func (o *PostMitreAttacksTooManyRequests) IsCode(code int) bool {
+// IsCode returns true when this post Mitre attacks too many requests response a status code equal to that given
+func (o *PostMITREAttacksTooManyRequests) IsCode(code int) bool {
 	return code == 429
 }
 
-// Code gets the status code for the post mitre attacks too many requests response
-func (o *PostMitreAttacksTooManyRequests) Code() int {
+// Code gets the status code for the post Mitre attacks too many requests response
+func (o *PostMITREAttacksTooManyRequests) Code() int {
 	return 429
 }
 
-func (o *PostMitreAttacksTooManyRequests) Error() string {
+func (o *PostMITREAttacksTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /intel/entities/mitre/v1][%d] postMitreAttacksTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *PostMitreAttacksTooManyRequests) String() string {
+func (o *PostMITREAttacksTooManyRequests) String() string {
 	return fmt.Sprintf("[POST /intel/entities/mitre/v1][%d] postMitreAttacksTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *PostMitreAttacksTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
+func (o *PostMITREAttacksTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *PostMitreAttacksTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PostMITREAttacksTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")

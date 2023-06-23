@@ -17,48 +17,48 @@ import (
 	"github.com/crowdstrike/gofalcon/falcon/models"
 )
 
-// GetMitreReportReader is a Reader for the GetMitreReport structure.
-type GetMitreReportReader struct {
+// GetMITREReportReader is a Reader for the GetMITREReport structure.
+type GetMITREReportReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *GetMitreReportReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *GetMITREReportReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewGetMitreReportOK()
+		result := NewGetMITREReportOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 403:
-		result := NewGetMitreReportForbidden()
+		result := NewGetMITREReportForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 429:
-		result := NewGetMitreReportTooManyRequests()
+		result := NewGetMITREReportTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /intel/entities/mitre-reports/v1] GetMitreReport", response, response.Code())
 	}
 }
 
-// NewGetMitreReportOK creates a GetMitreReportOK with default headers values
-func NewGetMitreReportOK() *GetMitreReportOK {
-	return &GetMitreReportOK{}
+// NewGetMITREReportOK creates a GetMITREReportOK with default headers values
+func NewGetMITREReportOK() *GetMITREReportOK {
+	return &GetMITREReportOK{}
 }
 
 /*
-GetMitreReportOK describes a response with status code 200, with default header values.
+GetMITREReportOK describes a response with status code 200, with default header values.
 
 OK
 */
-type GetMitreReportOK struct {
+type GetMITREReportOK struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -73,45 +73,45 @@ type GetMitreReportOK struct {
 	XRateLimitRemaining int64
 }
 
-// IsSuccess returns true when this get mitre report o k response has a 2xx status code
-func (o *GetMitreReportOK) IsSuccess() bool {
+// IsSuccess returns true when this get Mitre report o k response has a 2xx status code
+func (o *GetMITREReportOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get mitre report o k response has a 3xx status code
-func (o *GetMitreReportOK) IsRedirect() bool {
+// IsRedirect returns true when this get Mitre report o k response has a 3xx status code
+func (o *GetMITREReportOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get mitre report o k response has a 4xx status code
-func (o *GetMitreReportOK) IsClientError() bool {
+// IsClientError returns true when this get Mitre report o k response has a 4xx status code
+func (o *GetMITREReportOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get mitre report o k response has a 5xx status code
-func (o *GetMitreReportOK) IsServerError() bool {
+// IsServerError returns true when this get Mitre report o k response has a 5xx status code
+func (o *GetMITREReportOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get mitre report o k response a status code equal to that given
-func (o *GetMitreReportOK) IsCode(code int) bool {
+// IsCode returns true when this get Mitre report o k response a status code equal to that given
+func (o *GetMITREReportOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get mitre report o k response
-func (o *GetMitreReportOK) Code() int {
+// Code gets the status code for the get Mitre report o k response
+func (o *GetMITREReportOK) Code() int {
 	return 200
 }
 
-func (o *GetMitreReportOK) Error() string {
+func (o *GetMITREReportOK) Error() string {
 	return fmt.Sprintf("[GET /intel/entities/mitre-reports/v1][%d] getMitreReportOK ", 200)
 }
 
-func (o *GetMitreReportOK) String() string {
+func (o *GetMITREReportOK) String() string {
 	return fmt.Sprintf("[GET /intel/entities/mitre-reports/v1][%d] getMitreReportOK ", 200)
 }
 
-func (o *GetMitreReportOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetMITREReportOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -145,17 +145,17 @@ func (o *GetMitreReportOK) readResponse(response runtime.ClientResponse, consume
 	return nil
 }
 
-// NewGetMitreReportForbidden creates a GetMitreReportForbidden with default headers values
-func NewGetMitreReportForbidden() *GetMitreReportForbidden {
-	return &GetMitreReportForbidden{}
+// NewGetMITREReportForbidden creates a GetMITREReportForbidden with default headers values
+func NewGetMITREReportForbidden() *GetMITREReportForbidden {
+	return &GetMITREReportForbidden{}
 }
 
 /*
-GetMitreReportForbidden describes a response with status code 403, with default header values.
+GetMITREReportForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
-type GetMitreReportForbidden struct {
+type GetMITREReportForbidden struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -172,49 +172,49 @@ type GetMitreReportForbidden struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this get mitre report forbidden response has a 2xx status code
-func (o *GetMitreReportForbidden) IsSuccess() bool {
+// IsSuccess returns true when this get Mitre report forbidden response has a 2xx status code
+func (o *GetMITREReportForbidden) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this get mitre report forbidden response has a 3xx status code
-func (o *GetMitreReportForbidden) IsRedirect() bool {
+// IsRedirect returns true when this get Mitre report forbidden response has a 3xx status code
+func (o *GetMITREReportForbidden) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get mitre report forbidden response has a 4xx status code
-func (o *GetMitreReportForbidden) IsClientError() bool {
+// IsClientError returns true when this get Mitre report forbidden response has a 4xx status code
+func (o *GetMITREReportForbidden) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this get mitre report forbidden response has a 5xx status code
-func (o *GetMitreReportForbidden) IsServerError() bool {
+// IsServerError returns true when this get Mitre report forbidden response has a 5xx status code
+func (o *GetMITREReportForbidden) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get mitre report forbidden response a status code equal to that given
-func (o *GetMitreReportForbidden) IsCode(code int) bool {
+// IsCode returns true when this get Mitre report forbidden response a status code equal to that given
+func (o *GetMITREReportForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
-// Code gets the status code for the get mitre report forbidden response
-func (o *GetMitreReportForbidden) Code() int {
+// Code gets the status code for the get Mitre report forbidden response
+func (o *GetMITREReportForbidden) Code() int {
 	return 403
 }
 
-func (o *GetMitreReportForbidden) Error() string {
+func (o *GetMITREReportForbidden) Error() string {
 	return fmt.Sprintf("[GET /intel/entities/mitre-reports/v1][%d] getMitreReportForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetMitreReportForbidden) String() string {
+func (o *GetMITREReportForbidden) String() string {
 	return fmt.Sprintf("[GET /intel/entities/mitre-reports/v1][%d] getMitreReportForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetMitreReportForbidden) GetPayload() *models.MsaReplyMetaOnly {
+func (o *GetMITREReportForbidden) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *GetMitreReportForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetMITREReportForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -255,17 +255,17 @@ func (o *GetMitreReportForbidden) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
-// NewGetMitreReportTooManyRequests creates a GetMitreReportTooManyRequests with default headers values
-func NewGetMitreReportTooManyRequests() *GetMitreReportTooManyRequests {
-	return &GetMitreReportTooManyRequests{}
+// NewGetMITREReportTooManyRequests creates a GetMITREReportTooManyRequests with default headers values
+func NewGetMITREReportTooManyRequests() *GetMITREReportTooManyRequests {
+	return &GetMITREReportTooManyRequests{}
 }
 
 /*
-GetMitreReportTooManyRequests describes a response with status code 429, with default header values.
+GetMITREReportTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
-type GetMitreReportTooManyRequests struct {
+type GetMITREReportTooManyRequests struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -286,49 +286,49 @@ type GetMitreReportTooManyRequests struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this get mitre report too many requests response has a 2xx status code
-func (o *GetMitreReportTooManyRequests) IsSuccess() bool {
+// IsSuccess returns true when this get Mitre report too many requests response has a 2xx status code
+func (o *GetMITREReportTooManyRequests) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this get mitre report too many requests response has a 3xx status code
-func (o *GetMitreReportTooManyRequests) IsRedirect() bool {
+// IsRedirect returns true when this get Mitre report too many requests response has a 3xx status code
+func (o *GetMITREReportTooManyRequests) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get mitre report too many requests response has a 4xx status code
-func (o *GetMitreReportTooManyRequests) IsClientError() bool {
+// IsClientError returns true when this get Mitre report too many requests response has a 4xx status code
+func (o *GetMITREReportTooManyRequests) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this get mitre report too many requests response has a 5xx status code
-func (o *GetMitreReportTooManyRequests) IsServerError() bool {
+// IsServerError returns true when this get Mitre report too many requests response has a 5xx status code
+func (o *GetMITREReportTooManyRequests) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get mitre report too many requests response a status code equal to that given
-func (o *GetMitreReportTooManyRequests) IsCode(code int) bool {
+// IsCode returns true when this get Mitre report too many requests response a status code equal to that given
+func (o *GetMITREReportTooManyRequests) IsCode(code int) bool {
 	return code == 429
 }
 
-// Code gets the status code for the get mitre report too many requests response
-func (o *GetMitreReportTooManyRequests) Code() int {
+// Code gets the status code for the get Mitre report too many requests response
+func (o *GetMITREReportTooManyRequests) Code() int {
 	return 429
 }
 
-func (o *GetMitreReportTooManyRequests) Error() string {
+func (o *GetMITREReportTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /intel/entities/mitre-reports/v1][%d] getMitreReportTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *GetMitreReportTooManyRequests) String() string {
+func (o *GetMITREReportTooManyRequests) String() string {
 	return fmt.Sprintf("[GET /intel/entities/mitre-reports/v1][%d] getMitreReportTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *GetMitreReportTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
+func (o *GetMITREReportTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *GetMitreReportTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetMITREReportTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")

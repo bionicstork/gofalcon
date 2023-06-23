@@ -21,7 +21,7 @@ type RegistrationMSAPagingExtension struct {
 
 	// paging
 	// Required: true
-	Paging *MsaPaging `json:"Paging"`
+	Paging *MsaspecPaging `json:"Paging"`
 
 	// next token
 	NextToken string `json:"next_token,omitempty"`
@@ -78,6 +78,7 @@ func (m *RegistrationMSAPagingExtension) ContextValidate(ctx context.Context, fo
 func (m *RegistrationMSAPagingExtension) contextValidatePaging(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Paging != nil {
+
 		if err := m.Paging.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Paging")

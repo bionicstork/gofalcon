@@ -20,7 +20,7 @@ import (
 type FalconxSummaryReportV1 struct {
 
 	// cid
-	Cid string `json:"cid,omitempty"`
+	CID string `json:"cid,omitempty"`
 
 	// created timestamp
 	CreatedTimestamp string `json:"created_timestamp,omitempty"`
@@ -32,28 +32,28 @@ type FalconxSummaryReportV1 struct {
 	Intel []*FalconxIntelSummaryReportV1 `json:"intel"`
 
 	// ioc report broad csv artifact id
-	IocReportBroadCsvArtifactID string `json:"ioc_report_broad_csv_artifact_id,omitempty"`
+	IOCReportBroadCsvArtifactID string `json:"ioc_report_broad_csv_artifact_id,omitempty"`
 
 	// ioc report broad json artifact id
-	IocReportBroadJSONArtifactID string `json:"ioc_report_broad_json_artifact_id,omitempty"`
+	IOCReportBroadJSONArtifactID string `json:"ioc_report_broad_json_artifact_id,omitempty"`
 
 	// ioc report broad maec artifact id
-	IocReportBroadMaecArtifactID string `json:"ioc_report_broad_maec_artifact_id,omitempty"`
+	IOCReportBroadMaecArtifactID string `json:"ioc_report_broad_maec_artifact_id,omitempty"`
 
 	// ioc report broad stix artifact id
-	IocReportBroadStixArtifactID string `json:"ioc_report_broad_stix_artifact_id,omitempty"`
+	IOCReportBroadStixArtifactID string `json:"ioc_report_broad_stix_artifact_id,omitempty"`
 
 	// ioc report strict csv artifact id
-	IocReportStrictCsvArtifactID string `json:"ioc_report_strict_csv_artifact_id,omitempty"`
+	IOCReportStrictCsvArtifactID string `json:"ioc_report_strict_csv_artifact_id,omitempty"`
 
 	// ioc report strict json artifact id
-	IocReportStrictJSONArtifactID string `json:"ioc_report_strict_json_artifact_id,omitempty"`
+	IOCReportStrictJSONArtifactID string `json:"ioc_report_strict_json_artifact_id,omitempty"`
 
 	// ioc report strict maec artifact id
-	IocReportStrictMaecArtifactID string `json:"ioc_report_strict_maec_artifact_id,omitempty"`
+	IOCReportStrictMaecArtifactID string `json:"ioc_report_strict_maec_artifact_id,omitempty"`
 
 	// ioc report strict stix artifact id
-	IocReportStrictStixArtifactID string `json:"ioc_report_strict_stix_artifact_id,omitempty"`
+	IOCReportStrictStixArtifactID string `json:"ioc_report_strict_stix_artifact_id,omitempty"`
 
 	// origin
 	Origin string `json:"origin,omitempty"`
@@ -170,6 +170,11 @@ func (m *FalconxSummaryReportV1) contextValidateIntel(ctx context.Context, forma
 	for i := 0; i < len(m.Intel); i++ {
 
 		if m.Intel[i] != nil {
+
+			if swag.IsZero(m.Intel[i]) { // not required
+				return nil
+			}
+
 			if err := m.Intel[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("intel" + "." + strconv.Itoa(i))
@@ -190,6 +195,11 @@ func (m *FalconxSummaryReportV1) contextValidateSandbox(ctx context.Context, for
 	for i := 0; i < len(m.Sandbox); i++ {
 
 		if m.Sandbox[i] != nil {
+
+			if swag.IsZero(m.Sandbox[i]) { // not required
+				return nil
+			}
+
 			if err := m.Sandbox[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("sandbox" + "." + strconv.Itoa(i))

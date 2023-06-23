@@ -62,11 +62,11 @@ QueryRolesParams contains all the parameters to send to the API endpoint
 */
 type QueryRolesParams struct {
 
-	/* CidGroupID.
+	/* CIDGroupID.
 
 	   CID group ID to fetch MSSP role for
 	*/
-	CidGroupID *string
+	CIDGroupID *string
 
 	/* Limit.
 
@@ -172,15 +172,15 @@ func (o *QueryRolesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCidGroupID adds the cidGroupID to the query roles params
-func (o *QueryRolesParams) WithCidGroupID(cidGroupID *string) *QueryRolesParams {
-	o.SetCidGroupID(cidGroupID)
+// WithCIDGroupID adds the cIDGroupID to the query roles params
+func (o *QueryRolesParams) WithCIDGroupID(cIDGroupID *string) *QueryRolesParams {
+	o.SetCIDGroupID(cIDGroupID)
 	return o
 }
 
-// SetCidGroupID adds the cidGroupId to the query roles params
-func (o *QueryRolesParams) SetCidGroupID(cidGroupID *string) {
-	o.CidGroupID = cidGroupID
+// SetCIDGroupID adds the cidGroupId to the query roles params
+func (o *QueryRolesParams) SetCIDGroupID(cIDGroupID *string) {
+	o.CIDGroupID = cIDGroupID
 }
 
 // WithLimit adds the limit to the query roles params
@@ -246,18 +246,18 @@ func (o *QueryRolesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	if o.CidGroupID != nil {
+	if o.CIDGroupID != nil {
 
 		// query param cid_group_id
-		var qrCidGroupID string
+		var qrCIDGroupID string
 
-		if o.CidGroupID != nil {
-			qrCidGroupID = *o.CidGroupID
+		if o.CIDGroupID != nil {
+			qrCIDGroupID = *o.CIDGroupID
 		}
-		qCidGroupID := qrCidGroupID
-		if qCidGroupID != "" {
+		qCIDGroupID := qrCIDGroupID
+		if qCIDGroupID != "" {
 
-			if err := r.SetQueryParam("cid_group_id", qCidGroupID); err != nil {
+			if err := r.SetQueryParam("cid_group_id", qCIDGroupID); err != nil {
 				return err
 			}
 		}

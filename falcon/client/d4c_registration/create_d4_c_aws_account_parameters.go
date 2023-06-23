@@ -18,50 +18,50 @@ import (
 	"github.com/crowdstrike/gofalcon/falcon/models"
 )
 
-// NewCreateD4CAwsAccountParams creates a new CreateD4CAwsAccountParams object,
+// NewCreateD4CAWSAccountParams creates a new CreateD4CAWSAccountParams object,
 // with the default timeout for this client.
 //
 // Default values are not hydrated, since defaults are normally applied by the API server side.
 //
 // To enforce default values in parameter, use SetDefaults or WithDefaults.
-func NewCreateD4CAwsAccountParams() *CreateD4CAwsAccountParams {
-	return &CreateD4CAwsAccountParams{
+func NewCreateD4CAWSAccountParams() *CreateD4CAWSAccountParams {
+	return &CreateD4CAWSAccountParams{
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewCreateD4CAwsAccountParamsWithTimeout creates a new CreateD4CAwsAccountParams object
+// NewCreateD4CAWSAccountParamsWithTimeout creates a new CreateD4CAWSAccountParams object
 // with the ability to set a timeout on a request.
-func NewCreateD4CAwsAccountParamsWithTimeout(timeout time.Duration) *CreateD4CAwsAccountParams {
-	return &CreateD4CAwsAccountParams{
+func NewCreateD4CAWSAccountParamsWithTimeout(timeout time.Duration) *CreateD4CAWSAccountParams {
+	return &CreateD4CAWSAccountParams{
 		timeout: timeout,
 	}
 }
 
-// NewCreateD4CAwsAccountParamsWithContext creates a new CreateD4CAwsAccountParams object
+// NewCreateD4CAWSAccountParamsWithContext creates a new CreateD4CAWSAccountParams object
 // with the ability to set a context for a request.
-func NewCreateD4CAwsAccountParamsWithContext(ctx context.Context) *CreateD4CAwsAccountParams {
-	return &CreateD4CAwsAccountParams{
+func NewCreateD4CAWSAccountParamsWithContext(ctx context.Context) *CreateD4CAWSAccountParams {
+	return &CreateD4CAWSAccountParams{
 		Context: ctx,
 	}
 }
 
-// NewCreateD4CAwsAccountParamsWithHTTPClient creates a new CreateD4CAwsAccountParams object
+// NewCreateD4CAWSAccountParamsWithHTTPClient creates a new CreateD4CAWSAccountParams object
 // with the ability to set a custom HTTPClient for a request.
-func NewCreateD4CAwsAccountParamsWithHTTPClient(client *http.Client) *CreateD4CAwsAccountParams {
-	return &CreateD4CAwsAccountParams{
+func NewCreateD4CAWSAccountParamsWithHTTPClient(client *http.Client) *CreateD4CAWSAccountParams {
+	return &CreateD4CAWSAccountParams{
 		HTTPClient: client,
 	}
 }
 
 /*
-CreateD4CAwsAccountParams contains all the parameters to send to the API endpoint
+CreateD4CAWSAccountParams contains all the parameters to send to the API endpoint
 
-	for the create d4 c aws account operation.
+	for the create d4 c Aws account operation.
 
 	Typically these are written to a http.Request.
 */
-type CreateD4CAwsAccountParams struct {
+type CreateD4CAWSAccountParams struct {
 
 	// Body.
 	Body *models.RegistrationAWSAccountCreateRequestD4CExtV2
@@ -71,67 +71,67 @@ type CreateD4CAwsAccountParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the create d4 c aws account params (not the query body).
+// WithDefaults hydrates default values in the create d4 c Aws account params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *CreateD4CAwsAccountParams) WithDefaults() *CreateD4CAwsAccountParams {
+func (o *CreateD4CAWSAccountParams) WithDefaults() *CreateD4CAWSAccountParams {
 	o.SetDefaults()
 	return o
 }
 
-// SetDefaults hydrates default values in the create d4 c aws account params (not the query body).
+// SetDefaults hydrates default values in the create d4 c Aws account params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *CreateD4CAwsAccountParams) SetDefaults() {
+func (o *CreateD4CAWSAccountParams) SetDefaults() {
 	// no default values defined for this parameter
 }
 
-// WithTimeout adds the timeout to the create d4 c aws account params
-func (o *CreateD4CAwsAccountParams) WithTimeout(timeout time.Duration) *CreateD4CAwsAccountParams {
+// WithTimeout adds the timeout to the create d4 c Aws account params
+func (o *CreateD4CAWSAccountParams) WithTimeout(timeout time.Duration) *CreateD4CAWSAccountParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the create d4 c aws account params
-func (o *CreateD4CAwsAccountParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the create d4 c Aws account params
+func (o *CreateD4CAWSAccountParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the create d4 c aws account params
-func (o *CreateD4CAwsAccountParams) WithContext(ctx context.Context) *CreateD4CAwsAccountParams {
+// WithContext adds the context to the create d4 c Aws account params
+func (o *CreateD4CAWSAccountParams) WithContext(ctx context.Context) *CreateD4CAWSAccountParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the create d4 c aws account params
-func (o *CreateD4CAwsAccountParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the create d4 c Aws account params
+func (o *CreateD4CAWSAccountParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the create d4 c aws account params
-func (o *CreateD4CAwsAccountParams) WithHTTPClient(client *http.Client) *CreateD4CAwsAccountParams {
+// WithHTTPClient adds the HTTPClient to the create d4 c Aws account params
+func (o *CreateD4CAWSAccountParams) WithHTTPClient(client *http.Client) *CreateD4CAWSAccountParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the create d4 c aws account params
-func (o *CreateD4CAwsAccountParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the create d4 c Aws account params
+func (o *CreateD4CAWSAccountParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithBody adds the body to the create d4 c aws account params
-func (o *CreateD4CAwsAccountParams) WithBody(body *models.RegistrationAWSAccountCreateRequestD4CExtV2) *CreateD4CAwsAccountParams {
+// WithBody adds the body to the create d4 c Aws account params
+func (o *CreateD4CAWSAccountParams) WithBody(body *models.RegistrationAWSAccountCreateRequestD4CExtV2) *CreateD4CAWSAccountParams {
 	o.SetBody(body)
 	return o
 }
 
-// SetBody adds the body to the create d4 c aws account params
-func (o *CreateD4CAwsAccountParams) SetBody(body *models.RegistrationAWSAccountCreateRequestD4CExtV2) {
+// SetBody adds the body to the create d4 c Aws account params
+func (o *CreateD4CAWSAccountParams) SetBody(body *models.RegistrationAWSAccountCreateRequestD4CExtV2) {
 	o.Body = body
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *CreateD4CAwsAccountParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *CreateD4CAWSAccountParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

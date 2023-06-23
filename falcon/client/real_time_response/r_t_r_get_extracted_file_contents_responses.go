@@ -20,14 +20,13 @@ import (
 // RTRGetExtractedFileContentsReader is a Reader for the RTRGetExtractedFileContents structure.
 type RTRGetExtractedFileContentsReader struct {
 	formats strfmt.Registry
-	writer  io.Writer
 }
 
 // ReadResponse reads a server response into the received o.
 func (o *RTRGetExtractedFileContentsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewRTRGetExtractedFileContentsOK(o.writer)
+		result := NewRTRGetExtractedFileContentsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -63,23 +62,13 @@ func (o *RTRGetExtractedFileContentsReader) ReadResponse(response runtime.Client
 		}
 		return nil, result
 	default:
-		result := NewRTRGetExtractedFileContentsDefault(response.Code())
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		if response.Code()/100 == 2 {
-			return result, nil
-		}
-		return nil, result
+		return nil, runtime.NewAPIError("[GET /real-time-response/entities/extracted-file-contents/v1] RTR-GetExtractedFileContents", response, response.Code())
 	}
 }
 
 // NewRTRGetExtractedFileContentsOK creates a RTRGetExtractedFileContentsOK with default headers values
-func NewRTRGetExtractedFileContentsOK(writer io.Writer) *RTRGetExtractedFileContentsOK {
-	return &RTRGetExtractedFileContentsOK{
-
-		Payload: writer,
-	}
+func NewRTRGetExtractedFileContentsOK() *RTRGetExtractedFileContentsOK {
+	return &RTRGetExtractedFileContentsOK{}
 }
 
 /*
@@ -89,6 +78,10 @@ OK
 */
 type RTRGetExtractedFileContentsOK struct {
 
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
+
 	/* Request limit per minute.
 	 */
 	XRateLimitLimit int64
@@ -97,7 +90,7 @@ type RTRGetExtractedFileContentsOK struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload io.Writer
+	Payload []int64
 }
 
 // IsSuccess returns true when this r t r get extracted file contents o k response has a 2xx status code
@@ -138,11 +131,18 @@ func (o *RTRGetExtractedFileContentsOK) String() string {
 	return fmt.Sprintf("[GET /real-time-response/entities/extracted-file-contents/v1][%d] rTRGetExtractedFileContentsOK  %+v", 200, o.Payload)
 }
 
-func (o *RTRGetExtractedFileContentsOK) GetPayload() io.Writer {
+func (o *RTRGetExtractedFileContentsOK) GetPayload() []int64 {
 	return o.Payload
 }
 
 func (o *RTRGetExtractedFileContentsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
 
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
@@ -167,7 +167,7 @@ func (o *RTRGetExtractedFileContentsOK) readResponse(response runtime.ClientResp
 	}
 
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
@@ -185,6 +185,10 @@ RTRGetExtractedFileContentsBadRequest describes a response with status code 400,
 Bad Request
 */
 type RTRGetExtractedFileContentsBadRequest struct {
+
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
 
 	/* Request limit per minute.
 	 */
@@ -241,6 +245,13 @@ func (o *RTRGetExtractedFileContentsBadRequest) GetPayload() *models.DomainAPIEr
 
 func (o *RTRGetExtractedFileContentsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
+
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
 
@@ -284,6 +295,10 @@ RTRGetExtractedFileContentsForbidden describes a response with status code 403, 
 Forbidden
 */
 type RTRGetExtractedFileContentsForbidden struct {
+
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
 
 	/* Request limit per minute.
 	 */
@@ -340,6 +355,13 @@ func (o *RTRGetExtractedFileContentsForbidden) GetPayload() *models.MsaReplyMeta
 
 func (o *RTRGetExtractedFileContentsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
+
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
 
@@ -383,6 +405,10 @@ RTRGetExtractedFileContentsNotFound describes a response with status code 404, w
 Not Found
 */
 type RTRGetExtractedFileContentsNotFound struct {
+
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
 
 	/* Request limit per minute.
 	 */
@@ -439,6 +465,13 @@ func (o *RTRGetExtractedFileContentsNotFound) GetPayload() *models.DomainAPIErro
 
 func (o *RTRGetExtractedFileContentsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
+
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
 
@@ -482,6 +515,10 @@ RTRGetExtractedFileContentsTooManyRequests describes a response with status code
 Too Many Requests
 */
 type RTRGetExtractedFileContentsTooManyRequests struct {
+
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
 
 	/* Request limit per minute.
 	 */
@@ -542,6 +579,13 @@ func (o *RTRGetExtractedFileContentsTooManyRequests) GetPayload() *models.MsaRep
 
 func (o *RTRGetExtractedFileContentsTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
+
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
 
@@ -596,6 +640,10 @@ RTRGetExtractedFileContentsInternalServerError describes a response with status 
 Internal Server Error
 */
 type RTRGetExtractedFileContentsInternalServerError struct {
+
+	/* Trace-ID: submit to support if resolving an issue
+	 */
+	XCSTRACEID string
 
 	/* Request limit per minute.
 	 */
@@ -652,6 +700,13 @@ func (o *RTRGetExtractedFileContentsInternalServerError) GetPayload() *models.Do
 
 func (o *RTRGetExtractedFileContentsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	// hydrates response header X-CS-TRACEID
+	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
+
+	if hdrXCSTRACEID != "" {
+		o.XCSTRACEID = hdrXCSTRACEID
+	}
+
 	// hydrates response header X-RateLimit-Limit
 	hdrXRateLimitLimit := response.GetHeader("X-RateLimit-Limit")
 
@@ -678,76 +733,6 @@ func (o *RTRGetExtractedFileContentsInternalServerError) readResponse(response r
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewRTRGetExtractedFileContentsDefault creates a RTRGetExtractedFileContentsDefault with default headers values
-func NewRTRGetExtractedFileContentsDefault(code int) *RTRGetExtractedFileContentsDefault {
-	return &RTRGetExtractedFileContentsDefault{
-		_statusCode: code,
-	}
-}
-
-/*
-RTRGetExtractedFileContentsDefault describes a response with status code -1, with default header values.
-
-OK
-*/
-type RTRGetExtractedFileContentsDefault struct {
-	_statusCode int
-
-	Payload []int64
-}
-
-// IsSuccess returns true when this r t r get extracted file contents default response has a 2xx status code
-func (o *RTRGetExtractedFileContentsDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this r t r get extracted file contents default response has a 3xx status code
-func (o *RTRGetExtractedFileContentsDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this r t r get extracted file contents default response has a 4xx status code
-func (o *RTRGetExtractedFileContentsDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this r t r get extracted file contents default response has a 5xx status code
-func (o *RTRGetExtractedFileContentsDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this r t r get extracted file contents default response a status code equal to that given
-func (o *RTRGetExtractedFileContentsDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
-// Code gets the status code for the r t r get extracted file contents default response
-func (o *RTRGetExtractedFileContentsDefault) Code() int {
-	return o._statusCode
-}
-
-func (o *RTRGetExtractedFileContentsDefault) Error() string {
-	return fmt.Sprintf("[GET /real-time-response/entities/extracted-file-contents/v1][%d] RTR-GetExtractedFileContents default  %+v", o._statusCode, o.Payload)
-}
-
-func (o *RTRGetExtractedFileContentsDefault) String() string {
-	return fmt.Sprintf("[GET /real-time-response/entities/extracted-file-contents/v1][%d] RTR-GetExtractedFileContents default  %+v", o._statusCode, o.Payload)
-}
-
-func (o *RTRGetExtractedFileContentsDefault) GetPayload() []int64 {
-	return o.Payload
-}
-
-func (o *RTRGetExtractedFileContentsDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

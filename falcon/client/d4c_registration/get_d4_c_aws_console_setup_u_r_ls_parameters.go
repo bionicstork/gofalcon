@@ -16,50 +16,50 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetD4CAwsConsoleSetupURLsParams creates a new GetD4CAwsConsoleSetupURLsParams object,
+// NewGetD4CAWSConsoleSetupURLsParams creates a new GetD4CAWSConsoleSetupURLsParams object,
 // with the default timeout for this client.
 //
 // Default values are not hydrated, since defaults are normally applied by the API server side.
 //
 // To enforce default values in parameter, use SetDefaults or WithDefaults.
-func NewGetD4CAwsConsoleSetupURLsParams() *GetD4CAwsConsoleSetupURLsParams {
-	return &GetD4CAwsConsoleSetupURLsParams{
+func NewGetD4CAWSConsoleSetupURLsParams() *GetD4CAWSConsoleSetupURLsParams {
+	return &GetD4CAWSConsoleSetupURLsParams{
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewGetD4CAwsConsoleSetupURLsParamsWithTimeout creates a new GetD4CAwsConsoleSetupURLsParams object
+// NewGetD4CAWSConsoleSetupURLsParamsWithTimeout creates a new GetD4CAWSConsoleSetupURLsParams object
 // with the ability to set a timeout on a request.
-func NewGetD4CAwsConsoleSetupURLsParamsWithTimeout(timeout time.Duration) *GetD4CAwsConsoleSetupURLsParams {
-	return &GetD4CAwsConsoleSetupURLsParams{
+func NewGetD4CAWSConsoleSetupURLsParamsWithTimeout(timeout time.Duration) *GetD4CAWSConsoleSetupURLsParams {
+	return &GetD4CAWSConsoleSetupURLsParams{
 		timeout: timeout,
 	}
 }
 
-// NewGetD4CAwsConsoleSetupURLsParamsWithContext creates a new GetD4CAwsConsoleSetupURLsParams object
+// NewGetD4CAWSConsoleSetupURLsParamsWithContext creates a new GetD4CAWSConsoleSetupURLsParams object
 // with the ability to set a context for a request.
-func NewGetD4CAwsConsoleSetupURLsParamsWithContext(ctx context.Context) *GetD4CAwsConsoleSetupURLsParams {
-	return &GetD4CAwsConsoleSetupURLsParams{
+func NewGetD4CAWSConsoleSetupURLsParamsWithContext(ctx context.Context) *GetD4CAWSConsoleSetupURLsParams {
+	return &GetD4CAWSConsoleSetupURLsParams{
 		Context: ctx,
 	}
 }
 
-// NewGetD4CAwsConsoleSetupURLsParamsWithHTTPClient creates a new GetD4CAwsConsoleSetupURLsParams object
+// NewGetD4CAWSConsoleSetupURLsParamsWithHTTPClient creates a new GetD4CAWSConsoleSetupURLsParams object
 // with the ability to set a custom HTTPClient for a request.
-func NewGetD4CAwsConsoleSetupURLsParamsWithHTTPClient(client *http.Client) *GetD4CAwsConsoleSetupURLsParams {
-	return &GetD4CAwsConsoleSetupURLsParams{
+func NewGetD4CAWSConsoleSetupURLsParamsWithHTTPClient(client *http.Client) *GetD4CAWSConsoleSetupURLsParams {
+	return &GetD4CAWSConsoleSetupURLsParams{
 		HTTPClient: client,
 	}
 }
 
 /*
-GetD4CAwsConsoleSetupURLsParams contains all the parameters to send to the API endpoint
+GetD4CAWSConsoleSetupURLsParams contains all the parameters to send to the API endpoint
 
-	for the get d4 c aws console setup u r ls operation.
+	for the get d4 c Aws console setup u r ls operation.
 
 	Typically these are written to a http.Request.
 */
-type GetD4CAwsConsoleSetupURLsParams struct {
+type GetD4CAWSConsoleSetupURLsParams struct {
 
 	/* Region.
 
@@ -72,67 +72,67 @@ type GetD4CAwsConsoleSetupURLsParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the get d4 c aws console setup u r ls params (not the query body).
+// WithDefaults hydrates default values in the get d4 c Aws console setup u r ls params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *GetD4CAwsConsoleSetupURLsParams) WithDefaults() *GetD4CAwsConsoleSetupURLsParams {
+func (o *GetD4CAWSConsoleSetupURLsParams) WithDefaults() *GetD4CAWSConsoleSetupURLsParams {
 	o.SetDefaults()
 	return o
 }
 
-// SetDefaults hydrates default values in the get d4 c aws console setup u r ls params (not the query body).
+// SetDefaults hydrates default values in the get d4 c Aws console setup u r ls params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *GetD4CAwsConsoleSetupURLsParams) SetDefaults() {
+func (o *GetD4CAWSConsoleSetupURLsParams) SetDefaults() {
 	// no default values defined for this parameter
 }
 
-// WithTimeout adds the timeout to the get d4 c aws console setup u r ls params
-func (o *GetD4CAwsConsoleSetupURLsParams) WithTimeout(timeout time.Duration) *GetD4CAwsConsoleSetupURLsParams {
+// WithTimeout adds the timeout to the get d4 c Aws console setup u r ls params
+func (o *GetD4CAWSConsoleSetupURLsParams) WithTimeout(timeout time.Duration) *GetD4CAWSConsoleSetupURLsParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the get d4 c aws console setup u r ls params
-func (o *GetD4CAwsConsoleSetupURLsParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the get d4 c Aws console setup u r ls params
+func (o *GetD4CAWSConsoleSetupURLsParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the get d4 c aws console setup u r ls params
-func (o *GetD4CAwsConsoleSetupURLsParams) WithContext(ctx context.Context) *GetD4CAwsConsoleSetupURLsParams {
+// WithContext adds the context to the get d4 c Aws console setup u r ls params
+func (o *GetD4CAWSConsoleSetupURLsParams) WithContext(ctx context.Context) *GetD4CAWSConsoleSetupURLsParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the get d4 c aws console setup u r ls params
-func (o *GetD4CAwsConsoleSetupURLsParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the get d4 c Aws console setup u r ls params
+func (o *GetD4CAWSConsoleSetupURLsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the get d4 c aws console setup u r ls params
-func (o *GetD4CAwsConsoleSetupURLsParams) WithHTTPClient(client *http.Client) *GetD4CAwsConsoleSetupURLsParams {
+// WithHTTPClient adds the HTTPClient to the get d4 c Aws console setup u r ls params
+func (o *GetD4CAWSConsoleSetupURLsParams) WithHTTPClient(client *http.Client) *GetD4CAWSConsoleSetupURLsParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the get d4 c aws console setup u r ls params
-func (o *GetD4CAwsConsoleSetupURLsParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the get d4 c Aws console setup u r ls params
+func (o *GetD4CAWSConsoleSetupURLsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithRegion adds the region to the get d4 c aws console setup u r ls params
-func (o *GetD4CAwsConsoleSetupURLsParams) WithRegion(region *string) *GetD4CAwsConsoleSetupURLsParams {
+// WithRegion adds the region to the get d4 c Aws console setup u r ls params
+func (o *GetD4CAWSConsoleSetupURLsParams) WithRegion(region *string) *GetD4CAWSConsoleSetupURLsParams {
 	o.SetRegion(region)
 	return o
 }
 
-// SetRegion adds the region to the get d4 c aws console setup u r ls params
-func (o *GetD4CAwsConsoleSetupURLsParams) SetRegion(region *string) {
+// SetRegion adds the region to the get d4 c Aws console setup u r ls params
+func (o *GetD4CAWSConsoleSetupURLsParams) SetRegion(region *string) {
 	o.Region = region
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetD4CAwsConsoleSetupURLsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *GetD4CAWSConsoleSetupURLsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

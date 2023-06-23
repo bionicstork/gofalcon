@@ -21,7 +21,7 @@ type FwmgrAPINetworkLocationModifyMetadataRequestV1 struct {
 
 	// cid
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// dns resolution targets polling interval
 	// Required: true
@@ -33,7 +33,7 @@ type FwmgrAPINetworkLocationModifyMetadataRequestV1 struct {
 
 	// icmp request targets polling interval
 	// Required: true
-	IcmpRequestTargetsPollingInterval *int32 `json:"icmp_request_targets_polling_interval"`
+	ICMPRequestTargetsPollingInterval *int32 `json:"icmp_request_targets_polling_interval"`
 
 	// location precedence
 	// Required: true
@@ -44,7 +44,7 @@ type FwmgrAPINetworkLocationModifyMetadataRequestV1 struct {
 func (m *FwmgrAPINetworkLocationModifyMetadataRequestV1) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -56,7 +56,7 @@ func (m *FwmgrAPINetworkLocationModifyMetadataRequestV1) Validate(formats strfmt
 		res = append(res, err)
 	}
 
-	if err := m.validateIcmpRequestTargetsPollingInterval(formats); err != nil {
+	if err := m.validateICMPRequestTargetsPollingInterval(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -70,9 +70,9 @@ func (m *FwmgrAPINetworkLocationModifyMetadataRequestV1) Validate(formats strfmt
 	return nil
 }
 
-func (m *FwmgrAPINetworkLocationModifyMetadataRequestV1) validateCid(formats strfmt.Registry) error {
+func (m *FwmgrAPINetworkLocationModifyMetadataRequestV1) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 
@@ -97,9 +97,9 @@ func (m *FwmgrAPINetworkLocationModifyMetadataRequestV1) validateHTTPSReachableH
 	return nil
 }
 
-func (m *FwmgrAPINetworkLocationModifyMetadataRequestV1) validateIcmpRequestTargetsPollingInterval(formats strfmt.Registry) error {
+func (m *FwmgrAPINetworkLocationModifyMetadataRequestV1) validateICMPRequestTargetsPollingInterval(formats strfmt.Registry) error {
 
-	if err := validate.Required("icmp_request_targets_polling_interval", "body", m.IcmpRequestTargetsPollingInterval); err != nil {
+	if err := validate.Required("icmp_request_targets_polling_interval", "body", m.ICMPRequestTargetsPollingInterval); err != nil {
 		return err
 	}
 

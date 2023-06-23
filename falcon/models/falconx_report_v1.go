@@ -20,7 +20,7 @@ import (
 type FalconxReportV1 struct {
 
 	// cid
-	Cid string `json:"cid,omitempty"`
+	CID string `json:"cid,omitempty"`
 
 	// created timestamp
 	CreatedTimestamp string `json:"created_timestamp,omitempty"`
@@ -28,32 +28,38 @@ type FalconxReportV1 struct {
 	// id
 	ID string `json:"id,omitempty"`
 
+	// index timestamp
+	IndexTimestamp string `json:"index_timestamp,omitempty"`
+
 	// intel
 	Intel []*FalconxIntelReportV1 `json:"intel"`
 
+	// intelx
+	Intelx *FalconxIntelXReportV1 `json:"intelx,omitempty"`
+
 	// ioc report broad csv artifact id
-	IocReportBroadCsvArtifactID string `json:"ioc_report_broad_csv_artifact_id,omitempty"`
+	IOCReportBroadCsvArtifactID string `json:"ioc_report_broad_csv_artifact_id,omitempty"`
 
 	// ioc report broad json artifact id
-	IocReportBroadJSONArtifactID string `json:"ioc_report_broad_json_artifact_id,omitempty"`
+	IOCReportBroadJSONArtifactID string `json:"ioc_report_broad_json_artifact_id,omitempty"`
 
 	// ioc report broad maec artifact id
-	IocReportBroadMaecArtifactID string `json:"ioc_report_broad_maec_artifact_id,omitempty"`
+	IOCReportBroadMaecArtifactID string `json:"ioc_report_broad_maec_artifact_id,omitempty"`
 
 	// ioc report broad stix artifact id
-	IocReportBroadStixArtifactID string `json:"ioc_report_broad_stix_artifact_id,omitempty"`
+	IOCReportBroadStixArtifactID string `json:"ioc_report_broad_stix_artifact_id,omitempty"`
 
 	// ioc report strict csv artifact id
-	IocReportStrictCsvArtifactID string `json:"ioc_report_strict_csv_artifact_id,omitempty"`
+	IOCReportStrictCsvArtifactID string `json:"ioc_report_strict_csv_artifact_id,omitempty"`
 
 	// ioc report strict json artifact id
-	IocReportStrictJSONArtifactID string `json:"ioc_report_strict_json_artifact_id,omitempty"`
+	IOCReportStrictJSONArtifactID string `json:"ioc_report_strict_json_artifact_id,omitempty"`
 
 	// ioc report strict maec artifact id
-	IocReportStrictMaecArtifactID string `json:"ioc_report_strict_maec_artifact_id,omitempty"`
+	IOCReportStrictMaecArtifactID string `json:"ioc_report_strict_maec_artifact_id,omitempty"`
 
 	// ioc report strict stix artifact id
-	IocReportStrictStixArtifactID string `json:"ioc_report_strict_stix_artifact_id,omitempty"`
+	IOCReportStrictStixArtifactID string `json:"ioc_report_strict_stix_artifact_id,omitempty"`
 
 	// malquery
 	Malquery []*FalconxMalqueryReportV1 `json:"malquery"`
@@ -91,6 +97,10 @@ func (m *FalconxReportV1) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateIntel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIntelx(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -133,6 +143,25 @@ func (m *FalconxReportV1) validateIntel(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *FalconxReportV1) validateIntelx(formats strfmt.Registry) error {
+	if swag.IsZero(m.Intelx) { // not required
+		return nil
+	}
+
+	if m.Intelx != nil {
+		if err := m.Intelx.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("intelx")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("intelx")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -217,6 +246,10 @@ func (m *FalconxReportV1) ContextValidate(ctx context.Context, formats strfmt.Re
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIntelx(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMalquery(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -240,6 +273,11 @@ func (m *FalconxReportV1) contextValidateIntel(ctx context.Context, formats strf
 	for i := 0; i < len(m.Intel); i++ {
 
 		if m.Intel[i] != nil {
+
+			if swag.IsZero(m.Intel[i]) { // not required
+				return nil
+			}
+
 			if err := m.Intel[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("intel" + "." + strconv.Itoa(i))
@@ -255,11 +293,37 @@ func (m *FalconxReportV1) contextValidateIntel(ctx context.Context, formats strf
 	return nil
 }
 
+func (m *FalconxReportV1) contextValidateIntelx(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Intelx != nil {
+
+		if swag.IsZero(m.Intelx) { // not required
+			return nil
+		}
+
+		if err := m.Intelx.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("intelx")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("intelx")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *FalconxReportV1) contextValidateMalquery(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Malquery); i++ {
 
 		if m.Malquery[i] != nil {
+
+			if swag.IsZero(m.Malquery[i]) { // not required
+				return nil
+			}
+
 			if err := m.Malquery[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("malquery" + "." + strconv.Itoa(i))
@@ -280,6 +344,11 @@ func (m *FalconxReportV1) contextValidateSandbox(ctx context.Context, formats st
 	for i := 0; i < len(m.Sandbox); i++ {
 
 		if m.Sandbox[i] != nil {
+
+			if swag.IsZero(m.Sandbox[i]) { // not required
+				return nil
+			}
+
 			if err := m.Sandbox[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("sandbox" + "." + strconv.Itoa(i))
@@ -298,6 +367,11 @@ func (m *FalconxReportV1) contextValidateSandbox(ctx context.Context, formats st
 func (m *FalconxReportV1) contextValidateThreatGraph(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ThreatGraph != nil {
+
+		if swag.IsZero(m.ThreatGraph) { // not required
+			return nil
+		}
+
 		if err := m.ThreatGraph.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("threat_graph")

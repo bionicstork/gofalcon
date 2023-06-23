@@ -20,7 +20,7 @@ import (
 type DomainMaliciousFile struct {
 
 	// cid
-	Cid string `json:"cid,omitempty"`
+	CID string `json:"cid,omitempty"`
 
 	// filename
 	Filename string `json:"filename,omitempty"`

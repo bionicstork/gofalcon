@@ -24,10 +24,13 @@ type DomainAPIEvaluationLogicV1 struct {
 	Aid string `json:"aid,omitempty"`
 
 	// cid
-	Cid string `json:"cid,omitempty"`
+	CID string `json:"cid,omitempty"`
 
 	// created timestamp
 	CreatedTimestamp string `json:"created_timestamp,omitempty"`
+
+	// data provider
+	DataProvider string `json:"data_provider,omitempty"`
 
 	// id
 	// Required: true
@@ -112,6 +115,11 @@ func (m *DomainAPIEvaluationLogicV1) contextValidateLogic(ctx context.Context, f
 	for i := 0; i < len(m.Logic); i++ {
 
 		if m.Logic[i] != nil {
+
+			if swag.IsZero(m.Logic[i]) { // not required
+				return nil
+			}
+
 			if err := m.Logic[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("logic" + "." + strconv.Itoa(i))

@@ -68,11 +68,11 @@ type GetBehaviorDetectionsParams struct {
 	*/
 	AccountID *string
 
-	/* AwsAccountID.
+	/* AWSAccountID.
 
 	   AWS Account ID
 	*/
-	AwsAccountID *string
+	AWSAccountID *string
 
 	/* AzureSubscriptionID.
 
@@ -90,7 +90,7 @@ type GetBehaviorDetectionsParams struct {
 
 	   Cloud Provider (e.g.: aws|azure)
 	*/
-	CloudProvider string
+	CloudProvider *string
 
 	/* DateTimeSince.
 
@@ -110,6 +110,18 @@ type GetBehaviorDetectionsParams struct {
 	*/
 	NextToken *string
 
+	/* ResourceID.
+
+	   Resource ID
+	*/
+	ResourceID []string
+
+	/* ResourceUUID.
+
+	   Resource UUID
+	*/
+	ResourceUUID []string
+
 	/* Service.
 
 	   Cloud Service (e.g. EC2 | EBS | S3)
@@ -118,9 +130,17 @@ type GetBehaviorDetectionsParams struct {
 
 	/* Severity.
 
-	   Severity (e.g.: High | Medium | Informational)
+	   Policy Severity
 	*/
 	Severity *string
+
+	/* Since.
+
+	   Filter events using a duration string (e.g. 24h)
+
+	   Default: "24h"
+	*/
+	Since *string
 
 	/* State.
 
@@ -145,7 +165,18 @@ func (o *GetBehaviorDetectionsParams) WithDefaults() *GetBehaviorDetectionsParam
 //
 // All values with no default are reset to their zero value.
 func (o *GetBehaviorDetectionsParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		sinceDefault = string("24h")
+	)
+
+	val := GetBehaviorDetectionsParams{
+		Since: &sinceDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get behavior detections params
@@ -192,15 +223,15 @@ func (o *GetBehaviorDetectionsParams) SetAccountID(accountID *string) {
 	o.AccountID = accountID
 }
 
-// WithAwsAccountID adds the awsAccountID to the get behavior detections params
-func (o *GetBehaviorDetectionsParams) WithAwsAccountID(awsAccountID *string) *GetBehaviorDetectionsParams {
-	o.SetAwsAccountID(awsAccountID)
+// WithAWSAccountID adds the aWSAccountID to the get behavior detections params
+func (o *GetBehaviorDetectionsParams) WithAWSAccountID(aWSAccountID *string) *GetBehaviorDetectionsParams {
+	o.SetAWSAccountID(aWSAccountID)
 	return o
 }
 
-// SetAwsAccountID adds the awsAccountId to the get behavior detections params
-func (o *GetBehaviorDetectionsParams) SetAwsAccountID(awsAccountID *string) {
-	o.AwsAccountID = awsAccountID
+// SetAWSAccountID adds the awsAccountId to the get behavior detections params
+func (o *GetBehaviorDetectionsParams) SetAWSAccountID(aWSAccountID *string) {
+	o.AWSAccountID = aWSAccountID
 }
 
 // WithAzureSubscriptionID adds the azureSubscriptionID to the get behavior detections params
@@ -226,13 +257,13 @@ func (o *GetBehaviorDetectionsParams) SetAzureTenantID(azureTenantID *string) {
 }
 
 // WithCloudProvider adds the cloudProvider to the get behavior detections params
-func (o *GetBehaviorDetectionsParams) WithCloudProvider(cloudProvider string) *GetBehaviorDetectionsParams {
+func (o *GetBehaviorDetectionsParams) WithCloudProvider(cloudProvider *string) *GetBehaviorDetectionsParams {
 	o.SetCloudProvider(cloudProvider)
 	return o
 }
 
 // SetCloudProvider adds the cloudProvider to the get behavior detections params
-func (o *GetBehaviorDetectionsParams) SetCloudProvider(cloudProvider string) {
+func (o *GetBehaviorDetectionsParams) SetCloudProvider(cloudProvider *string) {
 	o.CloudProvider = cloudProvider
 }
 
@@ -269,6 +300,28 @@ func (o *GetBehaviorDetectionsParams) SetNextToken(nextToken *string) {
 	o.NextToken = nextToken
 }
 
+// WithResourceID adds the resourceID to the get behavior detections params
+func (o *GetBehaviorDetectionsParams) WithResourceID(resourceID []string) *GetBehaviorDetectionsParams {
+	o.SetResourceID(resourceID)
+	return o
+}
+
+// SetResourceID adds the resourceId to the get behavior detections params
+func (o *GetBehaviorDetectionsParams) SetResourceID(resourceID []string) {
+	o.ResourceID = resourceID
+}
+
+// WithResourceUUID adds the resourceUUID to the get behavior detections params
+func (o *GetBehaviorDetectionsParams) WithResourceUUID(resourceUUID []string) *GetBehaviorDetectionsParams {
+	o.SetResourceUUID(resourceUUID)
+	return o
+}
+
+// SetResourceUUID adds the resourceUuid to the get behavior detections params
+func (o *GetBehaviorDetectionsParams) SetResourceUUID(resourceUUID []string) {
+	o.ResourceUUID = resourceUUID
+}
+
 // WithService adds the service to the get behavior detections params
 func (o *GetBehaviorDetectionsParams) WithService(service *string) *GetBehaviorDetectionsParams {
 	o.SetService(service)
@@ -289,6 +342,17 @@ func (o *GetBehaviorDetectionsParams) WithSeverity(severity *string) *GetBehavio
 // SetSeverity adds the severity to the get behavior detections params
 func (o *GetBehaviorDetectionsParams) SetSeverity(severity *string) {
 	o.Severity = severity
+}
+
+// WithSince adds the since to the get behavior detections params
+func (o *GetBehaviorDetectionsParams) WithSince(since *string) *GetBehaviorDetectionsParams {
+	o.SetSince(since)
+	return o
+}
+
+// SetSince adds the since to the get behavior detections params
+func (o *GetBehaviorDetectionsParams) SetSince(since *string) {
+	o.Since = since
 }
 
 // WithState adds the state to the get behavior detections params
@@ -327,18 +391,18 @@ func (o *GetBehaviorDetectionsParams) WriteToRequest(r runtime.ClientRequest, re
 		}
 	}
 
-	if o.AwsAccountID != nil {
+	if o.AWSAccountID != nil {
 
 		// query param aws_account_id
-		var qrAwsAccountID string
+		var qrAWSAccountID string
 
-		if o.AwsAccountID != nil {
-			qrAwsAccountID = *o.AwsAccountID
+		if o.AWSAccountID != nil {
+			qrAWSAccountID = *o.AWSAccountID
 		}
-		qAwsAccountID := qrAwsAccountID
-		if qAwsAccountID != "" {
+		qAWSAccountID := qrAWSAccountID
+		if qAWSAccountID != "" {
 
-			if err := r.SetQueryParam("aws_account_id", qAwsAccountID); err != nil {
+			if err := r.SetQueryParam("aws_account_id", qAWSAccountID); err != nil {
 				return err
 			}
 		}
@@ -378,13 +442,20 @@ func (o *GetBehaviorDetectionsParams) WriteToRequest(r runtime.ClientRequest, re
 		}
 	}
 
-	// query param cloud_provider
-	qrCloudProvider := o.CloudProvider
-	qCloudProvider := qrCloudProvider
-	if qCloudProvider != "" {
+	if o.CloudProvider != nil {
 
-		if err := r.SetQueryParam("cloud_provider", qCloudProvider); err != nil {
-			return err
+		// query param cloud_provider
+		var qrCloudProvider string
+
+		if o.CloudProvider != nil {
+			qrCloudProvider = *o.CloudProvider
+		}
+		qCloudProvider := qrCloudProvider
+		if qCloudProvider != "" {
+
+			if err := r.SetQueryParam("cloud_provider", qCloudProvider); err != nil {
+				return err
+			}
 		}
 	}
 
@@ -439,6 +510,28 @@ func (o *GetBehaviorDetectionsParams) WriteToRequest(r runtime.ClientRequest, re
 		}
 	}
 
+	if o.ResourceID != nil {
+
+		// binding items for resource_id
+		joinedResourceID := o.bindParamResourceID(reg)
+
+		// query array param resource_id
+		if err := r.SetQueryParam("resource_id", joinedResourceID...); err != nil {
+			return err
+		}
+	}
+
+	if o.ResourceUUID != nil {
+
+		// binding items for resource_uuid
+		joinedResourceUUID := o.bindParamResourceUUID(reg)
+
+		// query array param resource_uuid
+		if err := r.SetQueryParam("resource_uuid", joinedResourceUUID...); err != nil {
+			return err
+		}
+	}
+
 	if o.Service != nil {
 
 		// query param service
@@ -473,6 +566,23 @@ func (o *GetBehaviorDetectionsParams) WriteToRequest(r runtime.ClientRequest, re
 		}
 	}
 
+	if o.Since != nil {
+
+		// query param since
+		var qrSince string
+
+		if o.Since != nil {
+			qrSince = *o.Since
+		}
+		qSince := qrSince
+		if qSince != "" {
+
+			if err := r.SetQueryParam("since", qSince); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.State != nil {
 
 		// query param state
@@ -494,4 +604,38 @@ func (o *GetBehaviorDetectionsParams) WriteToRequest(r runtime.ClientRequest, re
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetBehaviorDetections binds the parameter resource_id
+func (o *GetBehaviorDetectionsParams) bindParamResourceID(formats strfmt.Registry) []string {
+	resourceIDIR := o.ResourceID
+
+	var resourceIDIC []string
+	for _, resourceIDIIR := range resourceIDIR { // explode []string
+
+		resourceIDIIV := resourceIDIIR // string as string
+		resourceIDIC = append(resourceIDIC, resourceIDIIV)
+	}
+
+	// items.CollectionFormat: "multi"
+	resourceIDIS := swag.JoinByFormat(resourceIDIC, "multi")
+
+	return resourceIDIS
+}
+
+// bindParamGetBehaviorDetections binds the parameter resource_uuid
+func (o *GetBehaviorDetectionsParams) bindParamResourceUUID(formats strfmt.Registry) []string {
+	resourceUUIDIR := o.ResourceUUID
+
+	var resourceUUIDIC []string
+	for _, resourceUUIDIIR := range resourceUUIDIR { // explode []string
+
+		resourceUUIDIIV := resourceUUIDIIR // string as string
+		resourceUUIDIC = append(resourceUUIDIC, resourceUUIDIIV)
+	}
+
+	// items.CollectionFormat: "multi"
+	resourceUUIDIS := swag.JoinByFormat(resourceUUIDIC, "multi")
+
+	return resourceUUIDIS
 }

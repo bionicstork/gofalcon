@@ -25,7 +25,7 @@ type DomainChildLink struct {
 
 	// child cid
 	// Required: true
-	ChildCid *string `json:"child_cid"`
+	ChildCID *string `json:"child_cid"`
 
 	// child gcid
 	ChildGcid string `json:"child_gcid,omitempty"`
@@ -52,7 +52,7 @@ func (m *DomainChildLink) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateChildCid(formats); err != nil {
+	if err := m.validateChildCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -75,9 +75,9 @@ func (m *DomainChildLink) validateChecksum(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DomainChildLink) validateChildCid(formats strfmt.Registry) error {
+func (m *DomainChildLink) validateChildCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("child_cid", "body", m.ChildCid); err != nil {
+	if err := validate.Required("child_cid", "body", m.ChildCID); err != nil {
 		return err
 	}
 

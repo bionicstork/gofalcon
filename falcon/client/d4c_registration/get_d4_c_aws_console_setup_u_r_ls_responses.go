@@ -17,66 +17,66 @@ import (
 	"github.com/crowdstrike/gofalcon/falcon/models"
 )
 
-// GetD4CAwsConsoleSetupURLsReader is a Reader for the GetD4CAwsConsoleSetupURLs structure.
-type GetD4CAwsConsoleSetupURLsReader struct {
+// GetD4CAWSConsoleSetupURLsReader is a Reader for the GetD4CAWSConsoleSetupURLs structure.
+type GetD4CAWSConsoleSetupURLsReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *GetD4CAwsConsoleSetupURLsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *GetD4CAWSConsoleSetupURLsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewGetD4CAwsConsoleSetupURLsOK()
+		result := NewGetD4CAWSConsoleSetupURLsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 207:
-		result := NewGetD4CAwsConsoleSetupURLsMultiStatus()
+		result := NewGetD4CAWSConsoleSetupURLsMultiStatus()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 400:
-		result := NewGetD4CAwsConsoleSetupURLsBadRequest()
+		result := NewGetD4CAWSConsoleSetupURLsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 403:
-		result := NewGetD4CAwsConsoleSetupURLsForbidden()
+		result := NewGetD4CAWSConsoleSetupURLsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 429:
-		result := NewGetD4CAwsConsoleSetupURLsTooManyRequests()
+		result := NewGetD4CAWSConsoleSetupURLsTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 500:
-		result := NewGetD4CAwsConsoleSetupURLsInternalServerError()
+		result := NewGetD4CAWSConsoleSetupURLsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /cloud-connect-aws/entities/console-setup-urls/v1] GetD4CAwsConsoleSetupURLs", response, response.Code())
 	}
 }
 
-// NewGetD4CAwsConsoleSetupURLsOK creates a GetD4CAwsConsoleSetupURLsOK with default headers values
-func NewGetD4CAwsConsoleSetupURLsOK() *GetD4CAwsConsoleSetupURLsOK {
-	return &GetD4CAwsConsoleSetupURLsOK{}
+// NewGetD4CAWSConsoleSetupURLsOK creates a GetD4CAWSConsoleSetupURLsOK with default headers values
+func NewGetD4CAWSConsoleSetupURLsOK() *GetD4CAWSConsoleSetupURLsOK {
+	return &GetD4CAWSConsoleSetupURLsOK{}
 }
 
 /*
-GetD4CAwsConsoleSetupURLsOK describes a response with status code 200, with default header values.
+GetD4CAWSConsoleSetupURLsOK describes a response with status code 200, with default header values.
 
 OK
 */
-type GetD4CAwsConsoleSetupURLsOK struct {
+type GetD4CAWSConsoleSetupURLsOK struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -93,49 +93,49 @@ type GetD4CAwsConsoleSetupURLsOK struct {
 	Payload *models.RegistrationAWSAccountConsoleURL
 }
 
-// IsSuccess returns true when this get d4 c aws console setup u r ls o k response has a 2xx status code
-func (o *GetD4CAwsConsoleSetupURLsOK) IsSuccess() bool {
+// IsSuccess returns true when this get d4 c Aws console setup u r ls o k response has a 2xx status code
+func (o *GetD4CAWSConsoleSetupURLsOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get d4 c aws console setup u r ls o k response has a 3xx status code
-func (o *GetD4CAwsConsoleSetupURLsOK) IsRedirect() bool {
+// IsRedirect returns true when this get d4 c Aws console setup u r ls o k response has a 3xx status code
+func (o *GetD4CAWSConsoleSetupURLsOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get d4 c aws console setup u r ls o k response has a 4xx status code
-func (o *GetD4CAwsConsoleSetupURLsOK) IsClientError() bool {
+// IsClientError returns true when this get d4 c Aws console setup u r ls o k response has a 4xx status code
+func (o *GetD4CAWSConsoleSetupURLsOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get d4 c aws console setup u r ls o k response has a 5xx status code
-func (o *GetD4CAwsConsoleSetupURLsOK) IsServerError() bool {
+// IsServerError returns true when this get d4 c Aws console setup u r ls o k response has a 5xx status code
+func (o *GetD4CAWSConsoleSetupURLsOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get d4 c aws console setup u r ls o k response a status code equal to that given
-func (o *GetD4CAwsConsoleSetupURLsOK) IsCode(code int) bool {
+// IsCode returns true when this get d4 c Aws console setup u r ls o k response a status code equal to that given
+func (o *GetD4CAWSConsoleSetupURLsOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the get d4 c aws console setup u r ls o k response
-func (o *GetD4CAwsConsoleSetupURLsOK) Code() int {
+// Code gets the status code for the get d4 c Aws console setup u r ls o k response
+func (o *GetD4CAWSConsoleSetupURLsOK) Code() int {
 	return 200
 }
 
-func (o *GetD4CAwsConsoleSetupURLsOK) Error() string {
+func (o *GetD4CAWSConsoleSetupURLsOK) Error() string {
 	return fmt.Sprintf("[GET /cloud-connect-aws/entities/console-setup-urls/v1][%d] getD4CAwsConsoleSetupURLsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetD4CAwsConsoleSetupURLsOK) String() string {
+func (o *GetD4CAWSConsoleSetupURLsOK) String() string {
 	return fmt.Sprintf("[GET /cloud-connect-aws/entities/console-setup-urls/v1][%d] getD4CAwsConsoleSetupURLsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetD4CAwsConsoleSetupURLsOK) GetPayload() *models.RegistrationAWSAccountConsoleURL {
+func (o *GetD4CAWSConsoleSetupURLsOK) GetPayload() *models.RegistrationAWSAccountConsoleURL {
 	return o.Payload
 }
 
-func (o *GetD4CAwsConsoleSetupURLsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetD4CAWSConsoleSetupURLsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -176,17 +176,17 @@ func (o *GetD4CAwsConsoleSetupURLsOK) readResponse(response runtime.ClientRespon
 	return nil
 }
 
-// NewGetD4CAwsConsoleSetupURLsMultiStatus creates a GetD4CAwsConsoleSetupURLsMultiStatus with default headers values
-func NewGetD4CAwsConsoleSetupURLsMultiStatus() *GetD4CAwsConsoleSetupURLsMultiStatus {
-	return &GetD4CAwsConsoleSetupURLsMultiStatus{}
+// NewGetD4CAWSConsoleSetupURLsMultiStatus creates a GetD4CAWSConsoleSetupURLsMultiStatus with default headers values
+func NewGetD4CAWSConsoleSetupURLsMultiStatus() *GetD4CAWSConsoleSetupURLsMultiStatus {
+	return &GetD4CAWSConsoleSetupURLsMultiStatus{}
 }
 
 /*
-GetD4CAwsConsoleSetupURLsMultiStatus describes a response with status code 207, with default header values.
+GetD4CAWSConsoleSetupURLsMultiStatus describes a response with status code 207, with default header values.
 
 Multi-Status
 */
-type GetD4CAwsConsoleSetupURLsMultiStatus struct {
+type GetD4CAWSConsoleSetupURLsMultiStatus struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -203,49 +203,49 @@ type GetD4CAwsConsoleSetupURLsMultiStatus struct {
 	Payload *models.RegistrationAWSAccountConsoleURL
 }
 
-// IsSuccess returns true when this get d4 c aws console setup u r ls multi status response has a 2xx status code
-func (o *GetD4CAwsConsoleSetupURLsMultiStatus) IsSuccess() bool {
+// IsSuccess returns true when this get d4 c Aws console setup u r ls multi status response has a 2xx status code
+func (o *GetD4CAWSConsoleSetupURLsMultiStatus) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this get d4 c aws console setup u r ls multi status response has a 3xx status code
-func (o *GetD4CAwsConsoleSetupURLsMultiStatus) IsRedirect() bool {
+// IsRedirect returns true when this get d4 c Aws console setup u r ls multi status response has a 3xx status code
+func (o *GetD4CAWSConsoleSetupURLsMultiStatus) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get d4 c aws console setup u r ls multi status response has a 4xx status code
-func (o *GetD4CAwsConsoleSetupURLsMultiStatus) IsClientError() bool {
+// IsClientError returns true when this get d4 c Aws console setup u r ls multi status response has a 4xx status code
+func (o *GetD4CAWSConsoleSetupURLsMultiStatus) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get d4 c aws console setup u r ls multi status response has a 5xx status code
-func (o *GetD4CAwsConsoleSetupURLsMultiStatus) IsServerError() bool {
+// IsServerError returns true when this get d4 c Aws console setup u r ls multi status response has a 5xx status code
+func (o *GetD4CAWSConsoleSetupURLsMultiStatus) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get d4 c aws console setup u r ls multi status response a status code equal to that given
-func (o *GetD4CAwsConsoleSetupURLsMultiStatus) IsCode(code int) bool {
+// IsCode returns true when this get d4 c Aws console setup u r ls multi status response a status code equal to that given
+func (o *GetD4CAWSConsoleSetupURLsMultiStatus) IsCode(code int) bool {
 	return code == 207
 }
 
-// Code gets the status code for the get d4 c aws console setup u r ls multi status response
-func (o *GetD4CAwsConsoleSetupURLsMultiStatus) Code() int {
+// Code gets the status code for the get d4 c Aws console setup u r ls multi status response
+func (o *GetD4CAWSConsoleSetupURLsMultiStatus) Code() int {
 	return 207
 }
 
-func (o *GetD4CAwsConsoleSetupURLsMultiStatus) Error() string {
+func (o *GetD4CAWSConsoleSetupURLsMultiStatus) Error() string {
 	return fmt.Sprintf("[GET /cloud-connect-aws/entities/console-setup-urls/v1][%d] getD4CAwsConsoleSetupURLsMultiStatus  %+v", 207, o.Payload)
 }
 
-func (o *GetD4CAwsConsoleSetupURLsMultiStatus) String() string {
+func (o *GetD4CAWSConsoleSetupURLsMultiStatus) String() string {
 	return fmt.Sprintf("[GET /cloud-connect-aws/entities/console-setup-urls/v1][%d] getD4CAwsConsoleSetupURLsMultiStatus  %+v", 207, o.Payload)
 }
 
-func (o *GetD4CAwsConsoleSetupURLsMultiStatus) GetPayload() *models.RegistrationAWSAccountConsoleURL {
+func (o *GetD4CAWSConsoleSetupURLsMultiStatus) GetPayload() *models.RegistrationAWSAccountConsoleURL {
 	return o.Payload
 }
 
-func (o *GetD4CAwsConsoleSetupURLsMultiStatus) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetD4CAWSConsoleSetupURLsMultiStatus) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -286,17 +286,17 @@ func (o *GetD4CAwsConsoleSetupURLsMultiStatus) readResponse(response runtime.Cli
 	return nil
 }
 
-// NewGetD4CAwsConsoleSetupURLsBadRequest creates a GetD4CAwsConsoleSetupURLsBadRequest with default headers values
-func NewGetD4CAwsConsoleSetupURLsBadRequest() *GetD4CAwsConsoleSetupURLsBadRequest {
-	return &GetD4CAwsConsoleSetupURLsBadRequest{}
+// NewGetD4CAWSConsoleSetupURLsBadRequest creates a GetD4CAWSConsoleSetupURLsBadRequest with default headers values
+func NewGetD4CAWSConsoleSetupURLsBadRequest() *GetD4CAWSConsoleSetupURLsBadRequest {
+	return &GetD4CAWSConsoleSetupURLsBadRequest{}
 }
 
 /*
-GetD4CAwsConsoleSetupURLsBadRequest describes a response with status code 400, with default header values.
+GetD4CAWSConsoleSetupURLsBadRequest describes a response with status code 400, with default header values.
 
 Bad Request
 */
-type GetD4CAwsConsoleSetupURLsBadRequest struct {
+type GetD4CAWSConsoleSetupURLsBadRequest struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -313,49 +313,49 @@ type GetD4CAwsConsoleSetupURLsBadRequest struct {
 	Payload *models.RegistrationAWSAccountConsoleURL
 }
 
-// IsSuccess returns true when this get d4 c aws console setup u r ls bad request response has a 2xx status code
-func (o *GetD4CAwsConsoleSetupURLsBadRequest) IsSuccess() bool {
+// IsSuccess returns true when this get d4 c Aws console setup u r ls bad request response has a 2xx status code
+func (o *GetD4CAWSConsoleSetupURLsBadRequest) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this get d4 c aws console setup u r ls bad request response has a 3xx status code
-func (o *GetD4CAwsConsoleSetupURLsBadRequest) IsRedirect() bool {
+// IsRedirect returns true when this get d4 c Aws console setup u r ls bad request response has a 3xx status code
+func (o *GetD4CAWSConsoleSetupURLsBadRequest) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get d4 c aws console setup u r ls bad request response has a 4xx status code
-func (o *GetD4CAwsConsoleSetupURLsBadRequest) IsClientError() bool {
+// IsClientError returns true when this get d4 c Aws console setup u r ls bad request response has a 4xx status code
+func (o *GetD4CAWSConsoleSetupURLsBadRequest) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this get d4 c aws console setup u r ls bad request response has a 5xx status code
-func (o *GetD4CAwsConsoleSetupURLsBadRequest) IsServerError() bool {
+// IsServerError returns true when this get d4 c Aws console setup u r ls bad request response has a 5xx status code
+func (o *GetD4CAWSConsoleSetupURLsBadRequest) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get d4 c aws console setup u r ls bad request response a status code equal to that given
-func (o *GetD4CAwsConsoleSetupURLsBadRequest) IsCode(code int) bool {
+// IsCode returns true when this get d4 c Aws console setup u r ls bad request response a status code equal to that given
+func (o *GetD4CAWSConsoleSetupURLsBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
-// Code gets the status code for the get d4 c aws console setup u r ls bad request response
-func (o *GetD4CAwsConsoleSetupURLsBadRequest) Code() int {
+// Code gets the status code for the get d4 c Aws console setup u r ls bad request response
+func (o *GetD4CAWSConsoleSetupURLsBadRequest) Code() int {
 	return 400
 }
 
-func (o *GetD4CAwsConsoleSetupURLsBadRequest) Error() string {
+func (o *GetD4CAWSConsoleSetupURLsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /cloud-connect-aws/entities/console-setup-urls/v1][%d] getD4CAwsConsoleSetupURLsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetD4CAwsConsoleSetupURLsBadRequest) String() string {
+func (o *GetD4CAWSConsoleSetupURLsBadRequest) String() string {
 	return fmt.Sprintf("[GET /cloud-connect-aws/entities/console-setup-urls/v1][%d] getD4CAwsConsoleSetupURLsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetD4CAwsConsoleSetupURLsBadRequest) GetPayload() *models.RegistrationAWSAccountConsoleURL {
+func (o *GetD4CAWSConsoleSetupURLsBadRequest) GetPayload() *models.RegistrationAWSAccountConsoleURL {
 	return o.Payload
 }
 
-func (o *GetD4CAwsConsoleSetupURLsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetD4CAWSConsoleSetupURLsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -396,17 +396,17 @@ func (o *GetD4CAwsConsoleSetupURLsBadRequest) readResponse(response runtime.Clie
 	return nil
 }
 
-// NewGetD4CAwsConsoleSetupURLsForbidden creates a GetD4CAwsConsoleSetupURLsForbidden with default headers values
-func NewGetD4CAwsConsoleSetupURLsForbidden() *GetD4CAwsConsoleSetupURLsForbidden {
-	return &GetD4CAwsConsoleSetupURLsForbidden{}
+// NewGetD4CAWSConsoleSetupURLsForbidden creates a GetD4CAWSConsoleSetupURLsForbidden with default headers values
+func NewGetD4CAWSConsoleSetupURLsForbidden() *GetD4CAWSConsoleSetupURLsForbidden {
+	return &GetD4CAWSConsoleSetupURLsForbidden{}
 }
 
 /*
-GetD4CAwsConsoleSetupURLsForbidden describes a response with status code 403, with default header values.
+GetD4CAWSConsoleSetupURLsForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
-type GetD4CAwsConsoleSetupURLsForbidden struct {
+type GetD4CAWSConsoleSetupURLsForbidden struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -423,49 +423,49 @@ type GetD4CAwsConsoleSetupURLsForbidden struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this get d4 c aws console setup u r ls forbidden response has a 2xx status code
-func (o *GetD4CAwsConsoleSetupURLsForbidden) IsSuccess() bool {
+// IsSuccess returns true when this get d4 c Aws console setup u r ls forbidden response has a 2xx status code
+func (o *GetD4CAWSConsoleSetupURLsForbidden) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this get d4 c aws console setup u r ls forbidden response has a 3xx status code
-func (o *GetD4CAwsConsoleSetupURLsForbidden) IsRedirect() bool {
+// IsRedirect returns true when this get d4 c Aws console setup u r ls forbidden response has a 3xx status code
+func (o *GetD4CAWSConsoleSetupURLsForbidden) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get d4 c aws console setup u r ls forbidden response has a 4xx status code
-func (o *GetD4CAwsConsoleSetupURLsForbidden) IsClientError() bool {
+// IsClientError returns true when this get d4 c Aws console setup u r ls forbidden response has a 4xx status code
+func (o *GetD4CAWSConsoleSetupURLsForbidden) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this get d4 c aws console setup u r ls forbidden response has a 5xx status code
-func (o *GetD4CAwsConsoleSetupURLsForbidden) IsServerError() bool {
+// IsServerError returns true when this get d4 c Aws console setup u r ls forbidden response has a 5xx status code
+func (o *GetD4CAWSConsoleSetupURLsForbidden) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get d4 c aws console setup u r ls forbidden response a status code equal to that given
-func (o *GetD4CAwsConsoleSetupURLsForbidden) IsCode(code int) bool {
+// IsCode returns true when this get d4 c Aws console setup u r ls forbidden response a status code equal to that given
+func (o *GetD4CAWSConsoleSetupURLsForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
-// Code gets the status code for the get d4 c aws console setup u r ls forbidden response
-func (o *GetD4CAwsConsoleSetupURLsForbidden) Code() int {
+// Code gets the status code for the get d4 c Aws console setup u r ls forbidden response
+func (o *GetD4CAWSConsoleSetupURLsForbidden) Code() int {
 	return 403
 }
 
-func (o *GetD4CAwsConsoleSetupURLsForbidden) Error() string {
+func (o *GetD4CAWSConsoleSetupURLsForbidden) Error() string {
 	return fmt.Sprintf("[GET /cloud-connect-aws/entities/console-setup-urls/v1][%d] getD4CAwsConsoleSetupURLsForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetD4CAwsConsoleSetupURLsForbidden) String() string {
+func (o *GetD4CAWSConsoleSetupURLsForbidden) String() string {
 	return fmt.Sprintf("[GET /cloud-connect-aws/entities/console-setup-urls/v1][%d] getD4CAwsConsoleSetupURLsForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetD4CAwsConsoleSetupURLsForbidden) GetPayload() *models.MsaReplyMetaOnly {
+func (o *GetD4CAWSConsoleSetupURLsForbidden) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *GetD4CAwsConsoleSetupURLsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetD4CAWSConsoleSetupURLsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -506,17 +506,17 @@ func (o *GetD4CAwsConsoleSetupURLsForbidden) readResponse(response runtime.Clien
 	return nil
 }
 
-// NewGetD4CAwsConsoleSetupURLsTooManyRequests creates a GetD4CAwsConsoleSetupURLsTooManyRequests with default headers values
-func NewGetD4CAwsConsoleSetupURLsTooManyRequests() *GetD4CAwsConsoleSetupURLsTooManyRequests {
-	return &GetD4CAwsConsoleSetupURLsTooManyRequests{}
+// NewGetD4CAWSConsoleSetupURLsTooManyRequests creates a GetD4CAWSConsoleSetupURLsTooManyRequests with default headers values
+func NewGetD4CAWSConsoleSetupURLsTooManyRequests() *GetD4CAWSConsoleSetupURLsTooManyRequests {
+	return &GetD4CAWSConsoleSetupURLsTooManyRequests{}
 }
 
 /*
-GetD4CAwsConsoleSetupURLsTooManyRequests describes a response with status code 429, with default header values.
+GetD4CAWSConsoleSetupURLsTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
-type GetD4CAwsConsoleSetupURLsTooManyRequests struct {
+type GetD4CAWSConsoleSetupURLsTooManyRequests struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -537,49 +537,49 @@ type GetD4CAwsConsoleSetupURLsTooManyRequests struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this get d4 c aws console setup u r ls too many requests response has a 2xx status code
-func (o *GetD4CAwsConsoleSetupURLsTooManyRequests) IsSuccess() bool {
+// IsSuccess returns true when this get d4 c Aws console setup u r ls too many requests response has a 2xx status code
+func (o *GetD4CAWSConsoleSetupURLsTooManyRequests) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this get d4 c aws console setup u r ls too many requests response has a 3xx status code
-func (o *GetD4CAwsConsoleSetupURLsTooManyRequests) IsRedirect() bool {
+// IsRedirect returns true when this get d4 c Aws console setup u r ls too many requests response has a 3xx status code
+func (o *GetD4CAWSConsoleSetupURLsTooManyRequests) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get d4 c aws console setup u r ls too many requests response has a 4xx status code
-func (o *GetD4CAwsConsoleSetupURLsTooManyRequests) IsClientError() bool {
+// IsClientError returns true when this get d4 c Aws console setup u r ls too many requests response has a 4xx status code
+func (o *GetD4CAWSConsoleSetupURLsTooManyRequests) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this get d4 c aws console setup u r ls too many requests response has a 5xx status code
-func (o *GetD4CAwsConsoleSetupURLsTooManyRequests) IsServerError() bool {
+// IsServerError returns true when this get d4 c Aws console setup u r ls too many requests response has a 5xx status code
+func (o *GetD4CAWSConsoleSetupURLsTooManyRequests) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this get d4 c aws console setup u r ls too many requests response a status code equal to that given
-func (o *GetD4CAwsConsoleSetupURLsTooManyRequests) IsCode(code int) bool {
+// IsCode returns true when this get d4 c Aws console setup u r ls too many requests response a status code equal to that given
+func (o *GetD4CAWSConsoleSetupURLsTooManyRequests) IsCode(code int) bool {
 	return code == 429
 }
 
-// Code gets the status code for the get d4 c aws console setup u r ls too many requests response
-func (o *GetD4CAwsConsoleSetupURLsTooManyRequests) Code() int {
+// Code gets the status code for the get d4 c Aws console setup u r ls too many requests response
+func (o *GetD4CAWSConsoleSetupURLsTooManyRequests) Code() int {
 	return 429
 }
 
-func (o *GetD4CAwsConsoleSetupURLsTooManyRequests) Error() string {
+func (o *GetD4CAWSConsoleSetupURLsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /cloud-connect-aws/entities/console-setup-urls/v1][%d] getD4CAwsConsoleSetupURLsTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *GetD4CAwsConsoleSetupURLsTooManyRequests) String() string {
+func (o *GetD4CAWSConsoleSetupURLsTooManyRequests) String() string {
 	return fmt.Sprintf("[GET /cloud-connect-aws/entities/console-setup-urls/v1][%d] getD4CAwsConsoleSetupURLsTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *GetD4CAwsConsoleSetupURLsTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
+func (o *GetD4CAWSConsoleSetupURLsTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *GetD4CAwsConsoleSetupURLsTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetD4CAWSConsoleSetupURLsTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -631,17 +631,17 @@ func (o *GetD4CAwsConsoleSetupURLsTooManyRequests) readResponse(response runtime
 	return nil
 }
 
-// NewGetD4CAwsConsoleSetupURLsInternalServerError creates a GetD4CAwsConsoleSetupURLsInternalServerError with default headers values
-func NewGetD4CAwsConsoleSetupURLsInternalServerError() *GetD4CAwsConsoleSetupURLsInternalServerError {
-	return &GetD4CAwsConsoleSetupURLsInternalServerError{}
+// NewGetD4CAWSConsoleSetupURLsInternalServerError creates a GetD4CAWSConsoleSetupURLsInternalServerError with default headers values
+func NewGetD4CAWSConsoleSetupURLsInternalServerError() *GetD4CAWSConsoleSetupURLsInternalServerError {
+	return &GetD4CAWSConsoleSetupURLsInternalServerError{}
 }
 
 /*
-GetD4CAwsConsoleSetupURLsInternalServerError describes a response with status code 500, with default header values.
+GetD4CAWSConsoleSetupURLsInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
-type GetD4CAwsConsoleSetupURLsInternalServerError struct {
+type GetD4CAWSConsoleSetupURLsInternalServerError struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -658,49 +658,49 @@ type GetD4CAwsConsoleSetupURLsInternalServerError struct {
 	Payload *models.RegistrationAWSAccountConsoleURL
 }
 
-// IsSuccess returns true when this get d4 c aws console setup u r ls internal server error response has a 2xx status code
-func (o *GetD4CAwsConsoleSetupURLsInternalServerError) IsSuccess() bool {
+// IsSuccess returns true when this get d4 c Aws console setup u r ls internal server error response has a 2xx status code
+func (o *GetD4CAWSConsoleSetupURLsInternalServerError) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this get d4 c aws console setup u r ls internal server error response has a 3xx status code
-func (o *GetD4CAwsConsoleSetupURLsInternalServerError) IsRedirect() bool {
+// IsRedirect returns true when this get d4 c Aws console setup u r ls internal server error response has a 3xx status code
+func (o *GetD4CAWSConsoleSetupURLsInternalServerError) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this get d4 c aws console setup u r ls internal server error response has a 4xx status code
-func (o *GetD4CAwsConsoleSetupURLsInternalServerError) IsClientError() bool {
+// IsClientError returns true when this get d4 c Aws console setup u r ls internal server error response has a 4xx status code
+func (o *GetD4CAWSConsoleSetupURLsInternalServerError) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this get d4 c aws console setup u r ls internal server error response has a 5xx status code
-func (o *GetD4CAwsConsoleSetupURLsInternalServerError) IsServerError() bool {
+// IsServerError returns true when this get d4 c Aws console setup u r ls internal server error response has a 5xx status code
+func (o *GetD4CAWSConsoleSetupURLsInternalServerError) IsServerError() bool {
 	return true
 }
 
-// IsCode returns true when this get d4 c aws console setup u r ls internal server error response a status code equal to that given
-func (o *GetD4CAwsConsoleSetupURLsInternalServerError) IsCode(code int) bool {
+// IsCode returns true when this get d4 c Aws console setup u r ls internal server error response a status code equal to that given
+func (o *GetD4CAWSConsoleSetupURLsInternalServerError) IsCode(code int) bool {
 	return code == 500
 }
 
-// Code gets the status code for the get d4 c aws console setup u r ls internal server error response
-func (o *GetD4CAwsConsoleSetupURLsInternalServerError) Code() int {
+// Code gets the status code for the get d4 c Aws console setup u r ls internal server error response
+func (o *GetD4CAWSConsoleSetupURLsInternalServerError) Code() int {
 	return 500
 }
 
-func (o *GetD4CAwsConsoleSetupURLsInternalServerError) Error() string {
+func (o *GetD4CAWSConsoleSetupURLsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /cloud-connect-aws/entities/console-setup-urls/v1][%d] getD4CAwsConsoleSetupURLsInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *GetD4CAwsConsoleSetupURLsInternalServerError) String() string {
+func (o *GetD4CAWSConsoleSetupURLsInternalServerError) String() string {
 	return fmt.Sprintf("[GET /cloud-connect-aws/entities/console-setup-urls/v1][%d] getD4CAwsConsoleSetupURLsInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *GetD4CAwsConsoleSetupURLsInternalServerError) GetPayload() *models.RegistrationAWSAccountConsoleURL {
+func (o *GetD4CAWSConsoleSetupURLsInternalServerError) GetPayload() *models.RegistrationAWSAccountConsoleURL {
 	return o.Payload
 }
 
-func (o *GetD4CAwsConsoleSetupURLsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetD4CAWSConsoleSetupURLsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")

@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -19,18 +20,40 @@ import (
 // swagger:model domain.AzureClientServicePrincipalV1
 type DomainAzureClientServicePrincipalV1 struct {
 
+	// account type
+	AccountType string `json:"account_type,omitempty"`
+
+	// behavior assessment override
+	BehaviorAssessmentOverride bool `json:"behavior_assessment_override,omitempty"`
+
 	// cid
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// client id
 	ClientID string `json:"client_id,omitempty"`
 
+	// conditions
+	Conditions []*DomainCondition `json:"conditions"`
+
+	// If the account has CSPM enabled.
+	// Required: true
+	CSPMEnabled *bool `json:"cspm_enabled"`
+
+	// default subscription id
+	DefaultSubscriptionID string `json:"default_subscription_id,omitempty"`
+
 	// encrypted private key
 	EncryptedPrivateKey string `json:"encrypted_private_key,omitempty"`
 
+	// object id
+	ObjectID string `json:"object_id,omitempty"`
+
 	// public certificate
 	PublicCertificate string `json:"public_certificate,omitempty"`
+
+	// resource permissions
+	ResourcePermissions []*DomainAzureResourcePermission `json:"resource_permissions"`
 
 	// tenant id
 	// Required: true
@@ -44,7 +67,19 @@ type DomainAzureClientServicePrincipalV1 struct {
 func (m *DomainAzureClientServicePrincipalV1) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConditions(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCSPMEnabled(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResourcePermissions(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -58,10 +93,71 @@ func (m *DomainAzureClientServicePrincipalV1) Validate(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *DomainAzureClientServicePrincipalV1) validateCid(formats strfmt.Registry) error {
+func (m *DomainAzureClientServicePrincipalV1) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *DomainAzureClientServicePrincipalV1) validateConditions(formats strfmt.Registry) error {
+	if swag.IsZero(m.Conditions) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Conditions); i++ {
+		if swag.IsZero(m.Conditions[i]) { // not required
+			continue
+		}
+
+		if m.Conditions[i] != nil {
+			if err := m.Conditions[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("conditions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("conditions" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *DomainAzureClientServicePrincipalV1) validateCSPMEnabled(formats strfmt.Registry) error {
+
+	if err := validate.Required("cspm_enabled", "body", m.CSPMEnabled); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DomainAzureClientServicePrincipalV1) validateResourcePermissions(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResourcePermissions) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ResourcePermissions); i++ {
+		if swag.IsZero(m.ResourcePermissions[i]) { // not required
+			continue
+		}
+
+		if m.ResourcePermissions[i] != nil {
+			if err := m.ResourcePermissions[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("resource_permissions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resource_permissions" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -76,8 +172,71 @@ func (m *DomainAzureClientServicePrincipalV1) validateTenantID(formats strfmt.Re
 	return nil
 }
 
-// ContextValidate validates this domain azure client service principal v1 based on context it is used
+// ContextValidate validate this domain azure client service principal v1 based on the context it is used
 func (m *DomainAzureClientServicePrincipalV1) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateConditions(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResourcePermissions(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *DomainAzureClientServicePrincipalV1) contextValidateConditions(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Conditions); i++ {
+
+		if m.Conditions[i] != nil {
+
+			if swag.IsZero(m.Conditions[i]) { // not required
+				return nil
+			}
+
+			if err := m.Conditions[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("conditions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("conditions" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *DomainAzureClientServicePrincipalV1) contextValidateResourcePermissions(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ResourcePermissions); i++ {
+
+		if m.ResourcePermissions[i] != nil {
+
+			if swag.IsZero(m.ResourcePermissions[i]) { // not required
+				return nil
+			}
+
+			if err := m.ResourcePermissions[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("resource_permissions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resource_permissions" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

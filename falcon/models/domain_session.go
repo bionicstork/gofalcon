@@ -22,7 +22,7 @@ type DomainSession struct {
 
 	// cid
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// cloud request ids
 	// Required: true
@@ -108,7 +108,7 @@ type DomainSession struct {
 func (m *DomainSession) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -194,9 +194,9 @@ func (m *DomainSession) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DomainSession) validateCid(formats strfmt.Registry) error {
+func (m *DomainSession) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 
@@ -444,6 +444,7 @@ func (m *DomainSession) ContextValidate(ctx context.Context, formats strfmt.Regi
 func (m *DomainSession) contextValidateDeviceDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DeviceDetails != nil {
+
 		if err := m.DeviceDetails.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("device_details")
@@ -462,6 +463,11 @@ func (m *DomainSession) contextValidateLogs(ctx context.Context, formats strfmt.
 	for i := 0; i < len(m.Logs); i++ {
 
 		if m.Logs[i] != nil {
+
+			if swag.IsZero(m.Logs[i]) { // not required
+				return nil
+			}
+
 			if err := m.Logs[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("logs" + "." + strconv.Itoa(i))

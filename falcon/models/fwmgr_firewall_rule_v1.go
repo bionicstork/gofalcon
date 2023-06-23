@@ -63,9 +63,17 @@ type FwmgrFirewallRuleV1 struct {
 	// Required: true
 	Fields []*FwmgrFirewallFieldValue `json:"fields"`
 
+	// fqdn
+	// Required: true
+	Fqdn *string `json:"fqdn"`
+
+	// fqdn enabled
+	// Required: true
+	FqdnEnabled *bool `json:"fqdn_enabled"`
+
 	// icmp
 	// Required: true
-	Icmp *FwmgrFirewallICMP `json:"icmp"`
+	ICMP *FwmgrFirewallICMP `json:"icmp"`
 
 	// id
 	// Required: true
@@ -162,7 +170,15 @@ func (m *FwmgrFirewallRuleV1) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateIcmp(formats); err != nil {
+	if err := m.validateFqdn(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFqdnEnabled(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateICMP(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -324,14 +340,32 @@ func (m *FwmgrFirewallRuleV1) validateFields(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *FwmgrFirewallRuleV1) validateIcmp(formats strfmt.Registry) error {
+func (m *FwmgrFirewallRuleV1) validateFqdn(formats strfmt.Registry) error {
 
-	if err := validate.Required("icmp", "body", m.Icmp); err != nil {
+	if err := validate.Required("fqdn", "body", m.Fqdn); err != nil {
 		return err
 	}
 
-	if m.Icmp != nil {
-		if err := m.Icmp.Validate(formats); err != nil {
+	return nil
+}
+
+func (m *FwmgrFirewallRuleV1) validateFqdnEnabled(formats strfmt.Registry) error {
+
+	if err := validate.Required("fqdn_enabled", "body", m.FqdnEnabled); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *FwmgrFirewallRuleV1) validateICMP(formats strfmt.Registry) error {
+
+	if err := validate.Required("icmp", "body", m.ICMP); err != nil {
+		return err
+	}
+
+	if m.ICMP != nil {
+		if err := m.ICMP.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("icmp")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -545,7 +579,7 @@ func (m *FwmgrFirewallRuleV1) ContextValidate(ctx context.Context, formats strfm
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateIcmp(ctx, formats); err != nil {
+	if err := m.contextValidateICMP(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -584,6 +618,11 @@ func (m *FwmgrFirewallRuleV1) contextValidateFields(ctx context.Context, formats
 	for i := 0; i < len(m.Fields); i++ {
 
 		if m.Fields[i] != nil {
+
+			if swag.IsZero(m.Fields[i]) { // not required
+				return nil
+			}
+
 			if err := m.Fields[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("fields" + "." + strconv.Itoa(i))
@@ -599,10 +638,11 @@ func (m *FwmgrFirewallRuleV1) contextValidateFields(ctx context.Context, formats
 	return nil
 }
 
-func (m *FwmgrFirewallRuleV1) contextValidateIcmp(ctx context.Context, formats strfmt.Registry) error {
+func (m *FwmgrFirewallRuleV1) contextValidateICMP(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.Icmp != nil {
-		if err := m.Icmp.ContextValidate(ctx, formats); err != nil {
+	if m.ICMP != nil {
+
+		if err := m.ICMP.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("icmp")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -620,6 +660,11 @@ func (m *FwmgrFirewallRuleV1) contextValidateLocalAddress(ctx context.Context, f
 	for i := 0; i < len(m.LocalAddress); i++ {
 
 		if m.LocalAddress[i] != nil {
+
+			if swag.IsZero(m.LocalAddress[i]) { // not required
+				return nil
+			}
+
 			if err := m.LocalAddress[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("local_address" + "." + strconv.Itoa(i))
@@ -640,6 +685,11 @@ func (m *FwmgrFirewallRuleV1) contextValidateLocalPort(ctx context.Context, form
 	for i := 0; i < len(m.LocalPort); i++ {
 
 		if m.LocalPort[i] != nil {
+
+			if swag.IsZero(m.LocalPort[i]) { // not required
+				return nil
+			}
+
 			if err := m.LocalPort[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("local_port" + "." + strconv.Itoa(i))
@@ -658,6 +708,7 @@ func (m *FwmgrFirewallRuleV1) contextValidateLocalPort(ctx context.Context, form
 func (m *FwmgrFirewallRuleV1) contextValidateMonitor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Monitor != nil {
+
 		if err := m.Monitor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("monitor")
@@ -676,6 +727,11 @@ func (m *FwmgrFirewallRuleV1) contextValidateRemoteAddress(ctx context.Context, 
 	for i := 0; i < len(m.RemoteAddress); i++ {
 
 		if m.RemoteAddress[i] != nil {
+
+			if swag.IsZero(m.RemoteAddress[i]) { // not required
+				return nil
+			}
+
 			if err := m.RemoteAddress[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("remote_address" + "." + strconv.Itoa(i))
@@ -696,6 +752,11 @@ func (m *FwmgrFirewallRuleV1) contextValidateRemotePort(ctx context.Context, for
 	for i := 0; i < len(m.RemotePort); i++ {
 
 		if m.RemotePort[i] != nil {
+
+			if swag.IsZero(m.RemotePort[i]) { // not required
+				return nil
+			}
+
 			if err := m.RemotePort[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("remote_port" + "." + strconv.Itoa(i))
@@ -714,6 +775,7 @@ func (m *FwmgrFirewallRuleV1) contextValidateRemotePort(ctx context.Context, for
 func (m *FwmgrFirewallRuleV1) contextValidateRuleGroup(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RuleGroup != nil {
+
 		if err := m.RuleGroup.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("rule_group")

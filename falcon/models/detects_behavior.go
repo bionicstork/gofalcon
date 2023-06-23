@@ -64,19 +64,19 @@ type DetectsBehavior struct {
 
 	// ioc description
 	// Required: true
-	IocDescription *string `json:"ioc_description"`
+	IOCDescription *string `json:"ioc_description"`
 
 	// ioc source
 	// Required: true
-	IocSource *string `json:"ioc_source"`
+	IOCSource *string `json:"ioc_source"`
 
 	// ioc type
 	// Required: true
-	IocType *string `json:"ioc_type"`
+	IOCType *string `json:"ioc_type"`
 
 	// ioc value
 	// Required: true
-	IocValue *string `json:"ioc_value"`
+	IOCValue *string `json:"ioc_value"`
 
 	// md5
 	// Required: true
@@ -197,19 +197,19 @@ func (m *DetectsBehavior) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateIocDescription(formats); err != nil {
+	if err := m.validateIOCDescription(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateIocSource(formats); err != nil {
+	if err := m.validateIOCSource(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateIocType(formats); err != nil {
+	if err := m.validateIOCType(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateIocValue(formats); err != nil {
+	if err := m.validateIOCValue(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -373,36 +373,36 @@ func (m *DetectsBehavior) validateFilepath(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DetectsBehavior) validateIocDescription(formats strfmt.Registry) error {
+func (m *DetectsBehavior) validateIOCDescription(formats strfmt.Registry) error {
 
-	if err := validate.Required("ioc_description", "body", m.IocDescription); err != nil {
+	if err := validate.Required("ioc_description", "body", m.IOCDescription); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *DetectsBehavior) validateIocSource(formats strfmt.Registry) error {
+func (m *DetectsBehavior) validateIOCSource(formats strfmt.Registry) error {
 
-	if err := validate.Required("ioc_source", "body", m.IocSource); err != nil {
+	if err := validate.Required("ioc_source", "body", m.IOCSource); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *DetectsBehavior) validateIocType(formats strfmt.Registry) error {
+func (m *DetectsBehavior) validateIOCType(formats strfmt.Registry) error {
 
-	if err := validate.Required("ioc_type", "body", m.IocType); err != nil {
+	if err := validate.Required("ioc_type", "body", m.IOCType); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *DetectsBehavior) validateIocValue(formats strfmt.Registry) error {
+func (m *DetectsBehavior) validateIOCValue(formats strfmt.Registry) error {
 
-	if err := validate.Required("ioc_value", "body", m.IocValue); err != nil {
+	if err := validate.Required("ioc_value", "body", m.IOCValue); err != nil {
 		return err
 	}
 
@@ -600,6 +600,7 @@ func (m *DetectsBehavior) ContextValidate(ctx context.Context, formats strfmt.Re
 func (m *DetectsBehavior) contextValidateParentDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ParentDetails != nil {
+
 		if err := m.ParentDetails.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("parent_details")
@@ -616,6 +617,7 @@ func (m *DetectsBehavior) contextValidateParentDetails(ctx context.Context, form
 func (m *DetectsBehavior) contextValidatePatternDispositionDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PatternDispositionDetails != nil {
+
 		if err := m.PatternDispositionDetails.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("pattern_disposition_details")

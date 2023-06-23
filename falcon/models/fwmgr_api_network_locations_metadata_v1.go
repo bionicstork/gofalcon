@@ -29,7 +29,7 @@ type FwmgrAPINetworkLocationsMetadataV1 struct {
 
 	// icmp request targets polling interval
 	// Required: true
-	IcmpRequestTargetsPollingInterval *int32 `json:"icmp_request_targets_polling_interval"`
+	ICMPRequestTargetsPollingInterval *int32 `json:"icmp_request_targets_polling_interval"`
 }
 
 // Validate validates this fwmgr api network locations metadata v1
@@ -44,7 +44,7 @@ func (m *FwmgrAPINetworkLocationsMetadataV1) Validate(formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
-	if err := m.validateIcmpRequestTargetsPollingInterval(formats); err != nil {
+	if err := m.validateICMPRequestTargetsPollingInterval(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -72,9 +72,9 @@ func (m *FwmgrAPINetworkLocationsMetadataV1) validateHTTPSReachableHostsPollingI
 	return nil
 }
 
-func (m *FwmgrAPINetworkLocationsMetadataV1) validateIcmpRequestTargetsPollingInterval(formats strfmt.Registry) error {
+func (m *FwmgrAPINetworkLocationsMetadataV1) validateICMPRequestTargetsPollingInterval(formats strfmt.Registry) error {
 
-	if err := validate.Required("icmp_request_targets_polling_interval", "body", m.IcmpRequestTargetsPollingInterval); err != nil {
+	if err := validate.Required("icmp_request_targets_polling_interval", "body", m.ICMPRequestTargetsPollingInterval); err != nil {
 		return err
 	}
 

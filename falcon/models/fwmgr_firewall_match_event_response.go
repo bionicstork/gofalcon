@@ -25,7 +25,7 @@ type FwmgrFirewallMatchEventResponse struct {
 
 	// cid
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// command line
 	// Required: true
@@ -34,6 +34,10 @@ type FwmgrFirewallMatchEventResponse struct {
 	// connection direction
 	// Required: true
 	ConnectionDirection *string `json:"connection_direction"`
+
+	// domain name list
+	// Required: true
+	DomainNameList *string `json:"domain_name_list"`
 
 	// event type
 	// Required: true
@@ -53,11 +57,11 @@ type FwmgrFirewallMatchEventResponse struct {
 
 	// icmp code
 	// Required: true
-	IcmpCode *string `json:"icmp_code"`
+	ICMPCode *string `json:"icmp_code"`
 
 	// icmp type
 	// Required: true
-	IcmpType *string `json:"icmp_type"`
+	ICMPType *string `json:"icmp_type"`
 
 	// id
 	// Required: true
@@ -164,7 +168,7 @@ func (m *FwmgrFirewallMatchEventResponse) Validate(formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -173,6 +177,10 @@ func (m *FwmgrFirewallMatchEventResponse) Validate(formats strfmt.Registry) erro
 	}
 
 	if err := m.validateConnectionDirection(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDomainNameList(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -192,11 +200,11 @@ func (m *FwmgrFirewallMatchEventResponse) Validate(formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
-	if err := m.validateIcmpCode(formats); err != nil {
+	if err := m.validateICMPCode(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateIcmpType(formats); err != nil {
+	if err := m.validateICMPType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -311,9 +319,9 @@ func (m *FwmgrFirewallMatchEventResponse) validateAid(formats strfmt.Registry) e
 	return nil
 }
 
-func (m *FwmgrFirewallMatchEventResponse) validateCid(formats strfmt.Registry) error {
+func (m *FwmgrFirewallMatchEventResponse) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 
@@ -332,6 +340,15 @@ func (m *FwmgrFirewallMatchEventResponse) validateCommandLine(formats strfmt.Reg
 func (m *FwmgrFirewallMatchEventResponse) validateConnectionDirection(formats strfmt.Registry) error {
 
 	if err := validate.Required("connection_direction", "body", m.ConnectionDirection); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *FwmgrFirewallMatchEventResponse) validateDomainNameList(formats strfmt.Registry) error {
+
+	if err := validate.Required("domain_name_list", "body", m.DomainNameList); err != nil {
 		return err
 	}
 
@@ -385,18 +402,18 @@ func (m *FwmgrFirewallMatchEventResponse) validateHostName(formats strfmt.Regist
 	return nil
 }
 
-func (m *FwmgrFirewallMatchEventResponse) validateIcmpCode(formats strfmt.Registry) error {
+func (m *FwmgrFirewallMatchEventResponse) validateICMPCode(formats strfmt.Registry) error {
 
-	if err := validate.Required("icmp_code", "body", m.IcmpCode); err != nil {
+	if err := validate.Required("icmp_code", "body", m.ICMPCode); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *FwmgrFirewallMatchEventResponse) validateIcmpType(formats strfmt.Registry) error {
+func (m *FwmgrFirewallMatchEventResponse) validateICMPType(formats strfmt.Registry) error {
 
-	if err := validate.Required("icmp_type", "body", m.IcmpType); err != nil {
+	if err := validate.Required("icmp_type", "body", m.ICMPType); err != nil {
 		return err
 	}
 
@@ -636,6 +653,7 @@ func (m *FwmgrFirewallMatchEventResponse) ContextValidate(ctx context.Context, f
 func (m *FwmgrFirewallMatchEventResponse) contextValidateFlags(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Flags != nil {
+
 		if err := m.Flags.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("flags")

@@ -17,66 +17,66 @@ import (
 	"github.com/crowdstrike/gofalcon/falcon/models"
 )
 
-// CreateD4CAwsAccountReader is a Reader for the CreateD4CAwsAccount structure.
-type CreateD4CAwsAccountReader struct {
+// CreateD4CAWSAccountReader is a Reader for the CreateD4CAWSAccount structure.
+type CreateD4CAWSAccountReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *CreateD4CAwsAccountReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *CreateD4CAWSAccountReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 201:
-		result := NewCreateD4CAwsAccountCreated()
+		result := NewCreateD4CAWSAccountCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 207:
-		result := NewCreateD4CAwsAccountMultiStatus()
+		result := NewCreateD4CAWSAccountMultiStatus()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 400:
-		result := NewCreateD4CAwsAccountBadRequest()
+		result := NewCreateD4CAWSAccountBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 403:
-		result := NewCreateD4CAwsAccountForbidden()
+		result := NewCreateD4CAWSAccountForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 429:
-		result := NewCreateD4CAwsAccountTooManyRequests()
+		result := NewCreateD4CAWSAccountTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 500:
-		result := NewCreateD4CAwsAccountInternalServerError()
+		result := NewCreateD4CAWSAccountInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /cloud-connect-aws/entities/account/v2] CreateD4CAwsAccount", response, response.Code())
 	}
 }
 
-// NewCreateD4CAwsAccountCreated creates a CreateD4CAwsAccountCreated with default headers values
-func NewCreateD4CAwsAccountCreated() *CreateD4CAwsAccountCreated {
-	return &CreateD4CAwsAccountCreated{}
+// NewCreateD4CAWSAccountCreated creates a CreateD4CAWSAccountCreated with default headers values
+func NewCreateD4CAWSAccountCreated() *CreateD4CAWSAccountCreated {
+	return &CreateD4CAWSAccountCreated{}
 }
 
 /*
-CreateD4CAwsAccountCreated describes a response with status code 201, with default header values.
+CreateD4CAWSAccountCreated describes a response with status code 201, with default header values.
 
 Created
 */
-type CreateD4CAwsAccountCreated struct {
+type CreateD4CAWSAccountCreated struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -93,49 +93,49 @@ type CreateD4CAwsAccountCreated struct {
 	Payload *models.RegistrationAWSAccountResponseV2
 }
 
-// IsSuccess returns true when this create d4 c aws account created response has a 2xx status code
-func (o *CreateD4CAwsAccountCreated) IsSuccess() bool {
+// IsSuccess returns true when this create d4 c Aws account created response has a 2xx status code
+func (o *CreateD4CAWSAccountCreated) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this create d4 c aws account created response has a 3xx status code
-func (o *CreateD4CAwsAccountCreated) IsRedirect() bool {
+// IsRedirect returns true when this create d4 c Aws account created response has a 3xx status code
+func (o *CreateD4CAWSAccountCreated) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this create d4 c aws account created response has a 4xx status code
-func (o *CreateD4CAwsAccountCreated) IsClientError() bool {
+// IsClientError returns true when this create d4 c Aws account created response has a 4xx status code
+func (o *CreateD4CAWSAccountCreated) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this create d4 c aws account created response has a 5xx status code
-func (o *CreateD4CAwsAccountCreated) IsServerError() bool {
+// IsServerError returns true when this create d4 c Aws account created response has a 5xx status code
+func (o *CreateD4CAWSAccountCreated) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this create d4 c aws account created response a status code equal to that given
-func (o *CreateD4CAwsAccountCreated) IsCode(code int) bool {
+// IsCode returns true when this create d4 c Aws account created response a status code equal to that given
+func (o *CreateD4CAWSAccountCreated) IsCode(code int) bool {
 	return code == 201
 }
 
-// Code gets the status code for the create d4 c aws account created response
-func (o *CreateD4CAwsAccountCreated) Code() int {
+// Code gets the status code for the create d4 c Aws account created response
+func (o *CreateD4CAWSAccountCreated) Code() int {
 	return 201
 }
 
-func (o *CreateD4CAwsAccountCreated) Error() string {
+func (o *CreateD4CAWSAccountCreated) Error() string {
 	return fmt.Sprintf("[POST /cloud-connect-aws/entities/account/v2][%d] createD4CAwsAccountCreated  %+v", 201, o.Payload)
 }
 
-func (o *CreateD4CAwsAccountCreated) String() string {
+func (o *CreateD4CAWSAccountCreated) String() string {
 	return fmt.Sprintf("[POST /cloud-connect-aws/entities/account/v2][%d] createD4CAwsAccountCreated  %+v", 201, o.Payload)
 }
 
-func (o *CreateD4CAwsAccountCreated) GetPayload() *models.RegistrationAWSAccountResponseV2 {
+func (o *CreateD4CAWSAccountCreated) GetPayload() *models.RegistrationAWSAccountResponseV2 {
 	return o.Payload
 }
 
-func (o *CreateD4CAwsAccountCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateD4CAWSAccountCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -176,17 +176,17 @@ func (o *CreateD4CAwsAccountCreated) readResponse(response runtime.ClientRespons
 	return nil
 }
 
-// NewCreateD4CAwsAccountMultiStatus creates a CreateD4CAwsAccountMultiStatus with default headers values
-func NewCreateD4CAwsAccountMultiStatus() *CreateD4CAwsAccountMultiStatus {
-	return &CreateD4CAwsAccountMultiStatus{}
+// NewCreateD4CAWSAccountMultiStatus creates a CreateD4CAWSAccountMultiStatus with default headers values
+func NewCreateD4CAWSAccountMultiStatus() *CreateD4CAWSAccountMultiStatus {
+	return &CreateD4CAWSAccountMultiStatus{}
 }
 
 /*
-CreateD4CAwsAccountMultiStatus describes a response with status code 207, with default header values.
+CreateD4CAWSAccountMultiStatus describes a response with status code 207, with default header values.
 
 Multi-Status
 */
-type CreateD4CAwsAccountMultiStatus struct {
+type CreateD4CAWSAccountMultiStatus struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -203,49 +203,49 @@ type CreateD4CAwsAccountMultiStatus struct {
 	Payload *models.RegistrationAWSAccountResponseV2
 }
 
-// IsSuccess returns true when this create d4 c aws account multi status response has a 2xx status code
-func (o *CreateD4CAwsAccountMultiStatus) IsSuccess() bool {
+// IsSuccess returns true when this create d4 c Aws account multi status response has a 2xx status code
+func (o *CreateD4CAWSAccountMultiStatus) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this create d4 c aws account multi status response has a 3xx status code
-func (o *CreateD4CAwsAccountMultiStatus) IsRedirect() bool {
+// IsRedirect returns true when this create d4 c Aws account multi status response has a 3xx status code
+func (o *CreateD4CAWSAccountMultiStatus) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this create d4 c aws account multi status response has a 4xx status code
-func (o *CreateD4CAwsAccountMultiStatus) IsClientError() bool {
+// IsClientError returns true when this create d4 c Aws account multi status response has a 4xx status code
+func (o *CreateD4CAWSAccountMultiStatus) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this create d4 c aws account multi status response has a 5xx status code
-func (o *CreateD4CAwsAccountMultiStatus) IsServerError() bool {
+// IsServerError returns true when this create d4 c Aws account multi status response has a 5xx status code
+func (o *CreateD4CAWSAccountMultiStatus) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this create d4 c aws account multi status response a status code equal to that given
-func (o *CreateD4CAwsAccountMultiStatus) IsCode(code int) bool {
+// IsCode returns true when this create d4 c Aws account multi status response a status code equal to that given
+func (o *CreateD4CAWSAccountMultiStatus) IsCode(code int) bool {
 	return code == 207
 }
 
-// Code gets the status code for the create d4 c aws account multi status response
-func (o *CreateD4CAwsAccountMultiStatus) Code() int {
+// Code gets the status code for the create d4 c Aws account multi status response
+func (o *CreateD4CAWSAccountMultiStatus) Code() int {
 	return 207
 }
 
-func (o *CreateD4CAwsAccountMultiStatus) Error() string {
+func (o *CreateD4CAWSAccountMultiStatus) Error() string {
 	return fmt.Sprintf("[POST /cloud-connect-aws/entities/account/v2][%d] createD4CAwsAccountMultiStatus  %+v", 207, o.Payload)
 }
 
-func (o *CreateD4CAwsAccountMultiStatus) String() string {
+func (o *CreateD4CAWSAccountMultiStatus) String() string {
 	return fmt.Sprintf("[POST /cloud-connect-aws/entities/account/v2][%d] createD4CAwsAccountMultiStatus  %+v", 207, o.Payload)
 }
 
-func (o *CreateD4CAwsAccountMultiStatus) GetPayload() *models.RegistrationAWSAccountResponseV2 {
+func (o *CreateD4CAWSAccountMultiStatus) GetPayload() *models.RegistrationAWSAccountResponseV2 {
 	return o.Payload
 }
 
-func (o *CreateD4CAwsAccountMultiStatus) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateD4CAWSAccountMultiStatus) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -286,17 +286,17 @@ func (o *CreateD4CAwsAccountMultiStatus) readResponse(response runtime.ClientRes
 	return nil
 }
 
-// NewCreateD4CAwsAccountBadRequest creates a CreateD4CAwsAccountBadRequest with default headers values
-func NewCreateD4CAwsAccountBadRequest() *CreateD4CAwsAccountBadRequest {
-	return &CreateD4CAwsAccountBadRequest{}
+// NewCreateD4CAWSAccountBadRequest creates a CreateD4CAWSAccountBadRequest with default headers values
+func NewCreateD4CAWSAccountBadRequest() *CreateD4CAWSAccountBadRequest {
+	return &CreateD4CAWSAccountBadRequest{}
 }
 
 /*
-CreateD4CAwsAccountBadRequest describes a response with status code 400, with default header values.
+CreateD4CAWSAccountBadRequest describes a response with status code 400, with default header values.
 
 Bad Request
 */
-type CreateD4CAwsAccountBadRequest struct {
+type CreateD4CAWSAccountBadRequest struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -313,49 +313,49 @@ type CreateD4CAwsAccountBadRequest struct {
 	Payload *models.RegistrationAWSAccountResponseV2
 }
 
-// IsSuccess returns true when this create d4 c aws account bad request response has a 2xx status code
-func (o *CreateD4CAwsAccountBadRequest) IsSuccess() bool {
+// IsSuccess returns true when this create d4 c Aws account bad request response has a 2xx status code
+func (o *CreateD4CAWSAccountBadRequest) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this create d4 c aws account bad request response has a 3xx status code
-func (o *CreateD4CAwsAccountBadRequest) IsRedirect() bool {
+// IsRedirect returns true when this create d4 c Aws account bad request response has a 3xx status code
+func (o *CreateD4CAWSAccountBadRequest) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this create d4 c aws account bad request response has a 4xx status code
-func (o *CreateD4CAwsAccountBadRequest) IsClientError() bool {
+// IsClientError returns true when this create d4 c Aws account bad request response has a 4xx status code
+func (o *CreateD4CAWSAccountBadRequest) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this create d4 c aws account bad request response has a 5xx status code
-func (o *CreateD4CAwsAccountBadRequest) IsServerError() bool {
+// IsServerError returns true when this create d4 c Aws account bad request response has a 5xx status code
+func (o *CreateD4CAWSAccountBadRequest) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this create d4 c aws account bad request response a status code equal to that given
-func (o *CreateD4CAwsAccountBadRequest) IsCode(code int) bool {
+// IsCode returns true when this create d4 c Aws account bad request response a status code equal to that given
+func (o *CreateD4CAWSAccountBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
-// Code gets the status code for the create d4 c aws account bad request response
-func (o *CreateD4CAwsAccountBadRequest) Code() int {
+// Code gets the status code for the create d4 c Aws account bad request response
+func (o *CreateD4CAWSAccountBadRequest) Code() int {
 	return 400
 }
 
-func (o *CreateD4CAwsAccountBadRequest) Error() string {
+func (o *CreateD4CAWSAccountBadRequest) Error() string {
 	return fmt.Sprintf("[POST /cloud-connect-aws/entities/account/v2][%d] createD4CAwsAccountBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *CreateD4CAwsAccountBadRequest) String() string {
+func (o *CreateD4CAWSAccountBadRequest) String() string {
 	return fmt.Sprintf("[POST /cloud-connect-aws/entities/account/v2][%d] createD4CAwsAccountBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *CreateD4CAwsAccountBadRequest) GetPayload() *models.RegistrationAWSAccountResponseV2 {
+func (o *CreateD4CAWSAccountBadRequest) GetPayload() *models.RegistrationAWSAccountResponseV2 {
 	return o.Payload
 }
 
-func (o *CreateD4CAwsAccountBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateD4CAWSAccountBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -396,17 +396,17 @@ func (o *CreateD4CAwsAccountBadRequest) readResponse(response runtime.ClientResp
 	return nil
 }
 
-// NewCreateD4CAwsAccountForbidden creates a CreateD4CAwsAccountForbidden with default headers values
-func NewCreateD4CAwsAccountForbidden() *CreateD4CAwsAccountForbidden {
-	return &CreateD4CAwsAccountForbidden{}
+// NewCreateD4CAWSAccountForbidden creates a CreateD4CAWSAccountForbidden with default headers values
+func NewCreateD4CAWSAccountForbidden() *CreateD4CAWSAccountForbidden {
+	return &CreateD4CAWSAccountForbidden{}
 }
 
 /*
-CreateD4CAwsAccountForbidden describes a response with status code 403, with default header values.
+CreateD4CAWSAccountForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
-type CreateD4CAwsAccountForbidden struct {
+type CreateD4CAWSAccountForbidden struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -423,49 +423,49 @@ type CreateD4CAwsAccountForbidden struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this create d4 c aws account forbidden response has a 2xx status code
-func (o *CreateD4CAwsAccountForbidden) IsSuccess() bool {
+// IsSuccess returns true when this create d4 c Aws account forbidden response has a 2xx status code
+func (o *CreateD4CAWSAccountForbidden) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this create d4 c aws account forbidden response has a 3xx status code
-func (o *CreateD4CAwsAccountForbidden) IsRedirect() bool {
+// IsRedirect returns true when this create d4 c Aws account forbidden response has a 3xx status code
+func (o *CreateD4CAWSAccountForbidden) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this create d4 c aws account forbidden response has a 4xx status code
-func (o *CreateD4CAwsAccountForbidden) IsClientError() bool {
+// IsClientError returns true when this create d4 c Aws account forbidden response has a 4xx status code
+func (o *CreateD4CAWSAccountForbidden) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this create d4 c aws account forbidden response has a 5xx status code
-func (o *CreateD4CAwsAccountForbidden) IsServerError() bool {
+// IsServerError returns true when this create d4 c Aws account forbidden response has a 5xx status code
+func (o *CreateD4CAWSAccountForbidden) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this create d4 c aws account forbidden response a status code equal to that given
-func (o *CreateD4CAwsAccountForbidden) IsCode(code int) bool {
+// IsCode returns true when this create d4 c Aws account forbidden response a status code equal to that given
+func (o *CreateD4CAWSAccountForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
-// Code gets the status code for the create d4 c aws account forbidden response
-func (o *CreateD4CAwsAccountForbidden) Code() int {
+// Code gets the status code for the create d4 c Aws account forbidden response
+func (o *CreateD4CAWSAccountForbidden) Code() int {
 	return 403
 }
 
-func (o *CreateD4CAwsAccountForbidden) Error() string {
+func (o *CreateD4CAWSAccountForbidden) Error() string {
 	return fmt.Sprintf("[POST /cloud-connect-aws/entities/account/v2][%d] createD4CAwsAccountForbidden  %+v", 403, o.Payload)
 }
 
-func (o *CreateD4CAwsAccountForbidden) String() string {
+func (o *CreateD4CAWSAccountForbidden) String() string {
 	return fmt.Sprintf("[POST /cloud-connect-aws/entities/account/v2][%d] createD4CAwsAccountForbidden  %+v", 403, o.Payload)
 }
 
-func (o *CreateD4CAwsAccountForbidden) GetPayload() *models.MsaReplyMetaOnly {
+func (o *CreateD4CAWSAccountForbidden) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *CreateD4CAwsAccountForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateD4CAWSAccountForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -506,17 +506,17 @@ func (o *CreateD4CAwsAccountForbidden) readResponse(response runtime.ClientRespo
 	return nil
 }
 
-// NewCreateD4CAwsAccountTooManyRequests creates a CreateD4CAwsAccountTooManyRequests with default headers values
-func NewCreateD4CAwsAccountTooManyRequests() *CreateD4CAwsAccountTooManyRequests {
-	return &CreateD4CAwsAccountTooManyRequests{}
+// NewCreateD4CAWSAccountTooManyRequests creates a CreateD4CAWSAccountTooManyRequests with default headers values
+func NewCreateD4CAWSAccountTooManyRequests() *CreateD4CAWSAccountTooManyRequests {
+	return &CreateD4CAWSAccountTooManyRequests{}
 }
 
 /*
-CreateD4CAwsAccountTooManyRequests describes a response with status code 429, with default header values.
+CreateD4CAWSAccountTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
-type CreateD4CAwsAccountTooManyRequests struct {
+type CreateD4CAWSAccountTooManyRequests struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -537,49 +537,49 @@ type CreateD4CAwsAccountTooManyRequests struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this create d4 c aws account too many requests response has a 2xx status code
-func (o *CreateD4CAwsAccountTooManyRequests) IsSuccess() bool {
+// IsSuccess returns true when this create d4 c Aws account too many requests response has a 2xx status code
+func (o *CreateD4CAWSAccountTooManyRequests) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this create d4 c aws account too many requests response has a 3xx status code
-func (o *CreateD4CAwsAccountTooManyRequests) IsRedirect() bool {
+// IsRedirect returns true when this create d4 c Aws account too many requests response has a 3xx status code
+func (o *CreateD4CAWSAccountTooManyRequests) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this create d4 c aws account too many requests response has a 4xx status code
-func (o *CreateD4CAwsAccountTooManyRequests) IsClientError() bool {
+// IsClientError returns true when this create d4 c Aws account too many requests response has a 4xx status code
+func (o *CreateD4CAWSAccountTooManyRequests) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this create d4 c aws account too many requests response has a 5xx status code
-func (o *CreateD4CAwsAccountTooManyRequests) IsServerError() bool {
+// IsServerError returns true when this create d4 c Aws account too many requests response has a 5xx status code
+func (o *CreateD4CAWSAccountTooManyRequests) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this create d4 c aws account too many requests response a status code equal to that given
-func (o *CreateD4CAwsAccountTooManyRequests) IsCode(code int) bool {
+// IsCode returns true when this create d4 c Aws account too many requests response a status code equal to that given
+func (o *CreateD4CAWSAccountTooManyRequests) IsCode(code int) bool {
 	return code == 429
 }
 
-// Code gets the status code for the create d4 c aws account too many requests response
-func (o *CreateD4CAwsAccountTooManyRequests) Code() int {
+// Code gets the status code for the create d4 c Aws account too many requests response
+func (o *CreateD4CAWSAccountTooManyRequests) Code() int {
 	return 429
 }
 
-func (o *CreateD4CAwsAccountTooManyRequests) Error() string {
+func (o *CreateD4CAWSAccountTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /cloud-connect-aws/entities/account/v2][%d] createD4CAwsAccountTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *CreateD4CAwsAccountTooManyRequests) String() string {
+func (o *CreateD4CAWSAccountTooManyRequests) String() string {
 	return fmt.Sprintf("[POST /cloud-connect-aws/entities/account/v2][%d] createD4CAwsAccountTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *CreateD4CAwsAccountTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
+func (o *CreateD4CAWSAccountTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *CreateD4CAwsAccountTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateD4CAWSAccountTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -631,17 +631,17 @@ func (o *CreateD4CAwsAccountTooManyRequests) readResponse(response runtime.Clien
 	return nil
 }
 
-// NewCreateD4CAwsAccountInternalServerError creates a CreateD4CAwsAccountInternalServerError with default headers values
-func NewCreateD4CAwsAccountInternalServerError() *CreateD4CAwsAccountInternalServerError {
-	return &CreateD4CAwsAccountInternalServerError{}
+// NewCreateD4CAWSAccountInternalServerError creates a CreateD4CAWSAccountInternalServerError with default headers values
+func NewCreateD4CAWSAccountInternalServerError() *CreateD4CAWSAccountInternalServerError {
+	return &CreateD4CAWSAccountInternalServerError{}
 }
 
 /*
-CreateD4CAwsAccountInternalServerError describes a response with status code 500, with default header values.
+CreateD4CAWSAccountInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
-type CreateD4CAwsAccountInternalServerError struct {
+type CreateD4CAWSAccountInternalServerError struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -658,49 +658,49 @@ type CreateD4CAwsAccountInternalServerError struct {
 	Payload *models.RegistrationAWSAccountResponseV2
 }
 
-// IsSuccess returns true when this create d4 c aws account internal server error response has a 2xx status code
-func (o *CreateD4CAwsAccountInternalServerError) IsSuccess() bool {
+// IsSuccess returns true when this create d4 c Aws account internal server error response has a 2xx status code
+func (o *CreateD4CAWSAccountInternalServerError) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this create d4 c aws account internal server error response has a 3xx status code
-func (o *CreateD4CAwsAccountInternalServerError) IsRedirect() bool {
+// IsRedirect returns true when this create d4 c Aws account internal server error response has a 3xx status code
+func (o *CreateD4CAWSAccountInternalServerError) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this create d4 c aws account internal server error response has a 4xx status code
-func (o *CreateD4CAwsAccountInternalServerError) IsClientError() bool {
+// IsClientError returns true when this create d4 c Aws account internal server error response has a 4xx status code
+func (o *CreateD4CAWSAccountInternalServerError) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this create d4 c aws account internal server error response has a 5xx status code
-func (o *CreateD4CAwsAccountInternalServerError) IsServerError() bool {
+// IsServerError returns true when this create d4 c Aws account internal server error response has a 5xx status code
+func (o *CreateD4CAWSAccountInternalServerError) IsServerError() bool {
 	return true
 }
 
-// IsCode returns true when this create d4 c aws account internal server error response a status code equal to that given
-func (o *CreateD4CAwsAccountInternalServerError) IsCode(code int) bool {
+// IsCode returns true when this create d4 c Aws account internal server error response a status code equal to that given
+func (o *CreateD4CAWSAccountInternalServerError) IsCode(code int) bool {
 	return code == 500
 }
 
-// Code gets the status code for the create d4 c aws account internal server error response
-func (o *CreateD4CAwsAccountInternalServerError) Code() int {
+// Code gets the status code for the create d4 c Aws account internal server error response
+func (o *CreateD4CAWSAccountInternalServerError) Code() int {
 	return 500
 }
 
-func (o *CreateD4CAwsAccountInternalServerError) Error() string {
+func (o *CreateD4CAWSAccountInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /cloud-connect-aws/entities/account/v2][%d] createD4CAwsAccountInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *CreateD4CAwsAccountInternalServerError) String() string {
+func (o *CreateD4CAWSAccountInternalServerError) String() string {
 	return fmt.Sprintf("[POST /cloud-connect-aws/entities/account/v2][%d] createD4CAwsAccountInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *CreateD4CAwsAccountInternalServerError) GetPayload() *models.RegistrationAWSAccountResponseV2 {
+func (o *CreateD4CAWSAccountInternalServerError) GetPayload() *models.RegistrationAWSAccountResponseV2 {
 	return o.Payload
 }
 
-func (o *CreateD4CAwsAccountInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *CreateD4CAWSAccountInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")

@@ -17,66 +17,66 @@ import (
 	"github.com/crowdstrike/gofalcon/falcon/models"
 )
 
-// DeleteD4CAwsAccountReader is a Reader for the DeleteD4CAwsAccount structure.
-type DeleteD4CAwsAccountReader struct {
+// DeleteD4CAWSAccountReader is a Reader for the DeleteD4CAWSAccount structure.
+type DeleteD4CAWSAccountReader struct {
 	formats strfmt.Registry
 }
 
 // ReadResponse reads a server response into the received o.
-func (o *DeleteD4CAwsAccountReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
+func (o *DeleteD4CAWSAccountReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 	case 200:
-		result := NewDeleteD4CAwsAccountOK()
+		result := NewDeleteD4CAWSAccountOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 207:
-		result := NewDeleteD4CAwsAccountMultiStatus()
+		result := NewDeleteD4CAWSAccountMultiStatus()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case 400:
-		result := NewDeleteD4CAwsAccountBadRequest()
+		result := NewDeleteD4CAWSAccountBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 403:
-		result := NewDeleteD4CAwsAccountForbidden()
+		result := NewDeleteD4CAWSAccountForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 429:
-		result := NewDeleteD4CAwsAccountTooManyRequests()
+		result := NewDeleteD4CAWSAccountTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	case 500:
-		result := NewDeleteD4CAwsAccountInternalServerError()
+		result := NewDeleteD4CAWSAccountInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /cloud-connect-aws/entities/account/v2] DeleteD4CAwsAccount", response, response.Code())
 	}
 }
 
-// NewDeleteD4CAwsAccountOK creates a DeleteD4CAwsAccountOK with default headers values
-func NewDeleteD4CAwsAccountOK() *DeleteD4CAwsAccountOK {
-	return &DeleteD4CAwsAccountOK{}
+// NewDeleteD4CAWSAccountOK creates a DeleteD4CAWSAccountOK with default headers values
+func NewDeleteD4CAWSAccountOK() *DeleteD4CAWSAccountOK {
+	return &DeleteD4CAWSAccountOK{}
 }
 
 /*
-DeleteD4CAwsAccountOK describes a response with status code 200, with default header values.
+DeleteD4CAWSAccountOK describes a response with status code 200, with default header values.
 
 OK
 */
-type DeleteD4CAwsAccountOK struct {
+type DeleteD4CAWSAccountOK struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -93,49 +93,49 @@ type DeleteD4CAwsAccountOK struct {
 	Payload *models.MsaBaseEntitiesResponse
 }
 
-// IsSuccess returns true when this delete d4 c aws account o k response has a 2xx status code
-func (o *DeleteD4CAwsAccountOK) IsSuccess() bool {
+// IsSuccess returns true when this delete d4 c Aws account o k response has a 2xx status code
+func (o *DeleteD4CAWSAccountOK) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this delete d4 c aws account o k response has a 3xx status code
-func (o *DeleteD4CAwsAccountOK) IsRedirect() bool {
+// IsRedirect returns true when this delete d4 c Aws account o k response has a 3xx status code
+func (o *DeleteD4CAWSAccountOK) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete d4 c aws account o k response has a 4xx status code
-func (o *DeleteD4CAwsAccountOK) IsClientError() bool {
+// IsClientError returns true when this delete d4 c Aws account o k response has a 4xx status code
+func (o *DeleteD4CAWSAccountOK) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this delete d4 c aws account o k response has a 5xx status code
-func (o *DeleteD4CAwsAccountOK) IsServerError() bool {
+// IsServerError returns true when this delete d4 c Aws account o k response has a 5xx status code
+func (o *DeleteD4CAWSAccountOK) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete d4 c aws account o k response a status code equal to that given
-func (o *DeleteD4CAwsAccountOK) IsCode(code int) bool {
+// IsCode returns true when this delete d4 c Aws account o k response a status code equal to that given
+func (o *DeleteD4CAWSAccountOK) IsCode(code int) bool {
 	return code == 200
 }
 
-// Code gets the status code for the delete d4 c aws account o k response
-func (o *DeleteD4CAwsAccountOK) Code() int {
+// Code gets the status code for the delete d4 c Aws account o k response
+func (o *DeleteD4CAWSAccountOK) Code() int {
 	return 200
 }
 
-func (o *DeleteD4CAwsAccountOK) Error() string {
+func (o *DeleteD4CAWSAccountOK) Error() string {
 	return fmt.Sprintf("[DELETE /cloud-connect-aws/entities/account/v2][%d] deleteD4CAwsAccountOK  %+v", 200, o.Payload)
 }
 
-func (o *DeleteD4CAwsAccountOK) String() string {
+func (o *DeleteD4CAWSAccountOK) String() string {
 	return fmt.Sprintf("[DELETE /cloud-connect-aws/entities/account/v2][%d] deleteD4CAwsAccountOK  %+v", 200, o.Payload)
 }
 
-func (o *DeleteD4CAwsAccountOK) GetPayload() *models.MsaBaseEntitiesResponse {
+func (o *DeleteD4CAWSAccountOK) GetPayload() *models.MsaBaseEntitiesResponse {
 	return o.Payload
 }
 
-func (o *DeleteD4CAwsAccountOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteD4CAWSAccountOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -176,17 +176,17 @@ func (o *DeleteD4CAwsAccountOK) readResponse(response runtime.ClientResponse, co
 	return nil
 }
 
-// NewDeleteD4CAwsAccountMultiStatus creates a DeleteD4CAwsAccountMultiStatus with default headers values
-func NewDeleteD4CAwsAccountMultiStatus() *DeleteD4CAwsAccountMultiStatus {
-	return &DeleteD4CAwsAccountMultiStatus{}
+// NewDeleteD4CAWSAccountMultiStatus creates a DeleteD4CAWSAccountMultiStatus with default headers values
+func NewDeleteD4CAWSAccountMultiStatus() *DeleteD4CAWSAccountMultiStatus {
+	return &DeleteD4CAWSAccountMultiStatus{}
 }
 
 /*
-DeleteD4CAwsAccountMultiStatus describes a response with status code 207, with default header values.
+DeleteD4CAWSAccountMultiStatus describes a response with status code 207, with default header values.
 
 Multi-Status
 */
-type DeleteD4CAwsAccountMultiStatus struct {
+type DeleteD4CAWSAccountMultiStatus struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -203,49 +203,49 @@ type DeleteD4CAwsAccountMultiStatus struct {
 	Payload *models.MsaBaseEntitiesResponse
 }
 
-// IsSuccess returns true when this delete d4 c aws account multi status response has a 2xx status code
-func (o *DeleteD4CAwsAccountMultiStatus) IsSuccess() bool {
+// IsSuccess returns true when this delete d4 c Aws account multi status response has a 2xx status code
+func (o *DeleteD4CAWSAccountMultiStatus) IsSuccess() bool {
 	return true
 }
 
-// IsRedirect returns true when this delete d4 c aws account multi status response has a 3xx status code
-func (o *DeleteD4CAwsAccountMultiStatus) IsRedirect() bool {
+// IsRedirect returns true when this delete d4 c Aws account multi status response has a 3xx status code
+func (o *DeleteD4CAWSAccountMultiStatus) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete d4 c aws account multi status response has a 4xx status code
-func (o *DeleteD4CAwsAccountMultiStatus) IsClientError() bool {
+// IsClientError returns true when this delete d4 c Aws account multi status response has a 4xx status code
+func (o *DeleteD4CAWSAccountMultiStatus) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this delete d4 c aws account multi status response has a 5xx status code
-func (o *DeleteD4CAwsAccountMultiStatus) IsServerError() bool {
+// IsServerError returns true when this delete d4 c Aws account multi status response has a 5xx status code
+func (o *DeleteD4CAWSAccountMultiStatus) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete d4 c aws account multi status response a status code equal to that given
-func (o *DeleteD4CAwsAccountMultiStatus) IsCode(code int) bool {
+// IsCode returns true when this delete d4 c Aws account multi status response a status code equal to that given
+func (o *DeleteD4CAWSAccountMultiStatus) IsCode(code int) bool {
 	return code == 207
 }
 
-// Code gets the status code for the delete d4 c aws account multi status response
-func (o *DeleteD4CAwsAccountMultiStatus) Code() int {
+// Code gets the status code for the delete d4 c Aws account multi status response
+func (o *DeleteD4CAWSAccountMultiStatus) Code() int {
 	return 207
 }
 
-func (o *DeleteD4CAwsAccountMultiStatus) Error() string {
+func (o *DeleteD4CAWSAccountMultiStatus) Error() string {
 	return fmt.Sprintf("[DELETE /cloud-connect-aws/entities/account/v2][%d] deleteD4CAwsAccountMultiStatus  %+v", 207, o.Payload)
 }
 
-func (o *DeleteD4CAwsAccountMultiStatus) String() string {
+func (o *DeleteD4CAWSAccountMultiStatus) String() string {
 	return fmt.Sprintf("[DELETE /cloud-connect-aws/entities/account/v2][%d] deleteD4CAwsAccountMultiStatus  %+v", 207, o.Payload)
 }
 
-func (o *DeleteD4CAwsAccountMultiStatus) GetPayload() *models.MsaBaseEntitiesResponse {
+func (o *DeleteD4CAWSAccountMultiStatus) GetPayload() *models.MsaBaseEntitiesResponse {
 	return o.Payload
 }
 
-func (o *DeleteD4CAwsAccountMultiStatus) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteD4CAWSAccountMultiStatus) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -286,17 +286,17 @@ func (o *DeleteD4CAwsAccountMultiStatus) readResponse(response runtime.ClientRes
 	return nil
 }
 
-// NewDeleteD4CAwsAccountBadRequest creates a DeleteD4CAwsAccountBadRequest with default headers values
-func NewDeleteD4CAwsAccountBadRequest() *DeleteD4CAwsAccountBadRequest {
-	return &DeleteD4CAwsAccountBadRequest{}
+// NewDeleteD4CAWSAccountBadRequest creates a DeleteD4CAWSAccountBadRequest with default headers values
+func NewDeleteD4CAWSAccountBadRequest() *DeleteD4CAWSAccountBadRequest {
+	return &DeleteD4CAWSAccountBadRequest{}
 }
 
 /*
-DeleteD4CAwsAccountBadRequest describes a response with status code 400, with default header values.
+DeleteD4CAWSAccountBadRequest describes a response with status code 400, with default header values.
 
 Bad Request
 */
-type DeleteD4CAwsAccountBadRequest struct {
+type DeleteD4CAWSAccountBadRequest struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -313,49 +313,49 @@ type DeleteD4CAwsAccountBadRequest struct {
 	Payload *models.MsaBaseEntitiesResponse
 }
 
-// IsSuccess returns true when this delete d4 c aws account bad request response has a 2xx status code
-func (o *DeleteD4CAwsAccountBadRequest) IsSuccess() bool {
+// IsSuccess returns true when this delete d4 c Aws account bad request response has a 2xx status code
+func (o *DeleteD4CAWSAccountBadRequest) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this delete d4 c aws account bad request response has a 3xx status code
-func (o *DeleteD4CAwsAccountBadRequest) IsRedirect() bool {
+// IsRedirect returns true when this delete d4 c Aws account bad request response has a 3xx status code
+func (o *DeleteD4CAWSAccountBadRequest) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete d4 c aws account bad request response has a 4xx status code
-func (o *DeleteD4CAwsAccountBadRequest) IsClientError() bool {
+// IsClientError returns true when this delete d4 c Aws account bad request response has a 4xx status code
+func (o *DeleteD4CAWSAccountBadRequest) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this delete d4 c aws account bad request response has a 5xx status code
-func (o *DeleteD4CAwsAccountBadRequest) IsServerError() bool {
+// IsServerError returns true when this delete d4 c Aws account bad request response has a 5xx status code
+func (o *DeleteD4CAWSAccountBadRequest) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete d4 c aws account bad request response a status code equal to that given
-func (o *DeleteD4CAwsAccountBadRequest) IsCode(code int) bool {
+// IsCode returns true when this delete d4 c Aws account bad request response a status code equal to that given
+func (o *DeleteD4CAWSAccountBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
-// Code gets the status code for the delete d4 c aws account bad request response
-func (o *DeleteD4CAwsAccountBadRequest) Code() int {
+// Code gets the status code for the delete d4 c Aws account bad request response
+func (o *DeleteD4CAWSAccountBadRequest) Code() int {
 	return 400
 }
 
-func (o *DeleteD4CAwsAccountBadRequest) Error() string {
+func (o *DeleteD4CAWSAccountBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /cloud-connect-aws/entities/account/v2][%d] deleteD4CAwsAccountBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *DeleteD4CAwsAccountBadRequest) String() string {
+func (o *DeleteD4CAWSAccountBadRequest) String() string {
 	return fmt.Sprintf("[DELETE /cloud-connect-aws/entities/account/v2][%d] deleteD4CAwsAccountBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *DeleteD4CAwsAccountBadRequest) GetPayload() *models.MsaBaseEntitiesResponse {
+func (o *DeleteD4CAWSAccountBadRequest) GetPayload() *models.MsaBaseEntitiesResponse {
 	return o.Payload
 }
 
-func (o *DeleteD4CAwsAccountBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteD4CAWSAccountBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -396,17 +396,17 @@ func (o *DeleteD4CAwsAccountBadRequest) readResponse(response runtime.ClientResp
 	return nil
 }
 
-// NewDeleteD4CAwsAccountForbidden creates a DeleteD4CAwsAccountForbidden with default headers values
-func NewDeleteD4CAwsAccountForbidden() *DeleteD4CAwsAccountForbidden {
-	return &DeleteD4CAwsAccountForbidden{}
+// NewDeleteD4CAWSAccountForbidden creates a DeleteD4CAWSAccountForbidden with default headers values
+func NewDeleteD4CAWSAccountForbidden() *DeleteD4CAWSAccountForbidden {
+	return &DeleteD4CAWSAccountForbidden{}
 }
 
 /*
-DeleteD4CAwsAccountForbidden describes a response with status code 403, with default header values.
+DeleteD4CAWSAccountForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
-type DeleteD4CAwsAccountForbidden struct {
+type DeleteD4CAWSAccountForbidden struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -423,49 +423,49 @@ type DeleteD4CAwsAccountForbidden struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this delete d4 c aws account forbidden response has a 2xx status code
-func (o *DeleteD4CAwsAccountForbidden) IsSuccess() bool {
+// IsSuccess returns true when this delete d4 c Aws account forbidden response has a 2xx status code
+func (o *DeleteD4CAWSAccountForbidden) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this delete d4 c aws account forbidden response has a 3xx status code
-func (o *DeleteD4CAwsAccountForbidden) IsRedirect() bool {
+// IsRedirect returns true when this delete d4 c Aws account forbidden response has a 3xx status code
+func (o *DeleteD4CAWSAccountForbidden) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete d4 c aws account forbidden response has a 4xx status code
-func (o *DeleteD4CAwsAccountForbidden) IsClientError() bool {
+// IsClientError returns true when this delete d4 c Aws account forbidden response has a 4xx status code
+func (o *DeleteD4CAWSAccountForbidden) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this delete d4 c aws account forbidden response has a 5xx status code
-func (o *DeleteD4CAwsAccountForbidden) IsServerError() bool {
+// IsServerError returns true when this delete d4 c Aws account forbidden response has a 5xx status code
+func (o *DeleteD4CAWSAccountForbidden) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete d4 c aws account forbidden response a status code equal to that given
-func (o *DeleteD4CAwsAccountForbidden) IsCode(code int) bool {
+// IsCode returns true when this delete d4 c Aws account forbidden response a status code equal to that given
+func (o *DeleteD4CAWSAccountForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
-// Code gets the status code for the delete d4 c aws account forbidden response
-func (o *DeleteD4CAwsAccountForbidden) Code() int {
+// Code gets the status code for the delete d4 c Aws account forbidden response
+func (o *DeleteD4CAWSAccountForbidden) Code() int {
 	return 403
 }
 
-func (o *DeleteD4CAwsAccountForbidden) Error() string {
+func (o *DeleteD4CAWSAccountForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /cloud-connect-aws/entities/account/v2][%d] deleteD4CAwsAccountForbidden  %+v", 403, o.Payload)
 }
 
-func (o *DeleteD4CAwsAccountForbidden) String() string {
+func (o *DeleteD4CAWSAccountForbidden) String() string {
 	return fmt.Sprintf("[DELETE /cloud-connect-aws/entities/account/v2][%d] deleteD4CAwsAccountForbidden  %+v", 403, o.Payload)
 }
 
-func (o *DeleteD4CAwsAccountForbidden) GetPayload() *models.MsaReplyMetaOnly {
+func (o *DeleteD4CAWSAccountForbidden) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *DeleteD4CAwsAccountForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteD4CAWSAccountForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -506,17 +506,17 @@ func (o *DeleteD4CAwsAccountForbidden) readResponse(response runtime.ClientRespo
 	return nil
 }
 
-// NewDeleteD4CAwsAccountTooManyRequests creates a DeleteD4CAwsAccountTooManyRequests with default headers values
-func NewDeleteD4CAwsAccountTooManyRequests() *DeleteD4CAwsAccountTooManyRequests {
-	return &DeleteD4CAwsAccountTooManyRequests{}
+// NewDeleteD4CAWSAccountTooManyRequests creates a DeleteD4CAWSAccountTooManyRequests with default headers values
+func NewDeleteD4CAWSAccountTooManyRequests() *DeleteD4CAWSAccountTooManyRequests {
+	return &DeleteD4CAWSAccountTooManyRequests{}
 }
 
 /*
-DeleteD4CAwsAccountTooManyRequests describes a response with status code 429, with default header values.
+DeleteD4CAWSAccountTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
-type DeleteD4CAwsAccountTooManyRequests struct {
+type DeleteD4CAWSAccountTooManyRequests struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -537,49 +537,49 @@ type DeleteD4CAwsAccountTooManyRequests struct {
 	Payload *models.MsaReplyMetaOnly
 }
 
-// IsSuccess returns true when this delete d4 c aws account too many requests response has a 2xx status code
-func (o *DeleteD4CAwsAccountTooManyRequests) IsSuccess() bool {
+// IsSuccess returns true when this delete d4 c Aws account too many requests response has a 2xx status code
+func (o *DeleteD4CAWSAccountTooManyRequests) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this delete d4 c aws account too many requests response has a 3xx status code
-func (o *DeleteD4CAwsAccountTooManyRequests) IsRedirect() bool {
+// IsRedirect returns true when this delete d4 c Aws account too many requests response has a 3xx status code
+func (o *DeleteD4CAWSAccountTooManyRequests) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete d4 c aws account too many requests response has a 4xx status code
-func (o *DeleteD4CAwsAccountTooManyRequests) IsClientError() bool {
+// IsClientError returns true when this delete d4 c Aws account too many requests response has a 4xx status code
+func (o *DeleteD4CAWSAccountTooManyRequests) IsClientError() bool {
 	return true
 }
 
-// IsServerError returns true when this delete d4 c aws account too many requests response has a 5xx status code
-func (o *DeleteD4CAwsAccountTooManyRequests) IsServerError() bool {
+// IsServerError returns true when this delete d4 c Aws account too many requests response has a 5xx status code
+func (o *DeleteD4CAWSAccountTooManyRequests) IsServerError() bool {
 	return false
 }
 
-// IsCode returns true when this delete d4 c aws account too many requests response a status code equal to that given
-func (o *DeleteD4CAwsAccountTooManyRequests) IsCode(code int) bool {
+// IsCode returns true when this delete d4 c Aws account too many requests response a status code equal to that given
+func (o *DeleteD4CAWSAccountTooManyRequests) IsCode(code int) bool {
 	return code == 429
 }
 
-// Code gets the status code for the delete d4 c aws account too many requests response
-func (o *DeleteD4CAwsAccountTooManyRequests) Code() int {
+// Code gets the status code for the delete d4 c Aws account too many requests response
+func (o *DeleteD4CAWSAccountTooManyRequests) Code() int {
 	return 429
 }
 
-func (o *DeleteD4CAwsAccountTooManyRequests) Error() string {
+func (o *DeleteD4CAWSAccountTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /cloud-connect-aws/entities/account/v2][%d] deleteD4CAwsAccountTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *DeleteD4CAwsAccountTooManyRequests) String() string {
+func (o *DeleteD4CAWSAccountTooManyRequests) String() string {
 	return fmt.Sprintf("[DELETE /cloud-connect-aws/entities/account/v2][%d] deleteD4CAwsAccountTooManyRequests  %+v", 429, o.Payload)
 }
 
-func (o *DeleteD4CAwsAccountTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
+func (o *DeleteD4CAWSAccountTooManyRequests) GetPayload() *models.MsaReplyMetaOnly {
 	return o.Payload
 }
 
-func (o *DeleteD4CAwsAccountTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteD4CAWSAccountTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")
@@ -631,17 +631,17 @@ func (o *DeleteD4CAwsAccountTooManyRequests) readResponse(response runtime.Clien
 	return nil
 }
 
-// NewDeleteD4CAwsAccountInternalServerError creates a DeleteD4CAwsAccountInternalServerError with default headers values
-func NewDeleteD4CAwsAccountInternalServerError() *DeleteD4CAwsAccountInternalServerError {
-	return &DeleteD4CAwsAccountInternalServerError{}
+// NewDeleteD4CAWSAccountInternalServerError creates a DeleteD4CAWSAccountInternalServerError with default headers values
+func NewDeleteD4CAWSAccountInternalServerError() *DeleteD4CAWSAccountInternalServerError {
+	return &DeleteD4CAWSAccountInternalServerError{}
 }
 
 /*
-DeleteD4CAwsAccountInternalServerError describes a response with status code 500, with default header values.
+DeleteD4CAWSAccountInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
-type DeleteD4CAwsAccountInternalServerError struct {
+type DeleteD4CAWSAccountInternalServerError struct {
 
 	/* Trace-ID: submit to support if resolving an issue
 	 */
@@ -658,49 +658,49 @@ type DeleteD4CAwsAccountInternalServerError struct {
 	Payload *models.MsaBaseEntitiesResponse
 }
 
-// IsSuccess returns true when this delete d4 c aws account internal server error response has a 2xx status code
-func (o *DeleteD4CAwsAccountInternalServerError) IsSuccess() bool {
+// IsSuccess returns true when this delete d4 c Aws account internal server error response has a 2xx status code
+func (o *DeleteD4CAWSAccountInternalServerError) IsSuccess() bool {
 	return false
 }
 
-// IsRedirect returns true when this delete d4 c aws account internal server error response has a 3xx status code
-func (o *DeleteD4CAwsAccountInternalServerError) IsRedirect() bool {
+// IsRedirect returns true when this delete d4 c Aws account internal server error response has a 3xx status code
+func (o *DeleteD4CAWSAccountInternalServerError) IsRedirect() bool {
 	return false
 }
 
-// IsClientError returns true when this delete d4 c aws account internal server error response has a 4xx status code
-func (o *DeleteD4CAwsAccountInternalServerError) IsClientError() bool {
+// IsClientError returns true when this delete d4 c Aws account internal server error response has a 4xx status code
+func (o *DeleteD4CAWSAccountInternalServerError) IsClientError() bool {
 	return false
 }
 
-// IsServerError returns true when this delete d4 c aws account internal server error response has a 5xx status code
-func (o *DeleteD4CAwsAccountInternalServerError) IsServerError() bool {
+// IsServerError returns true when this delete d4 c Aws account internal server error response has a 5xx status code
+func (o *DeleteD4CAWSAccountInternalServerError) IsServerError() bool {
 	return true
 }
 
-// IsCode returns true when this delete d4 c aws account internal server error response a status code equal to that given
-func (o *DeleteD4CAwsAccountInternalServerError) IsCode(code int) bool {
+// IsCode returns true when this delete d4 c Aws account internal server error response a status code equal to that given
+func (o *DeleteD4CAWSAccountInternalServerError) IsCode(code int) bool {
 	return code == 500
 }
 
-// Code gets the status code for the delete d4 c aws account internal server error response
-func (o *DeleteD4CAwsAccountInternalServerError) Code() int {
+// Code gets the status code for the delete d4 c Aws account internal server error response
+func (o *DeleteD4CAWSAccountInternalServerError) Code() int {
 	return 500
 }
 
-func (o *DeleteD4CAwsAccountInternalServerError) Error() string {
+func (o *DeleteD4CAWSAccountInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /cloud-connect-aws/entities/account/v2][%d] deleteD4CAwsAccountInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *DeleteD4CAwsAccountInternalServerError) String() string {
+func (o *DeleteD4CAWSAccountInternalServerError) String() string {
 	return fmt.Sprintf("[DELETE /cloud-connect-aws/entities/account/v2][%d] deleteD4CAwsAccountInternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *DeleteD4CAwsAccountInternalServerError) GetPayload() *models.MsaBaseEntitiesResponse {
+func (o *DeleteD4CAWSAccountInternalServerError) GetPayload() *models.MsaBaseEntitiesResponse {
 	return o.Payload
 }
 
-func (o *DeleteD4CAwsAccountInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *DeleteD4CAWSAccountInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	// hydrates response header X-CS-TRACEID
 	hdrXCSTRACEID := response.GetHeader("X-CS-TRACEID")

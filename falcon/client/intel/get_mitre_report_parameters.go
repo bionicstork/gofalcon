@@ -16,50 +16,50 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetMitreReportParams creates a new GetMitreReportParams object,
+// NewGetMITREReportParams creates a new GetMITREReportParams object,
 // with the default timeout for this client.
 //
 // Default values are not hydrated, since defaults are normally applied by the API server side.
 //
 // To enforce default values in parameter, use SetDefaults or WithDefaults.
-func NewGetMitreReportParams() *GetMitreReportParams {
-	return &GetMitreReportParams{
+func NewGetMITREReportParams() *GetMITREReportParams {
+	return &GetMITREReportParams{
 		timeout: cr.DefaultTimeout,
 	}
 }
 
-// NewGetMitreReportParamsWithTimeout creates a new GetMitreReportParams object
+// NewGetMITREReportParamsWithTimeout creates a new GetMITREReportParams object
 // with the ability to set a timeout on a request.
-func NewGetMitreReportParamsWithTimeout(timeout time.Duration) *GetMitreReportParams {
-	return &GetMitreReportParams{
+func NewGetMITREReportParamsWithTimeout(timeout time.Duration) *GetMITREReportParams {
+	return &GetMITREReportParams{
 		timeout: timeout,
 	}
 }
 
-// NewGetMitreReportParamsWithContext creates a new GetMitreReportParams object
+// NewGetMITREReportParamsWithContext creates a new GetMITREReportParams object
 // with the ability to set a context for a request.
-func NewGetMitreReportParamsWithContext(ctx context.Context) *GetMitreReportParams {
-	return &GetMitreReportParams{
+func NewGetMITREReportParamsWithContext(ctx context.Context) *GetMITREReportParams {
+	return &GetMITREReportParams{
 		Context: ctx,
 	}
 }
 
-// NewGetMitreReportParamsWithHTTPClient creates a new GetMitreReportParams object
+// NewGetMITREReportParamsWithHTTPClient creates a new GetMITREReportParams object
 // with the ability to set a custom HTTPClient for a request.
-func NewGetMitreReportParamsWithHTTPClient(client *http.Client) *GetMitreReportParams {
-	return &GetMitreReportParams{
+func NewGetMITREReportParamsWithHTTPClient(client *http.Client) *GetMITREReportParams {
+	return &GetMITREReportParams{
 		HTTPClient: client,
 	}
 }
 
 /*
-GetMitreReportParams contains all the parameters to send to the API endpoint
+GetMITREReportParams contains all the parameters to send to the API endpoint
 
-	for the get mitre report operation.
+	for the get Mitre report operation.
 
 	Typically these are written to a http.Request.
 */
-type GetMitreReportParams struct {
+type GetMITREReportParams struct {
 
 	/* ActorID.
 
@@ -78,78 +78,78 @@ type GetMitreReportParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the get mitre report params (not the query body).
+// WithDefaults hydrates default values in the get Mitre report params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *GetMitreReportParams) WithDefaults() *GetMitreReportParams {
+func (o *GetMITREReportParams) WithDefaults() *GetMITREReportParams {
 	o.SetDefaults()
 	return o
 }
 
-// SetDefaults hydrates default values in the get mitre report params (not the query body).
+// SetDefaults hydrates default values in the get Mitre report params (not the query body).
 //
 // All values with no default are reset to their zero value.
-func (o *GetMitreReportParams) SetDefaults() {
+func (o *GetMITREReportParams) SetDefaults() {
 	// no default values defined for this parameter
 }
 
-// WithTimeout adds the timeout to the get mitre report params
-func (o *GetMitreReportParams) WithTimeout(timeout time.Duration) *GetMitreReportParams {
+// WithTimeout adds the timeout to the get Mitre report params
+func (o *GetMITREReportParams) WithTimeout(timeout time.Duration) *GetMITREReportParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the get mitre report params
-func (o *GetMitreReportParams) SetTimeout(timeout time.Duration) {
+// SetTimeout adds the timeout to the get Mitre report params
+func (o *GetMITREReportParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the get mitre report params
-func (o *GetMitreReportParams) WithContext(ctx context.Context) *GetMitreReportParams {
+// WithContext adds the context to the get Mitre report params
+func (o *GetMITREReportParams) WithContext(ctx context.Context) *GetMITREReportParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the get mitre report params
-func (o *GetMitreReportParams) SetContext(ctx context.Context) {
+// SetContext adds the context to the get Mitre report params
+func (o *GetMITREReportParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the get mitre report params
-func (o *GetMitreReportParams) WithHTTPClient(client *http.Client) *GetMitreReportParams {
+// WithHTTPClient adds the HTTPClient to the get Mitre report params
+func (o *GetMITREReportParams) WithHTTPClient(client *http.Client) *GetMITREReportParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the get mitre report params
-func (o *GetMitreReportParams) SetHTTPClient(client *http.Client) {
+// SetHTTPClient adds the HTTPClient to the get Mitre report params
+func (o *GetMITREReportParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithActorID adds the actorID to the get mitre report params
-func (o *GetMitreReportParams) WithActorID(actorID string) *GetMitreReportParams {
+// WithActorID adds the actorID to the get Mitre report params
+func (o *GetMITREReportParams) WithActorID(actorID string) *GetMITREReportParams {
 	o.SetActorID(actorID)
 	return o
 }
 
-// SetActorID adds the actorId to the get mitre report params
-func (o *GetMitreReportParams) SetActorID(actorID string) {
+// SetActorID adds the actorId to the get Mitre report params
+func (o *GetMITREReportParams) SetActorID(actorID string) {
 	o.ActorID = actorID
 }
 
-// WithFormat adds the format to the get mitre report params
-func (o *GetMitreReportParams) WithFormat(format string) *GetMitreReportParams {
+// WithFormat adds the format to the get Mitre report params
+func (o *GetMITREReportParams) WithFormat(format string) *GetMITREReportParams {
 	o.SetFormat(format)
 	return o
 }
 
-// SetFormat adds the format to the get mitre report params
-func (o *GetMitreReportParams) SetFormat(format string) {
+// SetFormat adds the format to the get Mitre report params
+func (o *GetMITREReportParams) SetFormat(format string) {
 	o.Format = format
 }
 
 // WriteToRequest writes these params to a swagger request
-func (o *GetMitreReportParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+func (o *GetMITREReportParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
 	if err := r.SetTimeout(o.timeout); err != nil {
 		return err

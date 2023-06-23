@@ -6,7 +6,7 @@ package sensor_download
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"io"
+	"fmt"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -30,7 +30,7 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DownloadSensorInstallerByID(params *DownloadSensorInstallerByIDParams, writer io.Writer, opts ...ClientOption) (*DownloadSensorInstallerByIDOK, error)
+	DownloadSensorInstallerByID(params *DownloadSensorInstallerByIDParams, opts ...ClientOption) (*DownloadSensorInstallerByIDOK, error)
 
 	GetCombinedSensorInstallersByQuery(params *GetCombinedSensorInstallersByQueryParams, opts ...ClientOption) (*GetCombinedSensorInstallersByQueryOK, error)
 
@@ -46,7 +46,7 @@ type ClientService interface {
 /*
 DownloadSensorInstallerByID downloads sensor installer by s h a256 ID
 */
-func (a *Client) DownloadSensorInstallerByID(params *DownloadSensorInstallerByIDParams, writer io.Writer, opts ...ClientOption) (*DownloadSensorInstallerByIDOK, error) {
+func (a *Client) DownloadSensorInstallerByID(params *DownloadSensorInstallerByIDParams, opts ...ClientOption) (*DownloadSensorInstallerByIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDownloadSensorInstallerByIDParams()
@@ -59,7 +59,7 @@ func (a *Client) DownloadSensorInstallerByID(params *DownloadSensorInstallerByID
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DownloadSensorInstallerByIDReader{formats: a.formats, writer: writer},
+		Reader:             &DownloadSensorInstallerByIDReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -76,8 +76,9 @@ func (a *Client) DownloadSensorInstallerByID(params *DownloadSensorInstallerByID
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*DownloadSensorInstallerByIDDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DownloadSensorInstallerById: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -113,8 +114,9 @@ func (a *Client) GetCombinedSensorInstallersByQuery(params *GetCombinedSensorIns
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*GetCombinedSensorInstallersByQueryDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetCombinedSensorInstallersByQuery: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -150,12 +152,13 @@ func (a *Client) GetSensorInstallersByQuery(params *GetSensorInstallersByQueryPa
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*GetSensorInstallersByQueryDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetSensorInstallersByQuery: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSensorInstallersCCIDByQuery gets c c ID to use with sensor installers
+GetSensorInstallersCCIDByQuery gets c CID to use with sensor installers
 */
 func (a *Client) GetSensorInstallersCCIDByQuery(params *GetSensorInstallersCCIDByQueryParams, opts ...ClientOption) (*GetSensorInstallersCCIDByQueryOK, error) {
 	// TODO: Validate the params before sending
@@ -187,8 +190,9 @@ func (a *Client) GetSensorInstallersCCIDByQuery(params *GetSensorInstallersCCIDB
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*GetSensorInstallersCCIDByQueryDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetSensorInstallersCCIDByQuery: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -225,9 +229,9 @@ func (a *Client) GetSensorInstallersEntities(params *GetSensorInstallersEntities
 	case *GetSensorInstallersEntitiesMultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*GetSensorInstallersEntitiesDefault)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for sensor_download: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 // SetTransport changes the transport on the client

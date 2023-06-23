@@ -30,6 +30,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AggregateQueryScanHostMetadata(params *AggregateQueryScanHostMetadataParams, opts ...ClientOption) (*AggregateQueryScanHostMetadataOK, error)
+
 	AggregateScans(params *AggregateScansParams, opts ...ClientOption) (*AggregateScansOK, error)
 
 	AggregateScheduledScans(params *AggregateScheduledScansParams, opts ...ClientOption) (*AggregateScheduledScansOK, error)
@@ -62,7 +64,45 @@ type ClientService interface {
 }
 
 /*
-AggregateScans gets aggregates on o d s scan data
+AggregateQueryScanHostMetadata gets aggregates on ODS scan hosts data
+*/
+func (a *Client) AggregateQueryScanHostMetadata(params *AggregateQueryScanHostMetadataParams, opts ...ClientOption) (*AggregateQueryScanHostMetadataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAggregateQueryScanHostMetadataParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "aggregate-query-scan-host-metadata",
+		Method:             "POST",
+		PathPattern:        "/ods/aggregates/scan-hosts/v1",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AggregateQueryScanHostMetadataReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*AggregateQueryScanHostMetadataOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for aggregate-query-scan-host-metadata: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+AggregateScans gets aggregates on ODS scan data
 */
 func (a *Client) AggregateScans(params *AggregateScansParams, opts ...ClientOption) (*AggregateScansOK, error) {
 	// TODO: Validate the params before sending
@@ -100,7 +140,7 @@ func (a *Client) AggregateScans(params *AggregateScansParams, opts ...ClientOpti
 }
 
 /*
-AggregateScheduledScans gets aggregates on o d s scheduled scan data
+AggregateScheduledScans gets aggregates on ODS scheduled scan data
 */
 func (a *Client) AggregateScheduledScans(params *AggregateScheduledScansParams, opts ...ClientOption) (*AggregateScheduledScansOK, error) {
 	// TODO: Validate the params before sending
@@ -138,7 +178,7 @@ func (a *Client) AggregateScheduledScans(params *AggregateScheduledScansParams, 
 }
 
 /*
-CancelScans cancels o d s scans for the given scan ids
+CancelScans cancels ODS scans for the given scan ids
 */
 func (a *Client) CancelScans(params *CancelScansParams, opts ...ClientOption) (*CancelScansOK, error) {
 	// TODO: Validate the params before sending
@@ -176,7 +216,7 @@ func (a *Client) CancelScans(params *CancelScansParams, opts ...ClientOption) (*
 }
 
 /*
-CreateScan creates o d s scan and start or schedule scan for the given scan request
+CreateScan creates ODS scan and start or schedule scan for the given scan request
 */
 func (a *Client) CreateScan(params *CreateScanParams, opts ...ClientOption) (*CreateScanCreated, error) {
 	// TODO: Validate the params before sending
@@ -214,7 +254,7 @@ func (a *Client) CreateScan(params *CreateScanParams, opts ...ClientOption) (*Cr
 }
 
 /*
-DeleteScheduledScans deletes o d s scheduled scans for the given scheduled scan ids
+DeleteScheduledScans deletes ODS scheduled scans for the given scheduled scan ids
 */
 func (a *Client) DeleteScheduledScans(params *DeleteScheduledScansParams, opts ...ClientOption) (*DeleteScheduledScansOK, error) {
 	// TODO: Validate the params before sending
@@ -556,7 +596,7 @@ func (a *Client) QueryScheduledScans(params *QueryScheduledScansParams, opts ...
 }
 
 /*
-ScheduleScan creates o d s scan and start or schedule scan for the given scan request
+ScheduleScan creates ODS scan and start or schedule scan for the given scan request
 */
 func (a *Client) ScheduleScan(params *ScheduleScanParams, opts ...ClientOption) (*ScheduleScanCreated, error) {
 	// TODO: Validate the params before sending

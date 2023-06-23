@@ -21,20 +21,20 @@ type DomainUserGrants struct {
 
 	// cid
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// cid group id
-	CidGroupID string `json:"cid_group_id,omitempty"`
+	CIDGroupID string `json:"cid_group_id,omitempty"`
 
 	// cid group name
-	CidGroupName string `json:"cid_group_name,omitempty"`
+	CIDGroupName string `json:"cid_group_name,omitempty"`
 
 	// grant type
 	// Required: true
 	GrantType *string `json:"grant_type"`
 
 	// parent cid
-	ParentCid string `json:"parent_cid,omitempty"`
+	ParentCID string `json:"parent_cid,omitempty"`
 
 	// role id
 	// Required: true
@@ -59,7 +59,7 @@ type DomainUserGrants struct {
 func (m *DomainUserGrants) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -85,9 +85,9 @@ func (m *DomainUserGrants) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DomainUserGrants) validateCid(formats strfmt.Registry) error {
+func (m *DomainUserGrants) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 

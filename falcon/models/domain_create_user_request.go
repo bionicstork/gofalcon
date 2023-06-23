@@ -18,7 +18,7 @@ import (
 type DomainCreateUserRequest struct {
 
 	// cid
-	Cid string `json:"cid,omitempty"`
+	CID string `json:"cid,omitempty"`
 
 	// first name
 	FirstName string `json:"first_name,omitempty"`

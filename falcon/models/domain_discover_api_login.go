@@ -36,7 +36,7 @@ type DomainDiscoverAPILogin struct {
 	Aid string `json:"aid,omitempty"`
 
 	// The customer ID where login took place.
-	Cid string `json:"cid,omitempty"`
+	CID string `json:"cid,omitempty"`
 
 	// The description of the reason why the login failed, if login_status="Failed".<ul><li>There are currently no login servers available to service the login request.</li><li>User login with misspelled or bad user account</li><li>User login with misspelled or bad password</li><li>This is either due to a bad username or authentication information</li><li>Unknown user name or bad password.</li><li>User login outside authorized hours</li><li>User login from unauthorized workstation</li><li>User login with expired password</li><li>User login to account disabled by administrator</li><li>Indicates the Sam Server was in the wrong state to perform the desired operation.</li><li>Clocks between DC and other computer too far out of sync</li><li>The user has not been granted the requested login type (aka login right) at this machine</li><li>The login request failed because the trust relationship between the primary domain and the trusted domain failed.</li><li>An attempt was made to login, but the Netlogon service was not started.</li><li>User login with expired account</li><li>User is required to change password at next login</li><li>Evidently a bug in Windows and not a risk</li><li>User login with account locked</li><li>Failure Reason: An Error occurred during Login</li><li>Login Failure: The machine you are logging in to is protected by an authentication firewall. The specified account is not allowed to authenticate to the machine.</li><li>Status OK.</li><li>Invalid password entered</li></ul>
 	FailureDescription string `json:"failure_description,omitempty"`
@@ -58,6 +58,9 @@ type DomainDiscoverAPILogin struct {
 
 	// Whether the failed login is considered suspicious based on criteria including login failures and locations (true or false).
 	IsSuspicious bool `json:"is_suspicious,omitempty"`
+
+	// Whether the account has local administrator privileges (Yes, No).
+	LocalAdminPrivileges string `json:"local_admin_privileges,omitempty"`
 
 	// The external IP address of the asset where the login took place.
 	LocalIP string `json:"local_ip,omitempty"`

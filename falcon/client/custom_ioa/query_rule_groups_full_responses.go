@@ -50,7 +50,7 @@ func (o *QueryRuleGroupsFullReader) ReadResponse(response runtime.ClientResponse
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /ioarules/queries/rule-groups-full/v1] query-rule-groups-full", response, response.Code())
 	}
 }
 
@@ -78,7 +78,7 @@ type QueryRuleGroupsFullOK struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.APIRuleGroupsResponse
+	Payload *models.MsaQueryResponse
 }
 
 // IsSuccess returns true when this query rule groups full o k response has a 2xx status code
@@ -119,7 +119,7 @@ func (o *QueryRuleGroupsFullOK) String() string {
 	return fmt.Sprintf("[GET /ioarules/queries/rule-groups-full/v1][%d] queryRuleGroupsFullOK  %+v", 200, o.Payload)
 }
 
-func (o *QueryRuleGroupsFullOK) GetPayload() *models.APIRuleGroupsResponse {
+func (o *QueryRuleGroupsFullOK) GetPayload() *models.MsaQueryResponse {
 	return o.Payload
 }
 
@@ -154,7 +154,7 @@ func (o *QueryRuleGroupsFullOK) readResponse(response runtime.ClientResponse, co
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.APIRuleGroupsResponse)
+	o.Payload = new(models.MsaQueryResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

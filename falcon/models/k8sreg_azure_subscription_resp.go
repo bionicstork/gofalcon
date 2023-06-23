@@ -31,7 +31,7 @@ type K8sregAzureSubscriptionResp struct {
 
 	// from cspm
 	// Required: true
-	FromCspm *bool `json:"from_cspm"`
+	FromCSPM *bool `json:"from_cspm"`
 
 	// status
 	// Required: true
@@ -63,7 +63,7 @@ func (m *K8sregAzureSubscriptionResp) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateFromCspm(formats); err != nil {
+	if err := m.validateFromCSPM(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -129,9 +129,9 @@ func (m *K8sregAzureSubscriptionResp) validateCreatedAt(formats strfmt.Registry)
 	return nil
 }
 
-func (m *K8sregAzureSubscriptionResp) validateFromCspm(formats strfmt.Registry) error {
+func (m *K8sregAzureSubscriptionResp) validateFromCSPM(formats strfmt.Registry) error {
 
-	if err := validate.Required("from_cspm", "body", m.FromCspm); err != nil {
+	if err := validate.Required("from_cspm", "body", m.FromCSPM); err != nil {
 		return err
 	}
 
@@ -197,6 +197,11 @@ func (m *K8sregAzureSubscriptionResp) contextValidateAzurePermissionsStatus(ctx 
 	for i := 0; i < len(m.AzurePermissionsStatus); i++ {
 
 		if m.AzurePermissionsStatus[i] != nil {
+
+			if swag.IsZero(m.AzurePermissionsStatus[i]) { // not required
+				return nil
+			}
+
 			if err := m.AzurePermissionsStatus[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("azure_permissions_status" + "." + strconv.Itoa(i))

@@ -32,25 +32,27 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	AzureDownloadCertificate(params *AzureDownloadCertificateParams, opts ...ClientOption) (*AzureDownloadCertificateOK, error)
 
-	CreateCSPMAwsAccount(params *CreateCSPMAwsAccountParams, opts ...ClientOption) (*CreateCSPMAwsAccountCreated, *CreateCSPMAwsAccountMultiStatus, error)
+	CreateCSPMAWSAccount(params *CreateCSPMAWSAccountParams, opts ...ClientOption) (*CreateCSPMAWSAccountCreated, *CreateCSPMAWSAccountMultiStatus, error)
 
 	CreateCSPMAzureAccount(params *CreateCSPMAzureAccountParams, opts ...ClientOption) (*CreateCSPMAzureAccountCreated, *CreateCSPMAzureAccountMultiStatus, error)
 
-	DeleteCSPMAwsAccount(params *DeleteCSPMAwsAccountParams, opts ...ClientOption) (*DeleteCSPMAwsAccountOK, *DeleteCSPMAwsAccountMultiStatus, error)
+	DeleteCSPMAWSAccount(params *DeleteCSPMAWSAccountParams, opts ...ClientOption) (*DeleteCSPMAWSAccountOK, *DeleteCSPMAWSAccountMultiStatus, error)
 
 	DeleteCSPMAzureAccount(params *DeleteCSPMAzureAccountParams, opts ...ClientOption) (*DeleteCSPMAzureAccountOK, *DeleteCSPMAzureAccountMultiStatus, error)
 
 	GetBehaviorDetections(params *GetBehaviorDetectionsParams, opts ...ClientOption) (*GetBehaviorDetectionsOK, error)
 
-	GetCSPMAwsAccount(params *GetCSPMAwsAccountParams, opts ...ClientOption) (*GetCSPMAwsAccountOK, *GetCSPMAwsAccountMultiStatus, error)
+	GetCSPMAWSAccount(params *GetCSPMAWSAccountParams, opts ...ClientOption) (*GetCSPMAWSAccountOK, *GetCSPMAWSAccountMultiStatus, error)
 
-	GetCSPMAwsAccountScriptsAttachment(params *GetCSPMAwsAccountScriptsAttachmentParams, opts ...ClientOption) (*GetCSPMAwsAccountScriptsAttachmentOK, error)
+	GetCSPMAWSAccountScriptsAttachment(params *GetCSPMAWSAccountScriptsAttachmentParams, opts ...ClientOption) (*GetCSPMAWSAccountScriptsAttachmentOK, error)
 
-	GetCSPMAwsConsoleSetupURLs(params *GetCSPMAwsConsoleSetupURLsParams, opts ...ClientOption) (*GetCSPMAwsConsoleSetupURLsOK, *GetCSPMAwsConsoleSetupURLsMultiStatus, error)
+	GetCSPMAWSConsoleSetupURLs(params *GetCSPMAWSConsoleSetupURLsParams, opts ...ClientOption) (*GetCSPMAWSConsoleSetupURLsOK, *GetCSPMAWSConsoleSetupURLsMultiStatus, error)
 
 	GetCSPMAzureAccount(params *GetCSPMAzureAccountParams, opts ...ClientOption) (*GetCSPMAzureAccountOK, *GetCSPMAzureAccountMultiStatus, error)
 
 	GetCSPMAzureUserScriptsAttachment(params *GetCSPMAzureUserScriptsAttachmentParams, opts ...ClientOption) (*GetCSPMAzureUserScriptsAttachmentOK, error)
+
+	GetCSPMPoliciesDetails(params *GetCSPMPoliciesDetailsParams, opts ...ClientOption) (*GetCSPMPoliciesDetailsOK, *GetCSPMPoliciesDetailsMultiStatus, error)
 
 	GetCSPMPolicy(params *GetCSPMPolicyParams, opts ...ClientOption) (*GetCSPMPolicyOK, *GetCSPMPolicyMultiStatus, error)
 
@@ -58,13 +60,13 @@ type ClientService interface {
 
 	GetCSPMScanSchedule(params *GetCSPMScanScheduleParams, opts ...ClientOption) (*GetCSPMScanScheduleOK, error)
 
+	GetConfigurationDetectionEntities(params *GetConfigurationDetectionEntitiesParams, opts ...ClientOption) (*GetConfigurationDetectionEntitiesOK, error)
+
+	GetConfigurationDetectionIDsV2(params *GetConfigurationDetectionIDsV2Params, opts ...ClientOption) (*GetConfigurationDetectionIDsV2OK, error)
+
 	GetConfigurationDetections(params *GetConfigurationDetectionsParams, opts ...ClientOption) (*GetConfigurationDetectionsOK, error)
 
-	GetIOAEvents(params *GetIOAEventsParams, opts ...ClientOption) (*GetIOAEventsOK, error)
-
-	GetIOAUsers(params *GetIOAUsersParams, opts ...ClientOption) (*GetIOAUsersOK, error)
-
-	PatchCSPMAwsAccount(params *PatchCSPMAwsAccountParams, opts ...ClientOption) (*PatchCSPMAwsAccountCreated, *PatchCSPMAwsAccountMultiStatus, error)
+	PatchCSPMAWSAccount(params *PatchCSPMAWSAccountParams, opts ...ClientOption) (*PatchCSPMAWSAccountCreated, *PatchCSPMAWSAccountMultiStatus, error)
 
 	UpdateCSPMAzureAccountClientID(params *UpdateCSPMAzureAccountClientIDParams, opts ...ClientOption) (*UpdateCSPMAzureAccountClientIDCreated, error)
 
@@ -89,7 +91,7 @@ func (a *Client) AzureDownloadCertificate(params *AzureDownloadCertificateParams
 		ID:                 "AzureDownloadCertificate",
 		Method:             "GET",
 		PathPattern:        "/cloud-connect-cspm-azure/entities/download-certificate/v1",
-		ProducesMediaTypes: []string{"application/json"},
+		ProducesMediaTypes: []string{"application/json", "application/octet-stream"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
@@ -110,17 +112,18 @@ func (a *Client) AzureDownloadCertificate(params *AzureDownloadCertificateParams
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*AzureDownloadCertificateDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for AzureDownloadCertificate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-CreateCSPMAwsAccount creates a new account in our system for a customer and generates a script for them to run in their a w s cloud environment to grant us access
+CreateCSPMAWSAccount creates a new account in our system for a customer and generates a script for them to run in their AWS cloud environment to grant us access
 */
-func (a *Client) CreateCSPMAwsAccount(params *CreateCSPMAwsAccountParams, opts ...ClientOption) (*CreateCSPMAwsAccountCreated, *CreateCSPMAwsAccountMultiStatus, error) {
+func (a *Client) CreateCSPMAWSAccount(params *CreateCSPMAWSAccountParams, opts ...ClientOption) (*CreateCSPMAWSAccountCreated, *CreateCSPMAWSAccountMultiStatus, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCreateCSPMAwsAccountParams()
+		params = NewCreateCSPMAWSAccountParams()
 	}
 	op := &runtime.ClientOperation{
 		ID:                 "CreateCSPMAwsAccount",
@@ -130,7 +133,7 @@ func (a *Client) CreateCSPMAwsAccount(params *CreateCSPMAwsAccountParams, opts .
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &CreateCSPMAwsAccountReader{formats: a.formats},
+		Reader:             &CreateCSPMAWSAccountReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -143,9 +146,9 @@ func (a *Client) CreateCSPMAwsAccount(params *CreateCSPMAwsAccountParams, opts .
 		return nil, nil, err
 	}
 	switch value := result.(type) {
-	case *CreateCSPMAwsAccountCreated:
+	case *CreateCSPMAWSAccountCreated:
 		return value, nil, nil
-	case *CreateCSPMAwsAccountMultiStatus:
+	case *CreateCSPMAWSAccountMultiStatus:
 		return nil, value, nil
 	}
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
@@ -193,12 +196,12 @@ func (a *Client) CreateCSPMAzureAccount(params *CreateCSPMAzureAccountParams, op
 }
 
 /*
-DeleteCSPMAwsAccount deletes an existing a w s account or organization in our system
+DeleteCSPMAWSAccount deletes an existing AWS account or organization in our system
 */
-func (a *Client) DeleteCSPMAwsAccount(params *DeleteCSPMAwsAccountParams, opts ...ClientOption) (*DeleteCSPMAwsAccountOK, *DeleteCSPMAwsAccountMultiStatus, error) {
+func (a *Client) DeleteCSPMAWSAccount(params *DeleteCSPMAWSAccountParams, opts ...ClientOption) (*DeleteCSPMAWSAccountOK, *DeleteCSPMAWSAccountMultiStatus, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDeleteCSPMAwsAccountParams()
+		params = NewDeleteCSPMAWSAccountParams()
 	}
 	op := &runtime.ClientOperation{
 		ID:                 "DeleteCSPMAwsAccount",
@@ -208,7 +211,7 @@ func (a *Client) DeleteCSPMAwsAccount(params *DeleteCSPMAwsAccountParams, opts .
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DeleteCSPMAwsAccountReader{formats: a.formats},
+		Reader:             &DeleteCSPMAWSAccountReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -221,9 +224,9 @@ func (a *Client) DeleteCSPMAwsAccount(params *DeleteCSPMAwsAccountParams, opts .
 		return nil, nil, err
 	}
 	switch value := result.(type) {
-	case *DeleteCSPMAwsAccountOK:
+	case *DeleteCSPMAWSAccountOK:
 		return value, nil, nil
-	case *DeleteCSPMAwsAccountMultiStatus:
+	case *DeleteCSPMAWSAccountMultiStatus:
 		return nil, value, nil
 	}
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
@@ -265,9 +268,9 @@ func (a *Client) DeleteCSPMAzureAccount(params *DeleteCSPMAzureAccountParams, op
 	case *DeleteCSPMAzureAccountMultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*DeleteCSPMAzureAccountDefault)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for cspm_registration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -303,17 +306,18 @@ func (a *Client) GetBehaviorDetections(params *GetBehaviorDetectionsParams, opts
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*GetBehaviorDetectionsDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetBehaviorDetections: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetCSPMAwsAccount returns information about the current status of an a w s account
+GetCSPMAWSAccount returns information about the current status of an AWS account
 */
-func (a *Client) GetCSPMAwsAccount(params *GetCSPMAwsAccountParams, opts ...ClientOption) (*GetCSPMAwsAccountOK, *GetCSPMAwsAccountMultiStatus, error) {
+func (a *Client) GetCSPMAWSAccount(params *GetCSPMAWSAccountParams, opts ...ClientOption) (*GetCSPMAWSAccountOK, *GetCSPMAWSAccountMultiStatus, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetCSPMAwsAccountParams()
+		params = NewGetCSPMAWSAccountParams()
 	}
 	op := &runtime.ClientOperation{
 		ID:                 "GetCSPMAwsAccount",
@@ -323,7 +327,7 @@ func (a *Client) GetCSPMAwsAccount(params *GetCSPMAwsAccountParams, opts ...Clie
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetCSPMAwsAccountReader{formats: a.formats},
+		Reader:             &GetCSPMAWSAccountReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -336,9 +340,9 @@ func (a *Client) GetCSPMAwsAccount(params *GetCSPMAwsAccountParams, opts ...Clie
 		return nil, nil, err
 	}
 	switch value := result.(type) {
-	case *GetCSPMAwsAccountOK:
+	case *GetCSPMAWSAccountOK:
 		return value, nil, nil
-	case *GetCSPMAwsAccountMultiStatus:
+	case *GetCSPMAWSAccountMultiStatus:
 		return nil, value, nil
 	}
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
@@ -347,12 +351,12 @@ func (a *Client) GetCSPMAwsAccount(params *GetCSPMAwsAccountParams, opts ...Clie
 }
 
 /*
-GetCSPMAwsAccountScriptsAttachment returns a script for customer to run in their cloud environment to grant us access to their a w s environment as a downloadable attachment
+GetCSPMAWSAccountScriptsAttachment returns a script for customer to run in their cloud environment to grant us access to their AWS environment as a downloadable attachment
 */
-func (a *Client) GetCSPMAwsAccountScriptsAttachment(params *GetCSPMAwsAccountScriptsAttachmentParams, opts ...ClientOption) (*GetCSPMAwsAccountScriptsAttachmentOK, error) {
+func (a *Client) GetCSPMAWSAccountScriptsAttachment(params *GetCSPMAWSAccountScriptsAttachmentParams, opts ...ClientOption) (*GetCSPMAWSAccountScriptsAttachmentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetCSPMAwsAccountScriptsAttachmentParams()
+		params = NewGetCSPMAWSAccountScriptsAttachmentParams()
 	}
 	op := &runtime.ClientOperation{
 		ID:                 "GetCSPMAwsAccountScriptsAttachment",
@@ -362,7 +366,7 @@ func (a *Client) GetCSPMAwsAccountScriptsAttachment(params *GetCSPMAwsAccountScr
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetCSPMAwsAccountScriptsAttachmentReader{formats: a.formats},
+		Reader:             &GetCSPMAWSAccountScriptsAttachmentReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -374,22 +378,23 @@ func (a *Client) GetCSPMAwsAccountScriptsAttachment(params *GetCSPMAwsAccountScr
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetCSPMAwsAccountScriptsAttachmentOK)
+	success, ok := result.(*GetCSPMAWSAccountScriptsAttachmentOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*GetCSPMAwsAccountScriptsAttachmentDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetCSPMAwsAccountScriptsAttachment: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetCSPMAwsConsoleSetupURLs returns a URL for customer to visit in their cloud environment to grant us access to their a w s environment
+GetCSPMAWSConsoleSetupURLs returns a URL for customer to visit in their cloud environment to grant us access to their AWS environment
 */
-func (a *Client) GetCSPMAwsConsoleSetupURLs(params *GetCSPMAwsConsoleSetupURLsParams, opts ...ClientOption) (*GetCSPMAwsConsoleSetupURLsOK, *GetCSPMAwsConsoleSetupURLsMultiStatus, error) {
+func (a *Client) GetCSPMAWSConsoleSetupURLs(params *GetCSPMAWSConsoleSetupURLsParams, opts ...ClientOption) (*GetCSPMAWSConsoleSetupURLsOK, *GetCSPMAWSConsoleSetupURLsMultiStatus, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetCSPMAwsConsoleSetupURLsParams()
+		params = NewGetCSPMAWSConsoleSetupURLsParams()
 	}
 	op := &runtime.ClientOperation{
 		ID:                 "GetCSPMAwsConsoleSetupURLs",
@@ -399,7 +404,7 @@ func (a *Client) GetCSPMAwsConsoleSetupURLs(params *GetCSPMAwsConsoleSetupURLsPa
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetCSPMAwsConsoleSetupURLsReader{formats: a.formats},
+		Reader:             &GetCSPMAWSConsoleSetupURLsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -412,14 +417,14 @@ func (a *Client) GetCSPMAwsConsoleSetupURLs(params *GetCSPMAwsConsoleSetupURLsPa
 		return nil, nil, err
 	}
 	switch value := result.(type) {
-	case *GetCSPMAwsConsoleSetupURLsOK:
+	case *GetCSPMAWSConsoleSetupURLsOK:
 		return value, nil, nil
-	case *GetCSPMAwsConsoleSetupURLsMultiStatus:
+	case *GetCSPMAWSConsoleSetupURLsMultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*GetCSPMAwsConsoleSetupURLsDefault)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for cspm_registration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -456,9 +461,9 @@ func (a *Client) GetCSPMAzureAccount(params *GetCSPMAzureAccountParams, opts ...
 	case *GetCSPMAzureAccountMultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*GetCSPMAzureAccountDefault)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for cspm_registration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -494,8 +499,48 @@ func (a *Client) GetCSPMAzureUserScriptsAttachment(params *GetCSPMAzureUserScrip
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*GetCSPMAzureUserScriptsAttachmentDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetCSPMAzureUserScriptsAttachment: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetCSPMPoliciesDetails givens an array of policy i ds returns detailed policies information
+*/
+func (a *Client) GetCSPMPoliciesDetails(params *GetCSPMPoliciesDetailsParams, opts ...ClientOption) (*GetCSPMPoliciesDetailsOK, *GetCSPMPoliciesDetailsMultiStatus, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCSPMPoliciesDetailsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetCSPMPoliciesDetails",
+		Method:             "GET",
+		PathPattern:        "/settings/entities/policy-details/v2",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCSPMPoliciesDetailsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, nil, err
+	}
+	switch value := result.(type) {
+	case *GetCSPMPoliciesDetailsOK:
+		return value, nil, nil
+	case *GetCSPMPoliciesDetailsMultiStatus:
+		return nil, value, nil
+	}
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for cspm_registration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -532,9 +577,9 @@ func (a *Client) GetCSPMPolicy(params *GetCSPMPolicyParams, opts ...ClientOption
 	case *GetCSPMPolicyMultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*GetCSPMPolicyDefault)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for cspm_registration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -571,9 +616,9 @@ func (a *Client) GetCSPMPolicySettings(params *GetCSPMPolicySettingsParams, opts
 	case *GetCSPMPolicySettingsMultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*GetCSPMPolicySettingsDefault)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for cspm_registration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -609,8 +654,85 @@ func (a *Client) GetCSPMScanSchedule(params *GetCSPMScanScheduleParams, opts ...
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*GetCSPMScanScheduleDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetCSPMScanSchedule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetConfigurationDetectionEntities gets misconfigurations based on the ID including custom policy detections in addition to default policy detections
+*/
+func (a *Client) GetConfigurationDetectionEntities(params *GetConfigurationDetectionEntitiesParams, opts ...ClientOption) (*GetConfigurationDetectionEntitiesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetConfigurationDetectionEntitiesParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetConfigurationDetectionEntities",
+		Method:             "GET",
+		PathPattern:        "/detects/entities/iom/v2",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetConfigurationDetectionEntitiesReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetConfigurationDetectionEntitiesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetConfigurationDetectionEntities: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetConfigurationDetectionIDsV2 gets list of active misconfiguration ids including custom policy detections in addition to default policy detections
+*/
+func (a *Client) GetConfigurationDetectionIDsV2(params *GetConfigurationDetectionIDsV2Params, opts ...ClientOption) (*GetConfigurationDetectionIDsV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetConfigurationDetectionIDsV2Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetConfigurationDetectionIDsV2",
+		Method:             "GET",
+		PathPattern:        "/detects/queries/iom/v2",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetConfigurationDetectionIDsV2Reader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetConfigurationDetectionIDsV2OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetConfigurationDetectionIDsV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -646,91 +768,18 @@ func (a *Client) GetConfigurationDetections(params *GetConfigurationDetectionsPa
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*GetConfigurationDetectionsDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetConfigurationDetections: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetIOAEvents fors c s p m i o a events gets list of i o a events
+PatchCSPMAWSAccount patches a existing account in our system for a customer
 */
-func (a *Client) GetIOAEvents(params *GetIOAEventsParams, opts ...ClientOption) (*GetIOAEventsOK, error) {
+func (a *Client) PatchCSPMAWSAccount(params *PatchCSPMAWSAccountParams, opts ...ClientOption) (*PatchCSPMAWSAccountCreated, *PatchCSPMAWSAccountMultiStatus, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetIOAEventsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetIOAEvents",
-		Method:             "GET",
-		PathPattern:        "/ioa/entities/events/v1",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetIOAEventsReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetIOAEventsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*GetIOAEventsDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-GetIOAUsers fors c s p m i o a users gets list of i o a users
-*/
-func (a *Client) GetIOAUsers(params *GetIOAUsersParams, opts ...ClientOption) (*GetIOAUsersOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetIOAUsersParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetIOAUsers",
-		Method:             "GET",
-		PathPattern:        "/ioa/entities/users/v1",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetIOAUsersReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetIOAUsersOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*GetIOAUsersDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-PatchCSPMAwsAccount patches a existing account in our system for a customer
-*/
-func (a *Client) PatchCSPMAwsAccount(params *PatchCSPMAwsAccountParams, opts ...ClientOption) (*PatchCSPMAwsAccountCreated, *PatchCSPMAwsAccountMultiStatus, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPatchCSPMAwsAccountParams()
+		params = NewPatchCSPMAWSAccountParams()
 	}
 	op := &runtime.ClientOperation{
 		ID:                 "PatchCSPMAwsAccount",
@@ -740,7 +789,7 @@ func (a *Client) PatchCSPMAwsAccount(params *PatchCSPMAwsAccountParams, opts ...
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PatchCSPMAwsAccountReader{formats: a.formats},
+		Reader:             &PatchCSPMAWSAccountReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -753,9 +802,9 @@ func (a *Client) PatchCSPMAwsAccount(params *PatchCSPMAwsAccountParams, opts ...
 		return nil, nil, err
 	}
 	switch value := result.(type) {
-	case *PatchCSPMAwsAccountCreated:
+	case *PatchCSPMAWSAccountCreated:
 		return value, nil, nil
-	case *PatchCSPMAwsAccountMultiStatus:
+	case *PatchCSPMAWSAccountMultiStatus:
 		return nil, value, nil
 	}
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
@@ -873,9 +922,9 @@ func (a *Client) UpdateCSPMPolicySettings(params *UpdateCSPMPolicySettingsParams
 	case *UpdateCSPMPolicySettingsMultiStatus:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*UpdateCSPMPolicySettingsDefault)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for cspm_registration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -911,8 +960,9 @@ func (a *Client) UpdateCSPMScanSchedule(params *UpdateCSPMScanScheduleParams, op
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*UpdateCSPMScanScheduleDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for UpdateCSPMScanSchedule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 // SetTransport changes the transport on the client

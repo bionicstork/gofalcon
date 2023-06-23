@@ -62,11 +62,11 @@ CombinedUserRolesV1Params contains all the parameters to send to the API endpoin
 */
 type CombinedUserRolesV1Params struct {
 
-	/* Cid.
+	/* CID.
 
 	   Customer ID to get grants for. Empty CID would result in Role IDs for user against current CID in view.
 	*/
-	Cid *string
+	CID *string
 
 	/* DirectOnly.
 
@@ -181,15 +181,15 @@ func (o *CombinedUserRolesV1Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCid adds the cid to the combined user roles v1 params
-func (o *CombinedUserRolesV1Params) WithCid(cid *string) *CombinedUserRolesV1Params {
-	o.SetCid(cid)
+// WithCID adds the cid to the combined user roles v1 params
+func (o *CombinedUserRolesV1Params) WithCID(cid *string) *CombinedUserRolesV1Params {
+	o.SetCID(cid)
 	return o
 }
 
-// SetCid adds the cid to the combined user roles v1 params
-func (o *CombinedUserRolesV1Params) SetCid(cid *string) {
-	o.Cid = cid
+// SetCID adds the cid to the combined user roles v1 params
+func (o *CombinedUserRolesV1Params) SetCID(cid *string) {
+	o.CID = cid
 }
 
 // WithDirectOnly adds the directOnly to the combined user roles v1 params
@@ -266,18 +266,18 @@ func (o *CombinedUserRolesV1Params) WriteToRequest(r runtime.ClientRequest, reg 
 	}
 	var res []error
 
-	if o.Cid != nil {
+	if o.CID != nil {
 
 		// query param cid
-		var qrCid string
+		var qrCID string
 
-		if o.Cid != nil {
-			qrCid = *o.Cid
+		if o.CID != nil {
+			qrCID = *o.CID
 		}
-		qCid := qrCid
-		if qCid != "" {
+		qCID := qrCID
+		if qCID != "" {
 
-			if err := r.SetQueryParam("cid", qCid); err != nil {
+			if err := r.SetQueryParam("cid", qCID); err != nil {
 				return err
 			}
 		}

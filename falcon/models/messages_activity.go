@@ -29,7 +29,7 @@ type MessagesActivity struct {
 
 	// cid
 	// Required: true
-	Cid *string `json:"cid"`
+	CID *string `json:"cid"`
 
 	// created by
 	// Required: true
@@ -66,7 +66,7 @@ func (m *MessagesActivity) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCid(formats); err != nil {
+	if err := m.validateCID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -110,9 +110,9 @@ func (m *MessagesActivity) validateCaseID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *MessagesActivity) validateCid(formats strfmt.Registry) error {
+func (m *MessagesActivity) validateCID(formats strfmt.Registry) error {
 
-	if err := validate.Required("cid", "body", m.Cid); err != nil {
+	if err := validate.Required("cid", "body", m.CID); err != nil {
 		return err
 	}
 
@@ -183,6 +183,7 @@ func (m *MessagesActivity) ContextValidate(ctx context.Context, formats strfmt.R
 func (m *MessagesActivity) contextValidateCreatedBy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreatedBy != nil {
+
 		if err := m.CreatedBy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("created_by")

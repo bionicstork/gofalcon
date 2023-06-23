@@ -57,7 +57,7 @@ type FwmgrAPINetworkLocationCreateRequestV1 struct {
 
 	// icmp request targets
 	// Required: true
-	IcmpRequestTargets *FwmgrDomainICMPTargets `json:"icmp_request_targets"`
+	ICMPRequestTargets *FwmgrDomainICMPTargets `json:"icmp_request_targets"`
 
 	// name
 	// Required: true
@@ -104,7 +104,7 @@ func (m *FwmgrAPINetworkLocationCreateRequestV1) Validate(formats strfmt.Registr
 		res = append(res, err)
 	}
 
-	if err := m.validateIcmpRequestTargets(formats); err != nil {
+	if err := m.validateICMPRequestTargets(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -232,14 +232,14 @@ func (m *FwmgrAPINetworkLocationCreateRequestV1) validateHTTPSReachableHosts(for
 	return nil
 }
 
-func (m *FwmgrAPINetworkLocationCreateRequestV1) validateIcmpRequestTargets(formats strfmt.Registry) error {
+func (m *FwmgrAPINetworkLocationCreateRequestV1) validateICMPRequestTargets(formats strfmt.Registry) error {
 
-	if err := validate.Required("icmp_request_targets", "body", m.IcmpRequestTargets); err != nil {
+	if err := validate.Required("icmp_request_targets", "body", m.ICMPRequestTargets); err != nil {
 		return err
 	}
 
-	if m.IcmpRequestTargets != nil {
-		if err := m.IcmpRequestTargets.Validate(formats); err != nil {
+	if m.ICMPRequestTargets != nil {
+		if err := m.ICMPRequestTargets.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("icmp_request_targets")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -277,7 +277,7 @@ func (m *FwmgrAPINetworkLocationCreateRequestV1) ContextValidate(ctx context.Con
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateIcmpRequestTargets(ctx, formats); err != nil {
+	if err := m.contextValidateICMPRequestTargets(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -290,6 +290,7 @@ func (m *FwmgrAPINetworkLocationCreateRequestV1) ContextValidate(ctx context.Con
 func (m *FwmgrAPINetworkLocationCreateRequestV1) contextValidateConnectionTypes(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ConnectionTypes != nil {
+
 		if err := m.ConnectionTypes.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("connection_types")
@@ -306,6 +307,7 @@ func (m *FwmgrAPINetworkLocationCreateRequestV1) contextValidateConnectionTypes(
 func (m *FwmgrAPINetworkLocationCreateRequestV1) contextValidateDNSResolutionTargets(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DNSResolutionTargets != nil {
+
 		if err := m.DNSResolutionTargets.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("dns_resolution_targets")
@@ -322,6 +324,7 @@ func (m *FwmgrAPINetworkLocationCreateRequestV1) contextValidateDNSResolutionTar
 func (m *FwmgrAPINetworkLocationCreateRequestV1) contextValidateHTTPSReachableHosts(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.HTTPSReachableHosts != nil {
+
 		if err := m.HTTPSReachableHosts.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("https_reachable_hosts")
@@ -335,10 +338,11 @@ func (m *FwmgrAPINetworkLocationCreateRequestV1) contextValidateHTTPSReachableHo
 	return nil
 }
 
-func (m *FwmgrAPINetworkLocationCreateRequestV1) contextValidateIcmpRequestTargets(ctx context.Context, formats strfmt.Registry) error {
+func (m *FwmgrAPINetworkLocationCreateRequestV1) contextValidateICMPRequestTargets(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.IcmpRequestTargets != nil {
-		if err := m.IcmpRequestTargets.ContextValidate(ctx, formats); err != nil {
+	if m.ICMPRequestTargets != nil {
+
+		if err := m.ICMPRequestTargets.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("icmp_request_targets")
 			} else if ce, ok := err.(*errors.CompositeError); ok {

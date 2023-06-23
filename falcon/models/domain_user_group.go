@@ -20,7 +20,7 @@ import (
 type DomainUserGroup struct {
 
 	// cid
-	Cid string `json:"cid,omitempty"`
+	CID string `json:"cid,omitempty"`
 
 	// description
 	// Required: true
