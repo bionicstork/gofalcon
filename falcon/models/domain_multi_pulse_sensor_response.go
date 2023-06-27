@@ -26,7 +26,7 @@ type DomainMultiPulseSensorResponse struct {
 
 	// errors
 	// Required: true
-	Errors []*MsaspecError `json:"errors"`
+	Errors []*MsaAPIError `json:"errors"`
 
 	// session id
 	// Required: true

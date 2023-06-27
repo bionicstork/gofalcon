@@ -22,11 +22,11 @@ type DomainNewsResponse struct {
 
 	// Array of API Errors
 	// Required: true
-	Errors []*MsaspecError `json:"errors"`
+	Errors []*MsaAPIError `json:"errors"`
 
 	// Meta information of a request, including traceID of the request and pagination information
 	// Required: true
-	Meta *MsaspecMetaInfo `json:"meta"`
+	Meta *MsaMetaInfo `json:"meta"`
 
 	// resources
 	// Required: true

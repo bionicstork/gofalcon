@@ -90,7 +90,7 @@ type DeleteAWSAccountsMixin0OK struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.MsaspecMetaInfo
+	Payload *models.MsaMetaInfo
 }
 
 // IsSuccess returns true when this delete Aws accounts mixin0 o k response has a 2xx status code
@@ -131,7 +131,7 @@ func (o *DeleteAWSAccountsMixin0OK) String() string {
 	return fmt.Sprintf("[DELETE /kubernetes-protection/entities/accounts/aws/v1][%d] deleteAwsAccountsMixin0OK  %+v", 200, o.Payload)
 }
 
-func (o *DeleteAWSAccountsMixin0OK) GetPayload() *models.MsaspecMetaInfo {
+func (o *DeleteAWSAccountsMixin0OK) GetPayload() *models.MsaMetaInfo {
 	return o.Payload
 }
 
@@ -166,7 +166,7 @@ func (o *DeleteAWSAccountsMixin0OK) readResponse(response runtime.ClientResponse
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.MsaspecMetaInfo)
+	o.Payload = new(models.MsaMetaInfo)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -200,7 +200,7 @@ type DeleteAWSAccountsMixin0MultiStatus struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.MsaspecMetaInfo
+	Payload *models.MsaMetaInfo
 }
 
 // IsSuccess returns true when this delete Aws accounts mixin0 multi status response has a 2xx status code
@@ -241,7 +241,7 @@ func (o *DeleteAWSAccountsMixin0MultiStatus) String() string {
 	return fmt.Sprintf("[DELETE /kubernetes-protection/entities/accounts/aws/v1][%d] deleteAwsAccountsMixin0MultiStatus  %+v", 207, o.Payload)
 }
 
-func (o *DeleteAWSAccountsMixin0MultiStatus) GetPayload() *models.MsaspecMetaInfo {
+func (o *DeleteAWSAccountsMixin0MultiStatus) GetPayload() *models.MsaMetaInfo {
 	return o.Payload
 }
 
@@ -276,7 +276,7 @@ func (o *DeleteAWSAccountsMixin0MultiStatus) readResponse(response runtime.Clien
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.MsaspecMetaInfo)
+	o.Payload = new(models.MsaMetaInfo)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -310,7 +310,7 @@ type DeleteAWSAccountsMixin0BadRequest struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.MsaspecMetaInfo
+	Payload *models.MsaMetaInfo
 }
 
 // IsSuccess returns true when this delete Aws accounts mixin0 bad request response has a 2xx status code
@@ -351,7 +351,7 @@ func (o *DeleteAWSAccountsMixin0BadRequest) String() string {
 	return fmt.Sprintf("[DELETE /kubernetes-protection/entities/accounts/aws/v1][%d] deleteAwsAccountsMixin0BadRequest  %+v", 400, o.Payload)
 }
 
-func (o *DeleteAWSAccountsMixin0BadRequest) GetPayload() *models.MsaspecMetaInfo {
+func (o *DeleteAWSAccountsMixin0BadRequest) GetPayload() *models.MsaMetaInfo {
 	return o.Payload
 }
 
@@ -386,7 +386,7 @@ func (o *DeleteAWSAccountsMixin0BadRequest) readResponse(response runtime.Client
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.MsaspecMetaInfo)
+	o.Payload = new(models.MsaMetaInfo)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -655,7 +655,7 @@ type DeleteAWSAccountsMixin0InternalServerError struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.MsaspecMetaInfo
+	Payload *models.MsaMetaInfo
 }
 
 // IsSuccess returns true when this delete Aws accounts mixin0 internal server error response has a 2xx status code
@@ -696,7 +696,7 @@ func (o *DeleteAWSAccountsMixin0InternalServerError) String() string {
 	return fmt.Sprintf("[DELETE /kubernetes-protection/entities/accounts/aws/v1][%d] deleteAwsAccountsMixin0InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *DeleteAWSAccountsMixin0InternalServerError) GetPayload() *models.MsaspecMetaInfo {
+func (o *DeleteAWSAccountsMixin0InternalServerError) GetPayload() *models.MsaMetaInfo {
 	return o.Payload
 }
 
@@ -731,7 +731,7 @@ func (o *DeleteAWSAccountsMixin0InternalServerError) readResponse(response runti
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.MsaspecMetaInfo)
+	o.Payload = new(models.MsaMetaInfo)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

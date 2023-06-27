@@ -21,7 +21,7 @@ type RegistrationMSASpecMetaInfoExtension struct {
 
 	// meta info
 	// Required: true
-	MetaInfo *MsaspecMetaInfo `json:"MetaInfo"`
+	MetaInfo *MsaMetaInfo `json:"MetaInfo"`
 
 	// pagination
 	Pagination *RegistrationMSAPagingExtension `json:"pagination,omitempty"`

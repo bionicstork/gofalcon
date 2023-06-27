@@ -21,7 +21,7 @@ type FalconxMetaInfo struct {
 
 	// meta info
 	// Required: true
-	MetaInfo *MsaspecMetaInfo `json:"MetaInfo"`
+	MetaInfo *MsaMetaInfo `json:"MetaInfo"`
 
 	// quota
 	Quota *FalconxQuota `json:"quota,omitempty"`

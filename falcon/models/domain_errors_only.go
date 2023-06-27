@@ -26,7 +26,7 @@ type DomainErrorsOnly struct {
 
 	// meta
 	// Required: true
-	Meta *MsaspecMetaInfo `json:"meta"`
+	Meta *MsaMetaInfo `json:"meta"`
 }
 
 // Validate validates this domain errors only

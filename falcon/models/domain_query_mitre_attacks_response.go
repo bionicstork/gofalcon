@@ -22,11 +22,11 @@ type DomainQueryMITREAttacksResponse struct {
 
 	// Array of API Errors
 	// Required: true
-	Errors []*MsaspecError `json:"errors"`
+	Errors []*MsaAPIError `json:"errors"`
 
 	// Meta information of a request, including traceID of the request and pagination information
 	// Required: true
-	Meta *MsaspecMetaInfo `json:"meta"`
+	Meta *MsaMetaInfo `json:"meta"`
 
 	// Actor's MITRE attack (Tactic and Technique) ids, represents a concatenation of actors slug, tactic id and technique id (optional) concatenated by underscore, example: fancy-bear_TA0011_T1071'
 	// Required: true

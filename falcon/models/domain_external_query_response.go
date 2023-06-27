@@ -21,11 +21,11 @@ import (
 type DomainExternalQueryResponse struct {
 
 	// errors
-	Errors []*MsaspecError `json:"errors"`
+	Errors []*MsaAPIError `json:"errors"`
 
 	// meta
 	// Required: true
-	Meta *MsaspecMetaInfo `json:"meta"`
+	Meta *MsaMetaInfo `json:"meta"`
 
 	// resources
 	Resources []string `json:"resources"`

@@ -33,7 +33,7 @@ type DomainMultiStatusSensorResponse struct {
 
 	// errors
 	// Required: true
-	Errors []*MsaspecError `json:"errors"`
+	Errors []*MsaAPIError `json:"errors"`
 
 	// offline queued
 	// Required: true

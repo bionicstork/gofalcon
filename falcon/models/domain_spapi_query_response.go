@@ -21,7 +21,7 @@ import (
 type DomainSPAPIQueryResponse struct {
 
 	// errors
-	Errors []*MsaspecError `json:"errors"`
+	Errors []*MsaAPIError `json:"errors"`
 
 	// meta
 	// Required: true

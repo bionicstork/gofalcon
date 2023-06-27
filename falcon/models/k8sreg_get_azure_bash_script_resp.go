@@ -22,11 +22,11 @@ type K8sregGetAzureBashScriptResp struct {
 
 	// errors
 	// Required: true
-	Errors []*MsaspecError `json:"errors"`
+	Errors []*MsaAPIError `json:"errors"`
 
 	// meta
 	// Required: true
-	Meta *MsaspecMetaInfo `json:"meta"`
+	Meta *MsaMetaInfo `json:"meta"`
 
 	// resources
 	// Required: true

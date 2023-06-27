@@ -200,7 +200,7 @@ type GetCredentialsBadRequest struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.MsaspecError
+	Payload *models.MsaAPIError
 }
 
 // IsSuccess returns true when this get credentials bad request response has a 2xx status code
@@ -241,7 +241,7 @@ func (o *GetCredentialsBadRequest) String() string {
 	return fmt.Sprintf("[GET /container-security/entities/image-registry-credentials/v1][%d] getCredentialsBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetCredentialsBadRequest) GetPayload() *models.MsaspecError {
+func (o *GetCredentialsBadRequest) GetPayload() *models.MsaAPIError {
 	return o.Payload
 }
 
@@ -276,7 +276,7 @@ func (o *GetCredentialsBadRequest) readResponse(response runtime.ClientResponse,
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.MsaspecError)
+	o.Payload = new(models.MsaAPIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -310,7 +310,7 @@ type GetCredentialsUnauthorized struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.MsaspecError
+	Payload *models.MsaAPIError
 }
 
 // IsSuccess returns true when this get credentials unauthorized response has a 2xx status code
@@ -351,7 +351,7 @@ func (o *GetCredentialsUnauthorized) String() string {
 	return fmt.Sprintf("[GET /container-security/entities/image-registry-credentials/v1][%d] getCredentialsUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *GetCredentialsUnauthorized) GetPayload() *models.MsaspecError {
+func (o *GetCredentialsUnauthorized) GetPayload() *models.MsaAPIError {
 	return o.Payload
 }
 
@@ -386,7 +386,7 @@ func (o *GetCredentialsUnauthorized) readResponse(response runtime.ClientRespons
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.MsaspecError)
+	o.Payload = new(models.MsaAPIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -420,7 +420,7 @@ type GetCredentialsForbidden struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.MsaspecError
+	Payload *models.MsaAPIError
 }
 
 // IsSuccess returns true when this get credentials forbidden response has a 2xx status code
@@ -461,7 +461,7 @@ func (o *GetCredentialsForbidden) String() string {
 	return fmt.Sprintf("[GET /container-security/entities/image-registry-credentials/v1][%d] getCredentialsForbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetCredentialsForbidden) GetPayload() *models.MsaspecError {
+func (o *GetCredentialsForbidden) GetPayload() *models.MsaAPIError {
 	return o.Payload
 }
 
@@ -496,7 +496,7 @@ func (o *GetCredentialsForbidden) readResponse(response runtime.ClientResponse, 
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.MsaspecError)
+	o.Payload = new(models.MsaAPIError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

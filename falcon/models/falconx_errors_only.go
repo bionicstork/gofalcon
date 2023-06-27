@@ -22,11 +22,11 @@ type FalconxErrorsOnly struct {
 
 	// meta info
 	// Required: true
-	MetaInfo *MsaspecMetaInfo `json:"MetaInfo"`
+	MetaInfo *MsaMetaInfo `json:"MetaInfo"`
 
 	// errors
 	// Required: true
-	Errors []*MsaspecError `json:"errors"`
+	Errors []*MsaAPIError `json:"errors"`
 
 	// quota
 	Quota *FalconxQuota `json:"quota,omitempty"`

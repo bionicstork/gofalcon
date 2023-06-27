@@ -22,7 +22,7 @@ type DomainAuditResponse struct {
 
 	// errors
 	// Required: true
-	Errors []*MsaspecError `json:"errors"`
+	Errors []*MsaAPIError `json:"errors"`
 
 	// meta
 	// Required: true

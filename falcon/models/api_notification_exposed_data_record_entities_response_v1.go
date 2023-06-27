@@ -26,7 +26,7 @@ type APINotificationExposedDataRecordEntitiesResponseV1 struct {
 
 	// meta
 	// Required: true
-	Meta *MsaspecMetaInfo `json:"meta"`
+	Meta *MsaMetaInfo `json:"meta"`
 
 	// resources
 	// Required: true

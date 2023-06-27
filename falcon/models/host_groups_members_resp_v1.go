@@ -22,11 +22,11 @@ type HostGroupsMembersRespV1 struct {
 
 	// A collection of any errors which occurred during execution of the request
 	// Required: true
-	Errors []*MsaspecError `json:"errors"`
+	Errors []*MsaAPIError `json:"errors"`
 
 	// Additional metadata about the request
 	// Required: true
-	Meta *MsaspecMetaInfo `json:"meta"`
+	Meta *MsaMetaInfo `json:"meta"`
 
 	// A collection of device details
 	// Required: true

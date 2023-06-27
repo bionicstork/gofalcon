@@ -194,7 +194,7 @@ type GetConfigurationDetectionIDsV2BadRequest struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.MsaspecMetaInfo
+	Payload *models.MsaMetaInfo
 }
 
 // IsSuccess returns true when this get configuration detection i ds v2 bad request response has a 2xx status code
@@ -235,7 +235,7 @@ func (o *GetConfigurationDetectionIDsV2BadRequest) String() string {
 	return fmt.Sprintf("[GET /detects/queries/iom/v2][%d] getConfigurationDetectionIDsV2BadRequest  %+v", 400, o.Payload)
 }
 
-func (o *GetConfigurationDetectionIDsV2BadRequest) GetPayload() *models.MsaspecMetaInfo {
+func (o *GetConfigurationDetectionIDsV2BadRequest) GetPayload() *models.MsaMetaInfo {
 	return o.Payload
 }
 
@@ -270,7 +270,7 @@ func (o *GetConfigurationDetectionIDsV2BadRequest) readResponse(response runtime
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.MsaspecMetaInfo)
+	o.Payload = new(models.MsaMetaInfo)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -304,7 +304,7 @@ type GetConfigurationDetectionIDsV2Forbidden struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.MsaspecMetaInfo
+	Payload *models.MsaMetaInfo
 }
 
 // IsSuccess returns true when this get configuration detection i ds v2 forbidden response has a 2xx status code
@@ -345,7 +345,7 @@ func (o *GetConfigurationDetectionIDsV2Forbidden) String() string {
 	return fmt.Sprintf("[GET /detects/queries/iom/v2][%d] getConfigurationDetectionIDsV2Forbidden  %+v", 403, o.Payload)
 }
 
-func (o *GetConfigurationDetectionIDsV2Forbidden) GetPayload() *models.MsaspecMetaInfo {
+func (o *GetConfigurationDetectionIDsV2Forbidden) GetPayload() *models.MsaMetaInfo {
 	return o.Payload
 }
 
@@ -380,7 +380,7 @@ func (o *GetConfigurationDetectionIDsV2Forbidden) readResponse(response runtime.
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.MsaspecMetaInfo)
+	o.Payload = new(models.MsaMetaInfo)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -539,7 +539,7 @@ type GetConfigurationDetectionIDsV2InternalServerError struct {
 	 */
 	XRateLimitRemaining int64
 
-	Payload *models.MsaspecMetaInfo
+	Payload *models.MsaMetaInfo
 }
 
 // IsSuccess returns true when this get configuration detection i ds v2 internal server error response has a 2xx status code
@@ -580,7 +580,7 @@ func (o *GetConfigurationDetectionIDsV2InternalServerError) String() string {
 	return fmt.Sprintf("[GET /detects/queries/iom/v2][%d] getConfigurationDetectionIDsV2InternalServerError  %+v", 500, o.Payload)
 }
 
-func (o *GetConfigurationDetectionIDsV2InternalServerError) GetPayload() *models.MsaspecMetaInfo {
+func (o *GetConfigurationDetectionIDsV2InternalServerError) GetPayload() *models.MsaMetaInfo {
 	return o.Payload
 }
 
@@ -615,7 +615,7 @@ func (o *GetConfigurationDetectionIDsV2InternalServerError) readResponse(respons
 		o.XRateLimitRemaining = valxRateLimitRemaining
 	}
 
-	o.Payload = new(models.MsaspecMetaInfo)
+	o.Payload = new(models.MsaMetaInfo)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

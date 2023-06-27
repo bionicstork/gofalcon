@@ -22,7 +22,7 @@ type FalconxSummaryReportV1Response struct {
 
 	// errors
 	// Required: true
-	Errors []*MsaspecError `json:"errors"`
+	Errors []*MsaAPIError `json:"errors"`
 
 	// meta
 	// Required: true

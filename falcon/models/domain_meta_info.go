@@ -21,7 +21,7 @@ type DomainMetaInfo struct {
 
 	// msa meta info
 	// Required: true
-	MsaMetaInfo *MsaspecMetaInfo `json:"MsaMetaInfo"`
+	MsaMetaInfo *MsaMetaInfo `json:"MsaMetaInfo"`
 
 	// quota
 	Quota *DomainQuota `json:"quota,omitempty"`
