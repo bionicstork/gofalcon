@@ -15,10 +15,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DetectsapiPatchEntitiesInvestigatablesV2Request detectsapi patch entities investigatables v2 request
+// DetectsapiPatchEntitiesAlertsV2Request detectsapi patch entities alerts v2 request
 //
-// swagger:model detectsapi.PatchEntitiesInvestigatablesV2Request
-type DetectsapiPatchEntitiesInvestigatablesV2Request struct {
+// swagger:model detectsapi.PatchEntitiesAlertsV2Request
+type DetectsapiPatchEntitiesAlertsV2Request struct {
 
 	// action parameters
 	ActionParameters []*MsaspecActionParameter `json:"action_parameters"`
@@ -28,8 +28,8 @@ type DetectsapiPatchEntitiesInvestigatablesV2Request struct {
 	Ids []string `json:"ids"`
 }
 
-// Validate validates this detectsapi patch entities investigatables v2 request
-func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) Validate(formats strfmt.Registry) error {
+// Validate validates this detectsapi patch entities alerts v2 request
+func (m *DetectsapiPatchEntitiesAlertsV2Request) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateActionParameters(formats); err != nil {
@@ -46,7 +46,7 @@ func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) Validate(formats strfm
 	return nil
 }
 
-func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) validateActionParameters(formats strfmt.Registry) error {
+func (m *DetectsapiPatchEntitiesAlertsV2Request) validateActionParameters(formats strfmt.Registry) error {
 	if swag.IsZero(m.ActionParameters) { // not required
 		return nil
 	}
@@ -72,7 +72,7 @@ func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) validateActionParamete
 	return nil
 }
 
-func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) validateIds(formats strfmt.Registry) error {
+func (m *DetectsapiPatchEntitiesAlertsV2Request) validateIds(formats strfmt.Registry) error {
 
 	if err := validate.Required("ids", "body", m.Ids); err != nil {
 		return err
@@ -81,8 +81,8 @@ func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) validateIds(formats st
 	return nil
 }
 
-// ContextValidate validate this detectsapi patch entities investigatables v2 request based on the context it is used
-func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this detectsapi patch entities alerts v2 request based on the context it is used
+func (m *DetectsapiPatchEntitiesAlertsV2Request) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateActionParameters(ctx, formats); err != nil {
@@ -95,7 +95,7 @@ func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) ContextValidate(ctx co
 	return nil
 }
 
-func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) contextValidateActionParameters(ctx context.Context, formats strfmt.Registry) error {
+func (m *DetectsapiPatchEntitiesAlertsV2Request) contextValidateActionParameters(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.ActionParameters); i++ {
 
@@ -121,7 +121,7 @@ func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) contextValidateActionP
 }
 
 // MarshalBinary interface implementation
-func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) MarshalBinary() ([]byte, error) {
+func (m *DetectsapiPatchEntitiesAlertsV2Request) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -129,8 +129,8 @@ func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) MarshalBinary() ([]byt
 }
 
 // UnmarshalBinary interface implementation
-func (m *DetectsapiPatchEntitiesInvestigatablesV2Request) UnmarshalBinary(b []byte) error {
-	var res DetectsapiPatchEntitiesInvestigatablesV2Request
+func (m *DetectsapiPatchEntitiesAlertsV2Request) UnmarshalBinary(b []byte) error {
+	var res DetectsapiPatchEntitiesAlertsV2Request
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

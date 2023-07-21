@@ -79,7 +79,7 @@ func (a *Client) GetQueriesAlertsV1(params *GetQueriesAlertsV1Params, opts ...Cl
 }
 
 /*
-PatchEntitiesAlertsV2 performs actions on detections identified by detection ID s in request each action has a name and a description which describes what the action does
+PatchEntitiesAlertsV2 performs actions on detections identified by detection ID s in request each action has a name and a description which describes what the action does if a request adds and removes tag in a single request the order of processing would be to remove tags before adding new ones in
 */
 func (a *Client) PatchEntitiesAlertsV2(params *PatchEntitiesAlertsV2Params, opts ...ClientOption) (*PatchEntitiesAlertsV2OK, error) {
 	// TODO: Validate the params before sending
@@ -111,8 +111,9 @@ func (a *Client) PatchEntitiesAlertsV2(params *PatchEntitiesAlertsV2Params, opts
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*PatchEntitiesAlertsV2Default)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PatchEntitiesAlertsV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
