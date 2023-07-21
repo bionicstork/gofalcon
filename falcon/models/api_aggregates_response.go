@@ -15,13 +15,12 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DetectsapiPostEntitiesInvestigatablesV1Response detectsapi post entities investigatables v1 response
+// APIAggregatesResponse api aggregates response
 //
-// swagger:model detectsapi.PostEntitiesInvestigatablesV1Response
-type DetectsapiPostEntitiesInvestigatablesV1Response struct {
+// swagger:model api.aggregatesResponse
+type APIAggregatesResponse struct {
 
 	// errors
-	// Required: true
 	Errors []*MsaAPIError `json:"errors"`
 
 	// meta
@@ -30,11 +29,11 @@ type DetectsapiPostEntitiesInvestigatablesV1Response struct {
 
 	// resources
 	// Required: true
-	Resources []*DetectsInvestigatable `json:"resources"`
+	Resources []*MsaAggregationResult `json:"resources"`
 }
 
-// Validate validates this detectsapi post entities investigatables v1 response
-func (m *DetectsapiPostEntitiesInvestigatablesV1Response) Validate(formats strfmt.Registry) error {
+// Validate validates this api aggregates response
+func (m *APIAggregatesResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateErrors(formats); err != nil {
@@ -55,10 +54,9 @@ func (m *DetectsapiPostEntitiesInvestigatablesV1Response) Validate(formats strfm
 	return nil
 }
 
-func (m *DetectsapiPostEntitiesInvestigatablesV1Response) validateErrors(formats strfmt.Registry) error {
-
-	if err := validate.Required("errors", "body", m.Errors); err != nil {
-		return err
+func (m *APIAggregatesResponse) validateErrors(formats strfmt.Registry) error {
+	if swag.IsZero(m.Errors) { // not required
+		return nil
 	}
 
 	for i := 0; i < len(m.Errors); i++ {
@@ -82,7 +80,7 @@ func (m *DetectsapiPostEntitiesInvestigatablesV1Response) validateErrors(formats
 	return nil
 }
 
-func (m *DetectsapiPostEntitiesInvestigatablesV1Response) validateMeta(formats strfmt.Registry) error {
+func (m *APIAggregatesResponse) validateMeta(formats strfmt.Registry) error {
 
 	if err := validate.Required("meta", "body", m.Meta); err != nil {
 		return err
@@ -102,7 +100,7 @@ func (m *DetectsapiPostEntitiesInvestigatablesV1Response) validateMeta(formats s
 	return nil
 }
 
-func (m *DetectsapiPostEntitiesInvestigatablesV1Response) validateResources(formats strfmt.Registry) error {
+func (m *APIAggregatesResponse) validateResources(formats strfmt.Registry) error {
 
 	if err := validate.Required("resources", "body", m.Resources); err != nil {
 		return err
@@ -129,8 +127,8 @@ func (m *DetectsapiPostEntitiesInvestigatablesV1Response) validateResources(form
 	return nil
 }
 
-// ContextValidate validate this detectsapi post entities investigatables v1 response based on the context it is used
-func (m *DetectsapiPostEntitiesInvestigatablesV1Response) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this api aggregates response based on the context it is used
+func (m *APIAggregatesResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateErrors(ctx, formats); err != nil {
@@ -151,7 +149,7 @@ func (m *DetectsapiPostEntitiesInvestigatablesV1Response) ContextValidate(ctx co
 	return nil
 }
 
-func (m *DetectsapiPostEntitiesInvestigatablesV1Response) contextValidateErrors(ctx context.Context, formats strfmt.Registry) error {
+func (m *APIAggregatesResponse) contextValidateErrors(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Errors); i++ {
 
@@ -176,7 +174,7 @@ func (m *DetectsapiPostEntitiesInvestigatablesV1Response) contextValidateErrors(
 	return nil
 }
 
-func (m *DetectsapiPostEntitiesInvestigatablesV1Response) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
+func (m *APIAggregatesResponse) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
 
@@ -193,7 +191,7 @@ func (m *DetectsapiPostEntitiesInvestigatablesV1Response) contextValidateMeta(ct
 	return nil
 }
 
-func (m *DetectsapiPostEntitiesInvestigatablesV1Response) contextValidateResources(ctx context.Context, formats strfmt.Registry) error {
+func (m *APIAggregatesResponse) contextValidateResources(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Resources); i++ {
 
@@ -219,7 +217,7 @@ func (m *DetectsapiPostEntitiesInvestigatablesV1Response) contextValidateResourc
 }
 
 // MarshalBinary interface implementation
-func (m *DetectsapiPostEntitiesInvestigatablesV1Response) MarshalBinary() ([]byte, error) {
+func (m *APIAggregatesResponse) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -227,8 +225,8 @@ func (m *DetectsapiPostEntitiesInvestigatablesV1Response) MarshalBinary() ([]byt
 }
 
 // UnmarshalBinary interface implementation
-func (m *DetectsapiPostEntitiesInvestigatablesV1Response) UnmarshalBinary(b []byte) error {
-	var res DetectsapiPostEntitiesInvestigatablesV1Response
+func (m *APIAggregatesResponse) UnmarshalBinary(b []byte) error {
+	var res APIAggregatesResponse
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}
