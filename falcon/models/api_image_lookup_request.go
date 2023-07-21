@@ -102,6 +102,11 @@ func (m *APIImageLookupRequest) contextValidatePackages(ctx context.Context, for
 	for i := 0; i < len(m.Packages); i++ {
 
 		if m.Packages[i] != nil {
+
+			if swag.IsZero(m.Packages[i]) { // not required
+				return nil
+			}
+
 			if err := m.Packages[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("packages" + "." + strconv.Itoa(i))

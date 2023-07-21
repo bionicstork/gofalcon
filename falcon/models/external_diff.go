@@ -72,6 +72,11 @@ func (m *ExternalDiff) ContextValidate(ctx context.Context, formats strfmt.Regis
 func (m *ExternalDiff) contextValidateAfter(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.After != nil {
+
+		if swag.IsZero(m.After) { // not required
+			return nil
+		}
+
 		if err := m.After.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("after")

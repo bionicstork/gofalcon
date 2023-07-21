@@ -432,6 +432,11 @@ func (m *DeviceMappedDevicePolicies) ContextValidate(ctx context.Context, format
 func (m *DeviceMappedDevicePolicies) contextValidateAirlock(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Airlock != nil {
+
+		if swag.IsZero(m.Airlock) { // not required
+			return nil
+		}
+
 		if err := m.Airlock.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("airlock")
@@ -448,6 +453,11 @@ func (m *DeviceMappedDevicePolicies) contextValidateAirlock(ctx context.Context,
 func (m *DeviceMappedDevicePolicies) contextValidateAutomox(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Automox != nil {
+
+		if swag.IsZero(m.Automox) { // not required
+			return nil
+		}
+
 		if err := m.Automox.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("automox")
@@ -464,6 +474,11 @@ func (m *DeviceMappedDevicePolicies) contextValidateAutomox(ctx context.Context,
 func (m *DeviceMappedDevicePolicies) contextValidateDeviceControl(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DeviceControl != nil {
+
+		if swag.IsZero(m.DeviceControl) { // not required
+			return nil
+		}
+
 		if err := m.DeviceControl.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("device_control")
@@ -480,6 +495,11 @@ func (m *DeviceMappedDevicePolicies) contextValidateDeviceControl(ctx context.Co
 func (m *DeviceMappedDevicePolicies) contextValidateFim(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Fim != nil {
+
+		if swag.IsZero(m.Fim) { // not required
+			return nil
+		}
+
 		if err := m.Fim.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("fim")
@@ -496,6 +516,11 @@ func (m *DeviceMappedDevicePolicies) contextValidateFim(ctx context.Context, for
 func (m *DeviceMappedDevicePolicies) contextValidateFirewall(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Firewall != nil {
+
+		if swag.IsZero(m.Firewall) { // not required
+			return nil
+		}
+
 		if err := m.Firewall.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("firewall")
@@ -512,6 +537,11 @@ func (m *DeviceMappedDevicePolicies) contextValidateFirewall(ctx context.Context
 func (m *DeviceMappedDevicePolicies) contextValidateGlobalConfig(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.GlobalConfig != nil {
+
+		if swag.IsZero(m.GlobalConfig) { // not required
+			return nil
+		}
+
 		if err := m.GlobalConfig.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("global_config")
@@ -528,6 +558,11 @@ func (m *DeviceMappedDevicePolicies) contextValidateGlobalConfig(ctx context.Con
 func (m *DeviceMappedDevicePolicies) contextValidateIdentityProtection(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentityProtection != nil {
+
+		if swag.IsZero(m.IdentityProtection) { // not required
+			return nil
+		}
+
 		if err := m.IdentityProtection.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity-protection")
@@ -544,6 +579,11 @@ func (m *DeviceMappedDevicePolicies) contextValidateIdentityProtection(ctx conte
 func (m *DeviceMappedDevicePolicies) contextValidateJumpcloud(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jumpcloud != nil {
+
+		if swag.IsZero(m.Jumpcloud) { // not required
+			return nil
+		}
+
 		if err := m.Jumpcloud.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jumpcloud")
@@ -560,6 +600,11 @@ func (m *DeviceMappedDevicePolicies) contextValidateJumpcloud(ctx context.Contex
 func (m *DeviceMappedDevicePolicies) contextValidateMobile(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Mobile != nil {
+
+		if swag.IsZero(m.Mobile) { // not required
+			return nil
+		}
+
 		if err := m.Mobile.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mobile")
@@ -576,6 +621,11 @@ func (m *DeviceMappedDevicePolicies) contextValidateMobile(ctx context.Context, 
 func (m *DeviceMappedDevicePolicies) contextValidateNetskope(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Netskope != nil {
+
+		if swag.IsZero(m.Netskope) { // not required
+			return nil
+		}
+
 		if err := m.Netskope.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("netskope")
@@ -592,6 +642,11 @@ func (m *DeviceMappedDevicePolicies) contextValidateNetskope(ctx context.Context
 func (m *DeviceMappedDevicePolicies) contextValidatePrevention(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Prevention != nil {
+
+		if swag.IsZero(m.Prevention) { // not required
+			return nil
+		}
+
 		if err := m.Prevention.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("prevention")
@@ -608,6 +663,11 @@ func (m *DeviceMappedDevicePolicies) contextValidatePrevention(ctx context.Conte
 func (m *DeviceMappedDevicePolicies) contextValidateRemoteResponse(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RemoteResponse != nil {
+
+		if swag.IsZero(m.RemoteResponse) { // not required
+			return nil
+		}
+
 		if err := m.RemoteResponse.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("remote_response")
@@ -624,6 +684,11 @@ func (m *DeviceMappedDevicePolicies) contextValidateRemoteResponse(ctx context.C
 func (m *DeviceMappedDevicePolicies) contextValidateSensorUpdate(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SensorUpdate != nil {
+
+		if swag.IsZero(m.SensorUpdate) { // not required
+			return nil
+		}
+
 		if err := m.SensorUpdate.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("sensor_update")

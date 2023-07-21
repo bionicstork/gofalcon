@@ -98,6 +98,7 @@ func (m *RequestsUpdateDeviceControlPolicyV1) ContextValidate(ctx context.Contex
 func (m *RequestsUpdateDeviceControlPolicyV1) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Settings != nil {
+
 		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("settings")

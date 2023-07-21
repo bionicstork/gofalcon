@@ -56,7 +56,7 @@ func (o *GetSensorVisibilityExclusionsV1Reader) ReadResponse(response runtime.Cl
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /policy/entities/sv-exclusions/v1] getSensorVisibilityExclusionsV1", response, response.Code())
 	}
 }
 

@@ -96,6 +96,11 @@ func (m *RequestsUpdateSensorUpdatePolicyV1) ContextValidate(ctx context.Context
 func (m *RequestsUpdateSensorUpdatePolicyV1) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
 		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("settings")

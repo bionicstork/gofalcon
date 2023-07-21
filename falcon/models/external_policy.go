@@ -75,6 +75,11 @@ func (m *ExternalPolicy) ContextValidate(ctx context.Context, formats strfmt.Reg
 func (m *ExternalPolicy) contextValidateRuleGroup(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RuleGroup != nil {
+
+		if swag.IsZero(m.RuleGroup) { // not required
+			return nil
+		}
+
 		if err := m.RuleGroup.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("rule_group")

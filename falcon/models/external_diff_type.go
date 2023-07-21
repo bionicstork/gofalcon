@@ -72,6 +72,11 @@ func (m *ExternalDiffType) ContextValidate(ctx context.Context, formats strfmt.R
 func (m *ExternalDiffType) contextValidateHash(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Hash != nil {
+
+		if swag.IsZero(m.Hash) { // not required
+			return nil
+		}
+
 		if err := m.Hash.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("hash")

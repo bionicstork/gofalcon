@@ -279,6 +279,11 @@ func (m *DomainBreachedItemV1) ContextValidate(ctx context.Context, formats strf
 func (m *DomainBreachedItemV1) contextValidateFinancial(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Financial != nil {
+
+		if swag.IsZero(m.Financial) { // not required
+			return nil
+		}
+
 		if err := m.Financial.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("financial")
@@ -295,6 +300,11 @@ func (m *DomainBreachedItemV1) contextValidateFinancial(ctx context.Context, for
 func (m *DomainBreachedItemV1) contextValidateLocation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Location != nil {
+
+		if swag.IsZero(m.Location) { // not required
+			return nil
+		}
+
 		if err := m.Location.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("location")
@@ -311,6 +321,11 @@ func (m *DomainBreachedItemV1) contextValidateLocation(ctx context.Context, form
 func (m *DomainBreachedItemV1) contextValidateSocial(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Social != nil {
+
+		if swag.IsZero(m.Social) { // not required
+			return nil
+		}
+
 		if err := m.Social.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("social")

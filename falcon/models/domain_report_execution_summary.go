@@ -165,6 +165,7 @@ func (m *DomainReportExecutionSummary) ContextValidate(ctx context.Context, form
 func (m *DomainReportExecutionSummary) contextValidateResultMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ResultMetadata != nil {
+
 		if err := m.ResultMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("result_metadata")

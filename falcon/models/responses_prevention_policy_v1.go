@@ -382,6 +382,11 @@ func (m *ResponsesPreventionPolicyV1) contextValidateGroups(ctx context.Context,
 	for i := 0; i < len(m.Groups); i++ {
 
 		if m.Groups[i] != nil {
+
+			if swag.IsZero(m.Groups[i]) { // not required
+				return nil
+			}
+
 			if err := m.Groups[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("groups" + "." + strconv.Itoa(i))
@@ -402,6 +407,11 @@ func (m *ResponsesPreventionPolicyV1) contextValidateIoaRuleGroups(ctx context.C
 	for i := 0; i < len(m.IoaRuleGroups); i++ {
 
 		if m.IoaRuleGroups[i] != nil {
+
+			if swag.IsZero(m.IoaRuleGroups[i]) { // not required
+				return nil
+			}
+
 			if err := m.IoaRuleGroups[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ioa_rule_groups" + "." + strconv.Itoa(i))
@@ -422,6 +432,11 @@ func (m *ResponsesPreventionPolicyV1) contextValidatePreventionSettings(ctx cont
 	for i := 0; i < len(m.PreventionSettings); i++ {
 
 		if m.PreventionSettings[i] != nil {
+
+			if swag.IsZero(m.PreventionSettings[i]) { // not required
+				return nil
+			}
+
 			if err := m.PreventionSettings[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("prevention_settings" + "." + strconv.Itoa(i))

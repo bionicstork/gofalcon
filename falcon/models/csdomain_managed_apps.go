@@ -132,6 +132,11 @@ func (m *CsdomainManagedApps) ContextValidate(ctx context.Context, formats strfm
 func (m *CsdomainManagedApps) contextValidateAirlock(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Airlock != nil {
+
+		if swag.IsZero(m.Airlock) { // not required
+			return nil
+		}
+
 		if err := m.Airlock.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("airlock")
@@ -148,6 +153,11 @@ func (m *CsdomainManagedApps) contextValidateAirlock(ctx context.Context, format
 func (m *CsdomainManagedApps) contextValidateAutomox(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Automox != nil {
+
+		if swag.IsZero(m.Automox) { // not required
+			return nil
+		}
+
 		if err := m.Automox.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("automox")
@@ -164,6 +174,11 @@ func (m *CsdomainManagedApps) contextValidateAutomox(ctx context.Context, format
 func (m *CsdomainManagedApps) contextValidateNetskope(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Netskope != nil {
+
+		if swag.IsZero(m.Netskope) { // not required
+			return nil
+		}
+
 		if err := m.Netskope.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("netskope")

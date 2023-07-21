@@ -343,6 +343,11 @@ func (m *ResponsesRTResponsePolicyV1) contextValidateGroups(ctx context.Context,
 	for i := 0; i < len(m.Groups); i++ {
 
 		if m.Groups[i] != nil {
+
+			if swag.IsZero(m.Groups[i]) { // not required
+				return nil
+			}
+
 			if err := m.Groups[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("groups" + "." + strconv.Itoa(i))
@@ -363,6 +368,11 @@ func (m *ResponsesRTResponsePolicyV1) contextValidateSettings(ctx context.Contex
 	for i := 0; i < len(m.Settings); i++ {
 
 		if m.Settings[i] != nil {
+
+			if swag.IsZero(m.Settings[i]) { // not required
+				return nil
+			}
+
 			if err := m.Settings[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("settings" + "." + strconv.Itoa(i))

@@ -240,6 +240,11 @@ func (m *FalconxReportV1) contextValidateIntel(ctx context.Context, formats strf
 	for i := 0; i < len(m.Intel); i++ {
 
 		if m.Intel[i] != nil {
+
+			if swag.IsZero(m.Intel[i]) { // not required
+				return nil
+			}
+
 			if err := m.Intel[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("intel" + "." + strconv.Itoa(i))
@@ -260,6 +265,11 @@ func (m *FalconxReportV1) contextValidateMalquery(ctx context.Context, formats s
 	for i := 0; i < len(m.Malquery); i++ {
 
 		if m.Malquery[i] != nil {
+
+			if swag.IsZero(m.Malquery[i]) { // not required
+				return nil
+			}
+
 			if err := m.Malquery[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("malquery" + "." + strconv.Itoa(i))
@@ -280,6 +290,11 @@ func (m *FalconxReportV1) contextValidateSandbox(ctx context.Context, formats st
 	for i := 0; i < len(m.Sandbox); i++ {
 
 		if m.Sandbox[i] != nil {
+
+			if swag.IsZero(m.Sandbox[i]) { // not required
+				return nil
+			}
+
 			if err := m.Sandbox[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("sandbox" + "." + strconv.Itoa(i))
@@ -298,6 +313,11 @@ func (m *FalconxReportV1) contextValidateSandbox(ctx context.Context, formats st
 func (m *FalconxReportV1) contextValidateThreatGraph(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ThreatGraph != nil {
+
+		if swag.IsZero(m.ThreatGraph) { // not required
+			return nil
+		}
+
 		if err := m.ThreatGraph.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("threat_graph")

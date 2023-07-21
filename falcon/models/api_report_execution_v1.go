@@ -354,6 +354,11 @@ func (m *APIReportExecutionV1) ContextValidate(ctx context.Context, formats strf
 func (m *APIReportExecutionV1) contextValidateExecutionMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ExecutionMetadata != nil {
+
+		if swag.IsZero(m.ExecutionMetadata) { // not required
+			return nil
+		}
+
 		if err := m.ExecutionMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("execution_metadata")
@@ -370,6 +375,11 @@ func (m *APIReportExecutionV1) contextValidateExecutionMetadata(ctx context.Cont
 func (m *APIReportExecutionV1) contextValidateResultMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ResultMetadata != nil {
+
+		if swag.IsZero(m.ResultMetadata) { // not required
+			return nil
+		}
+
 		if err := m.ResultMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("result_metadata")

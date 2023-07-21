@@ -408,6 +408,11 @@ func (m *ExternalChange) ContextValidate(ctx context.Context, formats strfmt.Reg
 func (m *ExternalChange) contextValidateDiff(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Diff != nil {
+
+		if swag.IsZero(m.Diff) { // not required
+			return nil
+		}
+
 		if err := m.Diff.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("diff")
@@ -424,6 +429,11 @@ func (m *ExternalChange) contextValidateDiff(ctx context.Context, formats strfmt
 func (m *ExternalChange) contextValidateHost(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Host != nil {
+
+		if swag.IsZero(m.Host) { // not required
+			return nil
+		}
+
 		if err := m.Host.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("host")
@@ -440,6 +450,11 @@ func (m *ExternalChange) contextValidateHost(ctx context.Context, formats strfmt
 func (m *ExternalChange) contextValidatePolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Policy != nil {
+
+		if swag.IsZero(m.Policy) { // not required
+			return nil
+		}
+
 		if err := m.Policy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("policy")

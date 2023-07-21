@@ -192,6 +192,7 @@ func (m *APIExecutionMetadataV1) ContextValidate(ctx context.Context, formats st
 func (m *APIExecutionMetadataV1) contextValidateXdrData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.XdrData != nil {
+
 		if err := m.XdrData.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("xdr_data")
@@ -208,6 +209,7 @@ func (m *APIExecutionMetadataV1) contextValidateXdrData(ctx context.Context, for
 func (m *APIExecutionMetadataV1) contextValidateXdrParams(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.XdrParams != nil {
+
 		if err := m.XdrParams.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("xdr_params")

@@ -102,6 +102,11 @@ func (m *DomainIOAEnrichments) ContextValidate(ctx context.Context, formats strf
 func (m *DomainIOAEnrichments) contextValidateInventory(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Inventory != nil {
+
+		if swag.IsZero(m.Inventory) { // not required
+			return nil
+		}
+
 		if err := m.Inventory.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("inventory")
@@ -118,6 +123,11 @@ func (m *DomainIOAEnrichments) contextValidateInventory(ctx context.Context, for
 func (m *DomainIOAEnrichments) contextValidateSensorEvents(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SensorEvents != nil {
+
+		if swag.IsZero(m.SensorEvents) { // not required
+			return nil
+		}
+
 		if err := m.SensorEvents.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("sensor_events")

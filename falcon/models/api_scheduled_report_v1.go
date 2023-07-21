@@ -491,6 +491,11 @@ func (m *APIScheduledReportV1) ContextValidate(ctx context.Context, formats strf
 func (m *APIScheduledReportV1) contextValidateLastExecution(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LastExecution != nil {
+
+		if swag.IsZero(m.LastExecution) { // not required
+			return nil
+		}
+
 		if err := m.LastExecution.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("last_execution")
@@ -509,6 +514,11 @@ func (m *APIScheduledReportV1) contextValidateNotifications(ctx context.Context,
 	for i := 0; i < len(m.Notifications); i++ {
 
 		if m.Notifications[i] != nil {
+
+			if swag.IsZero(m.Notifications[i]) { // not required
+				return nil
+			}
+
 			if err := m.Notifications[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("notifications" + "." + strconv.Itoa(i))
@@ -527,6 +537,7 @@ func (m *APIScheduledReportV1) contextValidateNotifications(ctx context.Context,
 func (m *APIScheduledReportV1) contextValidateReportParams(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ReportParams != nil {
+
 		if err := m.ReportParams.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("report_params")
@@ -543,6 +554,7 @@ func (m *APIScheduledReportV1) contextValidateReportParams(ctx context.Context, 
 func (m *APIScheduledReportV1) contextValidateSchedule(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Schedule != nil {
+
 		if err := m.Schedule.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
