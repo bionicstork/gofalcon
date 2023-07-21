@@ -15,13 +15,12 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DomainDeviceDetailsResponseSwagger domain device details response swagger
+// DetectsapiPostEntitiesAlertsV1Response detectsapi post entities alerts v1 response
 //
-// swagger:model domain.DeviceDetailsResponseSwagger
-type DomainDeviceDetailsResponseSwagger struct {
+// swagger:model detectsapi.PostEntitiesAlertsV1Response
+type DetectsapiPostEntitiesAlertsV1Response struct {
 
 	// errors
-	// Required: true
 	Errors []*MsaAPIError `json:"errors"`
 
 	// meta
@@ -30,11 +29,11 @@ type DomainDeviceDetailsResponseSwagger struct {
 
 	// resources
 	// Required: true
-	Resources []*DomainDeviceSwagger `json:"resources"`
+	Resources []*DetectsAlert `json:"resources"`
 }
 
-// Validate validates this domain device details response swagger
-func (m *DomainDeviceDetailsResponseSwagger) Validate(formats strfmt.Registry) error {
+// Validate validates this detectsapi post entities alerts v1 response
+func (m *DetectsapiPostEntitiesAlertsV1Response) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateErrors(formats); err != nil {
@@ -55,10 +54,9 @@ func (m *DomainDeviceDetailsResponseSwagger) Validate(formats strfmt.Registry) e
 	return nil
 }
 
-func (m *DomainDeviceDetailsResponseSwagger) validateErrors(formats strfmt.Registry) error {
-
-	if err := validate.Required("errors", "body", m.Errors); err != nil {
-		return err
+func (m *DetectsapiPostEntitiesAlertsV1Response) validateErrors(formats strfmt.Registry) error {
+	if swag.IsZero(m.Errors) { // not required
+		return nil
 	}
 
 	for i := 0; i < len(m.Errors); i++ {
@@ -82,7 +80,7 @@ func (m *DomainDeviceDetailsResponseSwagger) validateErrors(formats strfmt.Regis
 	return nil
 }
 
-func (m *DomainDeviceDetailsResponseSwagger) validateMeta(formats strfmt.Registry) error {
+func (m *DetectsapiPostEntitiesAlertsV1Response) validateMeta(formats strfmt.Registry) error {
 
 	if err := validate.Required("meta", "body", m.Meta); err != nil {
 		return err
@@ -102,7 +100,7 @@ func (m *DomainDeviceDetailsResponseSwagger) validateMeta(formats strfmt.Registr
 	return nil
 }
 
-func (m *DomainDeviceDetailsResponseSwagger) validateResources(formats strfmt.Registry) error {
+func (m *DetectsapiPostEntitiesAlertsV1Response) validateResources(formats strfmt.Registry) error {
 
 	if err := validate.Required("resources", "body", m.Resources); err != nil {
 		return err
@@ -129,8 +127,8 @@ func (m *DomainDeviceDetailsResponseSwagger) validateResources(formats strfmt.Re
 	return nil
 }
 
-// ContextValidate validate this domain device details response swagger based on the context it is used
-func (m *DomainDeviceDetailsResponseSwagger) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this detectsapi post entities alerts v1 response based on the context it is used
+func (m *DetectsapiPostEntitiesAlertsV1Response) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateErrors(ctx, formats); err != nil {
@@ -151,11 +149,16 @@ func (m *DomainDeviceDetailsResponseSwagger) ContextValidate(ctx context.Context
 	return nil
 }
 
-func (m *DomainDeviceDetailsResponseSwagger) contextValidateErrors(ctx context.Context, formats strfmt.Registry) error {
+func (m *DetectsapiPostEntitiesAlertsV1Response) contextValidateErrors(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Errors); i++ {
 
 		if m.Errors[i] != nil {
+
+			if swag.IsZero(m.Errors[i]) { // not required
+				return nil
+			}
+
 			if err := m.Errors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("errors" + "." + strconv.Itoa(i))
@@ -171,9 +174,10 @@ func (m *DomainDeviceDetailsResponseSwagger) contextValidateErrors(ctx context.C
 	return nil
 }
 
-func (m *DomainDeviceDetailsResponseSwagger) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
+func (m *DetectsapiPostEntitiesAlertsV1Response) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("meta")
@@ -187,11 +191,16 @@ func (m *DomainDeviceDetailsResponseSwagger) contextValidateMeta(ctx context.Con
 	return nil
 }
 
-func (m *DomainDeviceDetailsResponseSwagger) contextValidateResources(ctx context.Context, formats strfmt.Registry) error {
+func (m *DetectsapiPostEntitiesAlertsV1Response) contextValidateResources(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Resources); i++ {
 
 		if m.Resources[i] != nil {
+
+			if swag.IsZero(m.Resources[i]) { // not required
+				return nil
+			}
+
 			if err := m.Resources[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resources" + "." + strconv.Itoa(i))
@@ -208,7 +217,7 @@ func (m *DomainDeviceDetailsResponseSwagger) contextValidateResources(ctx contex
 }
 
 // MarshalBinary interface implementation
-func (m *DomainDeviceDetailsResponseSwagger) MarshalBinary() ([]byte, error) {
+func (m *DetectsapiPostEntitiesAlertsV1Response) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -216,8 +225,8 @@ func (m *DomainDeviceDetailsResponseSwagger) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *DomainDeviceDetailsResponseSwagger) UnmarshalBinary(b []byte) error {
-	var res DomainDeviceDetailsResponseSwagger
+func (m *DetectsapiPostEntitiesAlertsV1Response) UnmarshalBinary(b []byte) error {
+	var res DetectsapiPostEntitiesAlertsV1Response
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}
