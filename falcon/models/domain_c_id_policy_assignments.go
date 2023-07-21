@@ -278,6 +278,11 @@ func (m *DomainCIDPolicyAssignments) contextValidateCisBenchmark(ctx context.Con
 	for i := 0; i < len(m.CisBenchmark); i++ {
 
 		if m.CisBenchmark[i] != nil {
+
+			if swag.IsZero(m.CisBenchmark[i]) { // not required
+				return nil
+			}
+
 			if err := m.CisBenchmark[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("cis_benchmark" + "." + strconv.Itoa(i))
@@ -298,6 +303,11 @@ func (m *DomainCIDPolicyAssignments) contextValidateNistBenchmark(ctx context.Co
 	for i := 0; i < len(m.NistBenchmark); i++ {
 
 		if m.NistBenchmark[i] != nil {
+
+			if swag.IsZero(m.NistBenchmark[i]) { // not required
+				return nil
+			}
+
 			if err := m.NistBenchmark[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nist_benchmark" + "." + strconv.Itoa(i))
@@ -318,6 +328,11 @@ func (m *DomainCIDPolicyAssignments) contextValidatePciBenchmark(ctx context.Con
 	for i := 0; i < len(m.PciBenchmark); i++ {
 
 		if m.PciBenchmark[i] != nil {
+
+			if swag.IsZero(m.PciBenchmark[i]) { // not required
+				return nil
+			}
+
 			if err := m.PciBenchmark[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pci_benchmark" + "." + strconv.Itoa(i))
@@ -338,6 +353,11 @@ func (m *DomainCIDPolicyAssignments) contextValidatePolicySettings(ctx context.C
 	for i := 0; i < len(m.PolicySettings); i++ {
 
 		if m.PolicySettings[i] != nil {
+
+			if swag.IsZero(m.PolicySettings[i]) { // not required
+				return nil
+			}
+
 			if err := m.PolicySettings[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("policy_settings" + "." + strconv.Itoa(i))
@@ -358,6 +378,11 @@ func (m *DomainCIDPolicyAssignments) contextValidateSoc2Benchmark(ctx context.Co
 	for i := 0; i < len(m.Soc2Benchmark); i++ {
 
 		if m.Soc2Benchmark[i] != nil {
+
+			if swag.IsZero(m.Soc2Benchmark[i]) { // not required
+				return nil
+			}
+
 			if err := m.Soc2Benchmark[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("soc2_benchmark" + "." + strconv.Itoa(i))

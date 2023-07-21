@@ -162,6 +162,11 @@ func (m *RequestsCreatePreventionPolicyV1) contextValidateSettings(ctx context.C
 	for i := 0; i < len(m.Settings); i++ {
 
 		if m.Settings[i] != nil {
+
+			if swag.IsZero(m.Settings[i]) { // not required
+				return nil
+			}
+
 			if err := m.Settings[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("settings" + "." + strconv.Itoa(i))

@@ -145,6 +145,7 @@ func (m *FalconxErrorsOnly) ContextValidate(ctx context.Context, formats strfmt.
 func (m *FalconxErrorsOnly) contextValidateMsaMetaInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MsaMetaInfo != nil {
+
 		if err := m.MsaMetaInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MsaMetaInfo")
@@ -163,6 +164,11 @@ func (m *FalconxErrorsOnly) contextValidateErrors(ctx context.Context, formats s
 	for i := 0; i < len(m.Errors); i++ {
 
 		if m.Errors[i] != nil {
+
+			if swag.IsZero(m.Errors[i]) { // not required
+				return nil
+			}
+
 			if err := m.Errors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("errors" + "." + strconv.Itoa(i))
@@ -181,6 +187,11 @@ func (m *FalconxErrorsOnly) contextValidateErrors(ctx context.Context, formats s
 func (m *FalconxErrorsOnly) contextValidateQuota(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Quota != nil {
+
+		if swag.IsZero(m.Quota) { // not required
+			return nil
+		}
+
 		if err := m.Quota.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("quota")

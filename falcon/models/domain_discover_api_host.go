@@ -547,6 +547,11 @@ func (m *DomainDiscoverAPIHost) contextValidateBiosHashesData(ctx context.Contex
 	for i := 0; i < len(m.BiosHashesData); i++ {
 
 		if m.BiosHashesData[i] != nil {
+
+			if swag.IsZero(m.BiosHashesData[i]) { // not required
+				return nil
+			}
+
 			if err := m.BiosHashesData[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("bios_hashes_data" + "." + strconv.Itoa(i))
@@ -567,6 +572,11 @@ func (m *DomainDiscoverAPIHost) contextValidateDiskSizes(ctx context.Context, fo
 	for i := 0; i < len(m.DiskSizes); i++ {
 
 		if m.DiskSizes[i] != nil {
+
+			if swag.IsZero(m.DiskSizes[i]) { // not required
+				return nil
+			}
+
 			if err := m.DiskSizes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("disk_sizes" + "." + strconv.Itoa(i))
@@ -602,6 +612,11 @@ func (m *DomainDiscoverAPIHost) contextValidateMountStorageInfo(ctx context.Cont
 	for i := 0; i < len(m.MountStorageInfo); i++ {
 
 		if m.MountStorageInfo[i] != nil {
+
+			if swag.IsZero(m.MountStorageInfo[i]) { // not required
+				return nil
+			}
+
 			if err := m.MountStorageInfo[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mount_storage_info" + "." + strconv.Itoa(i))
@@ -622,6 +637,11 @@ func (m *DomainDiscoverAPIHost) contextValidateNetworkInterfaces(ctx context.Con
 	for i := 0; i < len(m.NetworkInterfaces); i++ {
 
 		if m.NetworkInterfaces[i] != nil {
+
+			if swag.IsZero(m.NetworkInterfaces[i]) { // not required
+				return nil
+			}
+
 			if err := m.NetworkInterfaces[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("network_interfaces" + "." + strconv.Itoa(i))
@@ -640,6 +660,11 @@ func (m *DomainDiscoverAPIHost) contextValidateNetworkInterfaces(ctx context.Con
 func (m *DomainDiscoverAPIHost) contextValidateOsSecurity(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OsSecurity != nil {
+
+		if swag.IsZero(m.OsSecurity) { // not required
+			return nil
+		}
+
 		if err := m.OsSecurity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("os_security")

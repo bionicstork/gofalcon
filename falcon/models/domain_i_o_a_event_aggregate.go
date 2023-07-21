@@ -99,6 +99,11 @@ func (m *DomainIOAEventAggregate) ContextValidate(ctx context.Context, formats s
 func (m *DomainIOAEventAggregate) contextValidateThreatintel(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Threatintel != nil {
+
+		if swag.IsZero(m.Threatintel) { // not required
+			return nil
+		}
+
 		if err := m.Threatintel.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("threatintel")

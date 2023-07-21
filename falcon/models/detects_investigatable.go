@@ -258,6 +258,11 @@ func (m *DetectsInvestigatable) contextValidateCrawlTraversal(ctx context.Contex
 	for i := 0; i < len(m.CrawlTraversal); i++ {
 
 		if m.CrawlTraversal[i] != nil {
+
+			if swag.IsZero(m.CrawlTraversal[i]) { // not required
+				return nil
+			}
+
 			if err := m.CrawlTraversal[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("crawl_traversal" + "." + strconv.Itoa(i))

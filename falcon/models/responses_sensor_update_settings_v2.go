@@ -181,6 +181,11 @@ func (m *ResponsesSensorUpdateSettingsV2) contextValidateVariants(ctx context.Co
 	for i := 0; i < len(m.Variants); i++ {
 
 		if m.Variants[i] != nil {
+
+			if swag.IsZero(m.Variants[i]) { // not required
+				return nil
+			}
+
 			if err := m.Variants[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("variants" + "." + strconv.Itoa(i))

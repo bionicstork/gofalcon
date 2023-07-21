@@ -364,6 +364,11 @@ func (m *RegistrationIOAEvent) ContextValidate(ctx context.Context, formats strf
 func (m *RegistrationIOAEvent) contextValidateAggregate(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Aggregate != nil {
+
+		if swag.IsZero(m.Aggregate) { // not required
+			return nil
+		}
+
 		if err := m.Aggregate.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("aggregate")
@@ -380,6 +385,11 @@ func (m *RegistrationIOAEvent) contextValidateAggregate(ctx context.Context, for
 func (m *RegistrationIOAEvent) contextValidateCloudAccountID(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CloudAccountID != nil {
+
+		if swag.IsZero(m.CloudAccountID) { // not required
+			return nil
+		}
+
 		if err := m.CloudAccountID.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cloud_account_id")
@@ -396,6 +406,11 @@ func (m *RegistrationIOAEvent) contextValidateCloudAccountID(ctx context.Context
 func (m *RegistrationIOAEvent) contextValidateEnrichments(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Enrichments != nil {
+
+		if swag.IsZero(m.Enrichments) { // not required
+			return nil
+		}
+
 		if err := m.Enrichments.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("enrichments")

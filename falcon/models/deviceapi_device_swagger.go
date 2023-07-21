@@ -397,6 +397,11 @@ func (m *DeviceapiDeviceSwagger) ContextValidate(ctx context.Context, formats st
 func (m *DeviceapiDeviceSwagger) contextValidateDevicePolicies(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DevicePolicies != nil {
+
+		if swag.IsZero(m.DevicePolicies) { // not required
+			return nil
+		}
+
 		if err := m.DevicePolicies.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("device_policies")
@@ -413,6 +418,11 @@ func (m *DeviceapiDeviceSwagger) contextValidateDevicePolicies(ctx context.Conte
 func (m *DeviceapiDeviceSwagger) contextValidateManagedApps(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ManagedApps != nil {
+
+		if swag.IsZero(m.ManagedApps) { // not required
+			return nil
+		}
+
 		if err := m.ManagedApps.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("managed_apps")
@@ -429,6 +439,11 @@ func (m *DeviceapiDeviceSwagger) contextValidateManagedApps(ctx context.Context,
 func (m *DeviceapiDeviceSwagger) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("meta")
@@ -447,6 +462,11 @@ func (m *DeviceapiDeviceSwagger) contextValidatePolicies(ctx context.Context, fo
 	for i := 0; i < len(m.Policies); i++ {
 
 		if m.Policies[i] != nil {
+
+			if swag.IsZero(m.Policies[i]) { // not required
+				return nil
+			}
+
 			if err := m.Policies[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("policies" + "." + strconv.Itoa(i))

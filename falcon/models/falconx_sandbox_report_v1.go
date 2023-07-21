@@ -646,6 +646,11 @@ func (m *FalconxSandboxReportV1) contextValidateContactedHosts(ctx context.Conte
 	for i := 0; i < len(m.ContactedHosts); i++ {
 
 		if m.ContactedHosts[i] != nil {
+
+			if swag.IsZero(m.ContactedHosts[i]) { // not required
+				return nil
+			}
+
 			if err := m.ContactedHosts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("contacted_hosts" + "." + strconv.Itoa(i))
@@ -666,6 +671,11 @@ func (m *FalconxSandboxReportV1) contextValidateDNSRequests(ctx context.Context,
 	for i := 0; i < len(m.DNSRequests); i++ {
 
 		if m.DNSRequests[i] != nil {
+
+			if swag.IsZero(m.DNSRequests[i]) { // not required
+				return nil
+			}
+
 			if err := m.DNSRequests[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dns_requests" + "." + strconv.Itoa(i))
@@ -686,6 +696,11 @@ func (m *FalconxSandboxReportV1) contextValidateExtractedFiles(ctx context.Conte
 	for i := 0; i < len(m.ExtractedFiles); i++ {
 
 		if m.ExtractedFiles[i] != nil {
+
+			if swag.IsZero(m.ExtractedFiles[i]) { // not required
+				return nil
+			}
+
 			if err := m.ExtractedFiles[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("extracted_files" + "." + strconv.Itoa(i))
@@ -706,6 +721,11 @@ func (m *FalconxSandboxReportV1) contextValidateExtractedInterestingStrings(ctx 
 	for i := 0; i < len(m.ExtractedInterestingStrings); i++ {
 
 		if m.ExtractedInterestingStrings[i] != nil {
+
+			if swag.IsZero(m.ExtractedInterestingStrings[i]) { // not required
+				return nil
+			}
+
 			if err := m.ExtractedInterestingStrings[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("extracted_interesting_strings" + "." + strconv.Itoa(i))
@@ -726,6 +746,11 @@ func (m *FalconxSandboxReportV1) contextValidateFileImports(ctx context.Context,
 	for i := 0; i < len(m.FileImports); i++ {
 
 		if m.FileImports[i] != nil {
+
+			if swag.IsZero(m.FileImports[i]) { // not required
+				return nil
+			}
+
 			if err := m.FileImports[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("file_imports" + "." + strconv.Itoa(i))
@@ -744,6 +769,11 @@ func (m *FalconxSandboxReportV1) contextValidateFileImports(ctx context.Context,
 func (m *FalconxSandboxReportV1) contextValidateFileMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FileMetadata != nil {
+
+		if swag.IsZero(m.FileMetadata) { // not required
+			return nil
+		}
+
 		if err := m.FileMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("file_metadata")
@@ -762,6 +792,11 @@ func (m *FalconxSandboxReportV1) contextValidateHTTPRequests(ctx context.Context
 	for i := 0; i < len(m.HTTPRequests); i++ {
 
 		if m.HTTPRequests[i] != nil {
+
+			if swag.IsZero(m.HTTPRequests[i]) { // not required
+				return nil
+			}
+
 			if err := m.HTTPRequests[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("http_requests" + "." + strconv.Itoa(i))
@@ -782,6 +817,11 @@ func (m *FalconxSandboxReportV1) contextValidateIncidents(ctx context.Context, f
 	for i := 0; i < len(m.Incidents); i++ {
 
 		if m.Incidents[i] != nil {
+
+			if swag.IsZero(m.Incidents[i]) { // not required
+				return nil
+			}
+
 			if err := m.Incidents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("incidents" + "." + strconv.Itoa(i))
@@ -802,6 +842,11 @@ func (m *FalconxSandboxReportV1) contextValidateMemoryForensics(ctx context.Cont
 	for i := 0; i < len(m.MemoryForensics); i++ {
 
 		if m.MemoryForensics[i] != nil {
+
+			if swag.IsZero(m.MemoryForensics[i]) { // not required
+				return nil
+			}
+
 			if err := m.MemoryForensics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("memory_forensics" + "." + strconv.Itoa(i))
@@ -822,6 +867,11 @@ func (m *FalconxSandboxReportV1) contextValidateMitreAttacks(ctx context.Context
 	for i := 0; i < len(m.MitreAttacks); i++ {
 
 		if m.MitreAttacks[i] != nil {
+
+			if swag.IsZero(m.MitreAttacks[i]) { // not required
+				return nil
+			}
+
 			if err := m.MitreAttacks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mitre_attacks" + "." + strconv.Itoa(i))
@@ -842,6 +892,11 @@ func (m *FalconxSandboxReportV1) contextValidateProcesses(ctx context.Context, f
 	for i := 0; i < len(m.Processes); i++ {
 
 		if m.Processes[i] != nil {
+
+			if swag.IsZero(m.Processes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Processes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("processes" + "." + strconv.Itoa(i))
@@ -862,6 +917,11 @@ func (m *FalconxSandboxReportV1) contextValidateSignatures(ctx context.Context, 
 	for i := 0; i < len(m.Signatures); i++ {
 
 		if m.Signatures[i] != nil {
+
+			if swag.IsZero(m.Signatures[i]) { // not required
+				return nil
+			}
+
 			if err := m.Signatures[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("signatures" + "." + strconv.Itoa(i))
@@ -882,6 +942,11 @@ func (m *FalconxSandboxReportV1) contextValidateSuricataAlerts(ctx context.Conte
 	for i := 0; i < len(m.SuricataAlerts); i++ {
 
 		if m.SuricataAlerts[i] != nil {
+
+			if swag.IsZero(m.SuricataAlerts[i]) { // not required
+				return nil
+			}
+
 			if err := m.SuricataAlerts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("suricata_alerts" + "." + strconv.Itoa(i))
@@ -902,6 +967,11 @@ func (m *FalconxSandboxReportV1) contextValidateVersionInfo(ctx context.Context,
 	for i := 0; i < len(m.VersionInfo); i++ {
 
 		if m.VersionInfo[i] != nil {
+
+			if swag.IsZero(m.VersionInfo[i]) { // not required
+				return nil
+			}
+
 			if err := m.VersionInfo[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("version_info" + "." + strconv.Itoa(i))

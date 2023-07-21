@@ -136,6 +136,11 @@ func (m *CommonCIDComplianceResult) contextValidatePlatforms(ctx context.Context
 	for i := 0; i < len(m.Platforms); i++ {
 
 		if m.Platforms[i] != nil {
+
+			if swag.IsZero(m.Platforms[i]) { // not required
+				return nil
+			}
+
 			if err := m.Platforms[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("platforms" + "." + strconv.Itoa(i))

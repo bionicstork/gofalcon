@@ -192,6 +192,11 @@ func (m *APICaseCreationRequest) contextValidateDetections(ctx context.Context, 
 	for i := 0; i < len(m.Detections); i++ {
 
 		if m.Detections[i] != nil {
+
+			if swag.IsZero(m.Detections[i]) { // not required
+				return nil
+			}
+
 			if err := m.Detections[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("detections" + "." + strconv.Itoa(i))
@@ -212,6 +217,11 @@ func (m *APICaseCreationRequest) contextValidateIncidents(ctx context.Context, f
 	for i := 0; i < len(m.Incidents); i++ {
 
 		if m.Incidents[i] != nil {
+
+			if swag.IsZero(m.Incidents[i]) { // not required
+				return nil
+			}
+
 			if err := m.Incidents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("incidents" + "." + strconv.Itoa(i))

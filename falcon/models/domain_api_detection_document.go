@@ -449,6 +449,11 @@ func (m *DomainAPIDetectionDocument) contextValidateBehaviors(ctx context.Contex
 	for i := 0; i < len(m.Behaviors); i++ {
 
 		if m.Behaviors[i] != nil {
+
+			if swag.IsZero(m.Behaviors[i]) { // not required
+				return nil
+			}
+
 			if err := m.Behaviors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("behaviors" + "." + strconv.Itoa(i))
@@ -467,6 +472,7 @@ func (m *DomainAPIDetectionDocument) contextValidateBehaviors(ctx context.Contex
 func (m *DomainAPIDetectionDocument) contextValidateDevice(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Device != nil {
+
 		if err := m.Device.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("device")
@@ -483,6 +489,7 @@ func (m *DomainAPIDetectionDocument) contextValidateDevice(ctx context.Context, 
 func (m *DomainAPIDetectionDocument) contextValidateHostinfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Hostinfo != nil {
+
 		if err := m.Hostinfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("hostinfo")
@@ -501,6 +508,11 @@ func (m *DomainAPIDetectionDocument) contextValidateQuarantinedFiles(ctx context
 	for i := 0; i < len(m.QuarantinedFiles); i++ {
 
 		if m.QuarantinedFiles[i] != nil {
+
+			if swag.IsZero(m.QuarantinedFiles[i]) { // not required
+				return nil
+			}
+
 			if err := m.QuarantinedFiles[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("quarantined_files" + "." + strconv.Itoa(i))

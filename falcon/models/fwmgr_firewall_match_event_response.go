@@ -636,6 +636,7 @@ func (m *FwmgrFirewallMatchEventResponse) ContextValidate(ctx context.Context, f
 func (m *FwmgrFirewallMatchEventResponse) contextValidateFlags(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Flags != nil {
+
 		if err := m.Flags.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("flags")

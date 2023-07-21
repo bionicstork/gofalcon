@@ -333,6 +333,11 @@ func (m *DomainIncident) contextValidateEventsHistogram(ctx context.Context, for
 	for i := 0; i < len(m.EventsHistogram); i++ {
 
 		if m.EventsHistogram[i] != nil {
+
+			if swag.IsZero(m.EventsHistogram[i]) { // not required
+				return nil
+			}
+
 			if err := m.EventsHistogram[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("events_histogram" + "." + strconv.Itoa(i))
@@ -353,6 +358,11 @@ func (m *DomainIncident) contextValidateHosts(ctx context.Context, formats strfm
 	for i := 0; i < len(m.Hosts); i++ {
 
 		if m.Hosts[i] != nil {
+
+			if swag.IsZero(m.Hosts[i]) { // not required
+				return nil
+			}
+
 			if err := m.Hosts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("hosts" + "." + strconv.Itoa(i))

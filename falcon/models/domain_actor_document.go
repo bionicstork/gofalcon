@@ -646,6 +646,11 @@ func (m *DomainActorDocument) ContextValidate(ctx context.Context, formats strfm
 func (m *DomainActorDocument) contextValidateCapability(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Capability != nil {
+
+		if swag.IsZero(m.Capability) { // not required
+			return nil
+		}
+
 		if err := m.Capability.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("capability")
@@ -662,6 +667,11 @@ func (m *DomainActorDocument) contextValidateCapability(ctx context.Context, for
 func (m *DomainActorDocument) contextValidateEcrimeKillChain(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.EcrimeKillChain != nil {
+
+		if swag.IsZero(m.EcrimeKillChain) { // not required
+			return nil
+		}
+
 		if err := m.EcrimeKillChain.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ecrime_kill_chain")
@@ -680,6 +690,11 @@ func (m *DomainActorDocument) contextValidateEntitlements(ctx context.Context, f
 	for i := 0; i < len(m.Entitlements); i++ {
 
 		if m.Entitlements[i] != nil {
+
+			if swag.IsZero(m.Entitlements[i]) { // not required
+				return nil
+			}
+
 			if err := m.Entitlements[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("entitlements" + "." + strconv.Itoa(i))
@@ -698,6 +713,11 @@ func (m *DomainActorDocument) contextValidateEntitlements(ctx context.Context, f
 func (m *DomainActorDocument) contextValidateGroup(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Group != nil {
+
+		if swag.IsZero(m.Group) { // not required
+			return nil
+		}
+
 		if err := m.Group.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("group")
@@ -714,6 +734,11 @@ func (m *DomainActorDocument) contextValidateGroup(ctx context.Context, formats 
 func (m *DomainActorDocument) contextValidateImage(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Image != nil {
+
+		if swag.IsZero(m.Image) { // not required
+			return nil
+		}
+
 		if err := m.Image.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("image")
@@ -730,6 +755,11 @@ func (m *DomainActorDocument) contextValidateImage(ctx context.Context, formats 
 func (m *DomainActorDocument) contextValidateKillChain(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.KillChain != nil {
+
+		if swag.IsZero(m.KillChain) { // not required
+			return nil
+		}
+
 		if err := m.KillChain.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("kill_chain")
@@ -748,6 +778,11 @@ func (m *DomainActorDocument) contextValidateMotivations(ctx context.Context, fo
 	for i := 0; i < len(m.Motivations); i++ {
 
 		if m.Motivations[i] != nil {
+
+			if swag.IsZero(m.Motivations[i]) { // not required
+				return nil
+			}
+
 			if err := m.Motivations[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("motivations" + "." + strconv.Itoa(i))
@@ -768,6 +803,11 @@ func (m *DomainActorDocument) contextValidateOrigins(ctx context.Context, format
 	for i := 0; i < len(m.Origins); i++ {
 
 		if m.Origins[i] != nil {
+
+			if swag.IsZero(m.Origins[i]) { // not required
+				return nil
+			}
+
 			if err := m.Origins[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("origins" + "." + strconv.Itoa(i))
@@ -786,6 +826,11 @@ func (m *DomainActorDocument) contextValidateOrigins(ctx context.Context, format
 func (m *DomainActorDocument) contextValidateRegion(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Region != nil {
+
+		if swag.IsZero(m.Region) { // not required
+			return nil
+		}
+
 		if err := m.Region.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("region")
@@ -804,6 +849,11 @@ func (m *DomainActorDocument) contextValidateTargetCountries(ctx context.Context
 	for i := 0; i < len(m.TargetCountries); i++ {
 
 		if m.TargetCountries[i] != nil {
+
+			if swag.IsZero(m.TargetCountries[i]) { // not required
+				return nil
+			}
+
 			if err := m.TargetCountries[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("target_countries" + "." + strconv.Itoa(i))
@@ -824,6 +874,11 @@ func (m *DomainActorDocument) contextValidateTargetIndustries(ctx context.Contex
 	for i := 0; i < len(m.TargetIndustries); i++ {
 
 		if m.TargetIndustries[i] != nil {
+
+			if swag.IsZero(m.TargetIndustries[i]) { // not required
+				return nil
+			}
+
 			if err := m.TargetIndustries[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("target_industries" + "." + strconv.Itoa(i))
@@ -842,6 +897,11 @@ func (m *DomainActorDocument) contextValidateTargetIndustries(ctx context.Contex
 func (m *DomainActorDocument) contextValidateThumbnail(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Thumbnail != nil {
+
+		if swag.IsZero(m.Thumbnail) { // not required
+			return nil
+		}
+
 		if err := m.Thumbnail.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("thumbnail")

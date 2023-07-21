@@ -44,7 +44,7 @@ func (o *GetScansAggregatesReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /scanner/aggregates/scans/GET/v1] GetScansAggregates", response, response.Code())
 	}
 }
 

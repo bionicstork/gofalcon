@@ -112,6 +112,11 @@ func (m *DomainAPIEvaluationLogicV1) contextValidateLogic(ctx context.Context, f
 	for i := 0; i < len(m.Logic); i++ {
 
 		if m.Logic[i] != nil {
+
+			if swag.IsZero(m.Logic[i]) { // not required
+				return nil
+			}
+
 			if err := m.Logic[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("logic" + "." + strconv.Itoa(i))

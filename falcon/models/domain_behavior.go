@@ -186,6 +186,11 @@ func (m *DomainBehavior) ContextValidate(ctx context.Context, formats strfmt.Reg
 func (m *DomainBehavior) contextValidatePatternDispositionDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PatternDispositionDetails != nil {
+
+		if swag.IsZero(m.PatternDispositionDetails) { // not required
+			return nil
+		}
+
 		if err := m.PatternDispositionDetails.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("pattern_disposition_details")

@@ -102,6 +102,11 @@ func (m *DeviceapiLoginDetailV1) contextValidateRecentLogins(ctx context.Context
 	for i := 0; i < len(m.RecentLogins); i++ {
 
 		if m.RecentLogins[i] != nil {
+
+			if swag.IsZero(m.RecentLogins[i]) { // not required
+				return nil
+			}
+
 			if err := m.RecentLogins[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recent_logins" + "." + strconv.Itoa(i))

@@ -178,6 +178,11 @@ func (m *DomainMatchedBreachSummaryV1) contextValidateFiles(ctx context.Context,
 	for i := 0; i < len(m.Files); i++ {
 
 		if m.Files[i] != nil {
+
+			if swag.IsZero(m.Files[i]) { // not required
+				return nil
+			}
+
 			if err := m.Files[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("files" + "." + strconv.Itoa(i))

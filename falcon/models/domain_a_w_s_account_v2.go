@@ -367,6 +367,11 @@ func (m *DomainAWSAccountV2) contextValidateAwsPermissionsStatus(ctx context.Con
 	for i := 0; i < len(m.AwsPermissionsStatus); i++ {
 
 		if m.AwsPermissionsStatus[i] != nil {
+
+			if swag.IsZero(m.AwsPermissionsStatus[i]) { // not required
+				return nil
+			}
+
 			if err := m.AwsPermissionsStatus[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("aws_permissions_status" + "." + strconv.Itoa(i))
@@ -387,6 +392,11 @@ func (m *DomainAWSAccountV2) contextValidateConditions(ctx context.Context, form
 	for i := 0; i < len(m.Conditions); i++ {
 
 		if m.Conditions[i] != nil {
+
+			if swag.IsZero(m.Conditions[i]) { // not required
+				return nil
+			}
+
 			if err := m.Conditions[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("conditions" + "." + strconv.Itoa(i))
@@ -405,6 +415,11 @@ func (m *DomainAWSAccountV2) contextValidateConditions(ctx context.Context, form
 func (m *DomainAWSAccountV2) contextValidateD4c(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.D4c != nil {
+
+		if swag.IsZero(m.D4c) { // not required
+			return nil
+		}
+
 		if err := m.D4c.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("d4c")

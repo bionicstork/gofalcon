@@ -366,6 +366,11 @@ func (m *DomainNotificationV1) ContextValidate(ctx context.Context, formats strf
 func (m *DomainNotificationV1) contextValidateBreachSummary(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BreachSummary != nil {
+
+		if swag.IsZero(m.BreachSummary) { // not required
+			return nil
+		}
+
 		if err := m.BreachSummary.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("breach_summary")
@@ -382,6 +387,11 @@ func (m *DomainNotificationV1) contextValidateBreachSummary(ctx context.Context,
 func (m *DomainNotificationV1) contextValidateTyposquatting(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Typosquatting != nil {
+
+		if swag.IsZero(m.Typosquatting) { // not required
+			return nil
+		}
+
 		if err := m.Typosquatting.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("typosquatting")

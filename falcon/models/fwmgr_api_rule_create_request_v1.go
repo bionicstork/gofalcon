@@ -458,6 +458,11 @@ func (m *FwmgrAPIRuleCreateRequestV1) contextValidateFields(ctx context.Context,
 	for i := 0; i < len(m.Fields); i++ {
 
 		if m.Fields[i] != nil {
+
+			if swag.IsZero(m.Fields[i]) { // not required
+				return nil
+			}
+
 			if err := m.Fields[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("fields" + "." + strconv.Itoa(i))
@@ -476,6 +481,7 @@ func (m *FwmgrAPIRuleCreateRequestV1) contextValidateFields(ctx context.Context,
 func (m *FwmgrAPIRuleCreateRequestV1) contextValidateIcmp(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Icmp != nil {
+
 		if err := m.Icmp.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("icmp")
@@ -494,6 +500,11 @@ func (m *FwmgrAPIRuleCreateRequestV1) contextValidateLocalAddress(ctx context.Co
 	for i := 0; i < len(m.LocalAddress); i++ {
 
 		if m.LocalAddress[i] != nil {
+
+			if swag.IsZero(m.LocalAddress[i]) { // not required
+				return nil
+			}
+
 			if err := m.LocalAddress[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("local_address" + "." + strconv.Itoa(i))
@@ -514,6 +525,11 @@ func (m *FwmgrAPIRuleCreateRequestV1) contextValidateLocalPort(ctx context.Conte
 	for i := 0; i < len(m.LocalPort); i++ {
 
 		if m.LocalPort[i] != nil {
+
+			if swag.IsZero(m.LocalPort[i]) { // not required
+				return nil
+			}
+
 			if err := m.LocalPort[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("local_port" + "." + strconv.Itoa(i))
@@ -532,6 +548,7 @@ func (m *FwmgrAPIRuleCreateRequestV1) contextValidateLocalPort(ctx context.Conte
 func (m *FwmgrAPIRuleCreateRequestV1) contextValidateMonitor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Monitor != nil {
+
 		if err := m.Monitor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("monitor")
@@ -550,6 +567,11 @@ func (m *FwmgrAPIRuleCreateRequestV1) contextValidateRemoteAddress(ctx context.C
 	for i := 0; i < len(m.RemoteAddress); i++ {
 
 		if m.RemoteAddress[i] != nil {
+
+			if swag.IsZero(m.RemoteAddress[i]) { // not required
+				return nil
+			}
+
 			if err := m.RemoteAddress[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("remote_address" + "." + strconv.Itoa(i))
@@ -570,6 +592,11 @@ func (m *FwmgrAPIRuleCreateRequestV1) contextValidateRemotePort(ctx context.Cont
 	for i := 0; i < len(m.RemotePort); i++ {
 
 		if m.RemotePort[i] != nil {
+
+			if swag.IsZero(m.RemotePort[i]) { // not required
+				return nil
+			}
+
 			if err := m.RemotePort[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("remote_port" + "." + strconv.Itoa(i))

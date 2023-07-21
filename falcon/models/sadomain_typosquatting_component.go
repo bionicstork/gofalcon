@@ -158,6 +158,7 @@ func (m *SadomainTyposquattingComponent) ContextValidate(ctx context.Context, fo
 func (m *SadomainTyposquattingComponent) contextValidateBaseDomain(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BaseDomain != nil {
+
 		if err := m.BaseDomain.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("base_domain")
@@ -174,6 +175,7 @@ func (m *SadomainTyposquattingComponent) contextValidateBaseDomain(ctx context.C
 func (m *SadomainTyposquattingComponent) contextValidateParentDomain(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ParentDomain != nil {
+
 		if err := m.ParentDomain.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("parent_domain")

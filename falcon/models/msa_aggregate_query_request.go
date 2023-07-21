@@ -384,6 +384,11 @@ func (m *MsaAggregateQueryRequest) contextValidateDateRanges(ctx context.Context
 	for i := 0; i < len(m.DateRanges); i++ {
 
 		if m.DateRanges[i] != nil {
+
+			if swag.IsZero(m.DateRanges[i]) { // not required
+				return nil
+			}
+
 			if err := m.DateRanges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("date_ranges" + "." + strconv.Itoa(i))
@@ -404,6 +409,11 @@ func (m *MsaAggregateQueryRequest) contextValidateRanges(ctx context.Context, fo
 	for i := 0; i < len(m.Ranges); i++ {
 
 		if m.Ranges[i] != nil {
+
+			if swag.IsZero(m.Ranges[i]) { // not required
+				return nil
+			}
+
 			if err := m.Ranges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ranges" + "." + strconv.Itoa(i))
@@ -424,6 +434,11 @@ func (m *MsaAggregateQueryRequest) contextValidateSubAggregates(ctx context.Cont
 	for i := 0; i < len(m.SubAggregates); i++ {
 
 		if m.SubAggregates[i] != nil {
+
+			if swag.IsZero(m.SubAggregates[i]) { // not required
+				return nil
+			}
+
 			if err := m.SubAggregates[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("sub_aggregates" + "." + strconv.Itoa(i))

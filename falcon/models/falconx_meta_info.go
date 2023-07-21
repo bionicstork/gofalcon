@@ -105,6 +105,7 @@ func (m *FalconxMetaInfo) ContextValidate(ctx context.Context, formats strfmt.Re
 func (m *FalconxMetaInfo) contextValidateMsaMetaInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MsaMetaInfo != nil {
+
 		if err := m.MsaMetaInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("MsaMetaInfo")
@@ -121,6 +122,11 @@ func (m *FalconxMetaInfo) contextValidateMsaMetaInfo(ctx context.Context, format
 func (m *FalconxMetaInfo) contextValidateQuota(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Quota != nil {
+
+		if swag.IsZero(m.Quota) { // not required
+			return nil
+		}
+
 		if err := m.Quota.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("quota")
