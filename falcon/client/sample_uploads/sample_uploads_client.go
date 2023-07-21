@@ -242,9 +242,9 @@ func (a *Client) ArchiveUploadV2(params *ArchiveUploadV2Params, opts ...ClientOp
 	case *ArchiveUploadV2Accepted:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*ArchiveUploadV2Default)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for sample_uploads: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -318,9 +318,9 @@ func (a *Client) ExtractionCreateV1(params *ExtractionCreateV1Params, opts ...Cl
 	case *ExtractionCreateV1Accepted:
 		return nil, value, nil
 	}
-	// unexpected success response
-	unexpectedSuccess := result.(*ExtractionCreateV1Default)
-	return nil, nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for sample_uploads: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -356,8 +356,9 @@ func (a *Client) ExtractionGetV1(params *ExtractionGetV1Params, opts ...ClientOp
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*ExtractionGetV1Default)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for ExtractionGetV1: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -393,8 +394,9 @@ func (a *Client) ExtractionListV1(params *ExtractionListV1Params, opts ...Client
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*ExtractionListV1Default)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for ExtractionListV1: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
