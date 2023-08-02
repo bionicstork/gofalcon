@@ -14,6 +14,9 @@
     )
   | del(.definitions."msaspec.Error")
   # Rename msaspec.Paging to msa.Paging. These are two names for the same type.
+  | walk(
+    if type == "object" and has("$ref") and ."$ref" == "#/definitions/msaspec.Paging" then ."$ref" = "#/definitions/msa.Paging" else . end
+    )
   | del(.definitions."msaspec.Paging")
   | .definitions."domain.RuleMetaInfo".properties.pagination."$ref" = "#/definitions/msa.Paging"
   | .definitions."domain.MsaMetaInfo".properties.pagination."$ref" = "#/definitions/msa.Paging"
@@ -31,7 +34,6 @@
   | .paths."/policy/queries/sensor-update-kernels/{distinct_field}/v1" = .paths."/policy/queries/sensor-update-kernels/{distinct-field}/v1"
   | del(.paths."/policy/queries/sensor-update-kernels/{distinct-field}/v1")
   | .paths."/policy/queries/sensor-update-kernels/{distinct_field}/v1".get.parameters[0].name = "distinct_field"
-  | .paths."/cloud-connect-cspm-azure/entities/download-certificate/v1".get.parameters[1].default = "false"
 
   # IOA Rule Groups Combined API has incorrect swagger response object: list of ids instead of list of objects
   | .paths."/ioarules/queries/rule-groups-full/v1".get.responses."200" = .paths."/ioarules/entities/rule-groups/v1".get.responses."200"

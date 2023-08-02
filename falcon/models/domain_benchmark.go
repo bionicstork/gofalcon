@@ -14,10 +14,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DomainCIDPolicyAssignmentsPciBenchmark domain c ID policy assignments pci benchmark
+// DomainBenchmark domain benchmark
 //
-// swagger:model domain.CIDPolicyAssignments.pci_benchmark
-type DomainCIDPolicyAssignmentsPciBenchmark struct {
+// swagger:model domain.Benchmark
+type DomainBenchmark struct {
 
 	// benchmark short
 	// Required: true
@@ -32,8 +32,8 @@ type DomainCIDPolicyAssignmentsPciBenchmark struct {
 	RecommendationNumber *string `json:"recommendation_number"`
 }
 
-// Validate validates this domain c ID policy assignments pci benchmark
-func (m *DomainCIDPolicyAssignmentsPciBenchmark) Validate(formats strfmt.Registry) error {
+// Validate validates this domain benchmark
+func (m *DomainBenchmark) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBenchmarkShort(formats); err != nil {
@@ -54,7 +54,7 @@ func (m *DomainCIDPolicyAssignmentsPciBenchmark) Validate(formats strfmt.Registr
 	return nil
 }
 
-func (m *DomainCIDPolicyAssignmentsPciBenchmark) validateBenchmarkShort(formats strfmt.Registry) error {
+func (m *DomainBenchmark) validateBenchmarkShort(formats strfmt.Registry) error {
 
 	if err := validate.Required("benchmark_short", "body", m.BenchmarkShort); err != nil {
 		return err
@@ -63,7 +63,7 @@ func (m *DomainCIDPolicyAssignmentsPciBenchmark) validateBenchmarkShort(formats 
 	return nil
 }
 
-func (m *DomainCIDPolicyAssignmentsPciBenchmark) validateID(formats strfmt.Registry) error {
+func (m *DomainBenchmark) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
@@ -72,7 +72,7 @@ func (m *DomainCIDPolicyAssignmentsPciBenchmark) validateID(formats strfmt.Regis
 	return nil
 }
 
-func (m *DomainCIDPolicyAssignmentsPciBenchmark) validateRecommendationNumber(formats strfmt.Registry) error {
+func (m *DomainBenchmark) validateRecommendationNumber(formats strfmt.Registry) error {
 
 	if err := validate.Required("recommendation_number", "body", m.RecommendationNumber); err != nil {
 		return err
@@ -81,13 +81,13 @@ func (m *DomainCIDPolicyAssignmentsPciBenchmark) validateRecommendationNumber(fo
 	return nil
 }
 
-// ContextValidate validates this domain c ID policy assignments pci benchmark based on context it is used
-func (m *DomainCIDPolicyAssignmentsPciBenchmark) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this domain benchmark based on context it is used
+func (m *DomainBenchmark) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *DomainCIDPolicyAssignmentsPciBenchmark) MarshalBinary() ([]byte, error) {
+func (m *DomainBenchmark) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -95,8 +95,8 @@ func (m *DomainCIDPolicyAssignmentsPciBenchmark) MarshalBinary() ([]byte, error)
 }
 
 // UnmarshalBinary interface implementation
-func (m *DomainCIDPolicyAssignmentsPciBenchmark) UnmarshalBinary(b []byte) error {
-	var res DomainCIDPolicyAssignmentsPciBenchmark
+func (m *DomainBenchmark) UnmarshalBinary(b []byte) error {
+	var res DomainBenchmark
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -23,7 +23,7 @@ type RegistrationIOAEvent struct {
 	AdditionalEventData string `json:"additional_event_data,omitempty"`
 
 	// aggregate
-	Aggregate *DomainIOAEventAggregate `json:"aggregate,omitempty"`
+	Aggregate *IoaEventAggregate `json:"aggregate,omitempty"`
 
 	// api version
 	APIVersion string `json:"api_version,omitempty"`
@@ -33,7 +33,7 @@ type RegistrationIOAEvent struct {
 	Cid *string `json:"cid"`
 
 	// cloud account id
-	CloudAccountID *DomainCloudAccountID `json:"cloud_account_id,omitempty"`
+	CloudAccountID *IoaCloudAccountID `json:"cloud_account_id,omitempty"`
 
 	// cloud provider
 	// Required: true
@@ -43,7 +43,7 @@ type RegistrationIOAEvent struct {
 	CloudRegion string `json:"cloud_region,omitempty"`
 
 	// enrichments
-	Enrichments *DomainIOAEnrichments `json:"enrichments,omitempty"`
+	Enrichments *IoaEnrichments `json:"enrichments,omitempty"`
 
 	// error code
 	ErrorCode string `json:"error_code,omitempty"`

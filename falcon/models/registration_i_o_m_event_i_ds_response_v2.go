@@ -15,10 +15,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// RegistrationAzureAccountResponseV1 registration azure account response v1
+// RegistrationIOMEventIDsResponseV2 registration i o m event i ds response v2
 //
-// swagger:model registration.AzureAccountResponseV1
-type RegistrationAzureAccountResponseV1 struct {
+// swagger:model registration.IOMEventIDsResponseV2
+type RegistrationIOMEventIDsResponseV2 struct {
 
 	// errors
 	// Required: true
@@ -26,15 +26,15 @@ type RegistrationAzureAccountResponseV1 struct {
 
 	// meta
 	// Required: true
-	Meta *MsaMetaInfo `json:"meta"`
+	Meta *RegistrationMSASpecMetaInfoExtension `json:"meta"`
 
 	// resources
 	// Required: true
-	Resources []*RegistrationAzureAccountV1Ext `json:"resources"`
+	Resources []string `json:"resources"`
 }
 
-// Validate validates this registration azure account response v1
-func (m *RegistrationAzureAccountResponseV1) Validate(formats strfmt.Registry) error {
+// Validate validates this registration i o m event i ds response v2
+func (m *RegistrationIOMEventIDsResponseV2) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateErrors(formats); err != nil {
@@ -55,7 +55,7 @@ func (m *RegistrationAzureAccountResponseV1) Validate(formats strfmt.Registry) e
 	return nil
 }
 
-func (m *RegistrationAzureAccountResponseV1) validateErrors(formats strfmt.Registry) error {
+func (m *RegistrationIOMEventIDsResponseV2) validateErrors(formats strfmt.Registry) error {
 
 	if err := validate.Required("errors", "body", m.Errors); err != nil {
 		return err
@@ -82,7 +82,7 @@ func (m *RegistrationAzureAccountResponseV1) validateErrors(formats strfmt.Regis
 	return nil
 }
 
-func (m *RegistrationAzureAccountResponseV1) validateMeta(formats strfmt.Registry) error {
+func (m *RegistrationIOMEventIDsResponseV2) validateMeta(formats strfmt.Registry) error {
 
 	if err := validate.Required("meta", "body", m.Meta); err != nil {
 		return err
@@ -102,35 +102,17 @@ func (m *RegistrationAzureAccountResponseV1) validateMeta(formats strfmt.Registr
 	return nil
 }
 
-func (m *RegistrationAzureAccountResponseV1) validateResources(formats strfmt.Registry) error {
+func (m *RegistrationIOMEventIDsResponseV2) validateResources(formats strfmt.Registry) error {
 
 	if err := validate.Required("resources", "body", m.Resources); err != nil {
 		return err
 	}
 
-	for i := 0; i < len(m.Resources); i++ {
-		if swag.IsZero(m.Resources[i]) { // not required
-			continue
-		}
-
-		if m.Resources[i] != nil {
-			if err := m.Resources[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("resources" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("resources" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
-// ContextValidate validate this registration azure account response v1 based on the context it is used
-func (m *RegistrationAzureAccountResponseV1) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this registration i o m event i ds response v2 based on the context it is used
+func (m *RegistrationIOMEventIDsResponseV2) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateErrors(ctx, formats); err != nil {
@@ -141,17 +123,13 @@ func (m *RegistrationAzureAccountResponseV1) ContextValidate(ctx context.Context
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateResources(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
 }
 
-func (m *RegistrationAzureAccountResponseV1) contextValidateErrors(ctx context.Context, formats strfmt.Registry) error {
+func (m *RegistrationIOMEventIDsResponseV2) contextValidateErrors(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Errors); i++ {
 
@@ -176,7 +154,7 @@ func (m *RegistrationAzureAccountResponseV1) contextValidateErrors(ctx context.C
 	return nil
 }
 
-func (m *RegistrationAzureAccountResponseV1) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
+func (m *RegistrationIOMEventIDsResponseV2) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
 
@@ -193,33 +171,8 @@ func (m *RegistrationAzureAccountResponseV1) contextValidateMeta(ctx context.Con
 	return nil
 }
 
-func (m *RegistrationAzureAccountResponseV1) contextValidateResources(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Resources); i++ {
-
-		if m.Resources[i] != nil {
-
-			if swag.IsZero(m.Resources[i]) { // not required
-				return nil
-			}
-
-			if err := m.Resources[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("resources" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("resources" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 // MarshalBinary interface implementation
-func (m *RegistrationAzureAccountResponseV1) MarshalBinary() ([]byte, error) {
+func (m *RegistrationIOMEventIDsResponseV2) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -227,8 +180,8 @@ func (m *RegistrationAzureAccountResponseV1) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *RegistrationAzureAccountResponseV1) UnmarshalBinary(b []byte) error {
-	var res RegistrationAzureAccountResponseV1
+func (m *RegistrationIOMEventIDsResponseV2) UnmarshalBinary(b []byte) error {
+	var res RegistrationIOMEventIDsResponseV2
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}
