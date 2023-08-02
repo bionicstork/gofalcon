@@ -12,6 +12,7 @@ import (
 
 	"github.com/crowdstrike/gofalcon/falcon/client/alerts"
 	"github.com/crowdstrike/gofalcon/falcon/client/cloud_connect_aws"
+	"github.com/crowdstrike/gofalcon/falcon/client/configuration_assessment"
 	"github.com/crowdstrike/gofalcon/falcon/client/cspm_registration"
 	"github.com/crowdstrike/gofalcon/falcon/client/custom_ioa"
 	"github.com/crowdstrike/gofalcon/falcon/client/d4c_registration"
@@ -109,6 +110,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *CrowdStrik
 	cli.Transport = transport
 	cli.Alerts = alerts.New(transport, formats)
 	cli.CloudConnectAws = cloud_connect_aws.New(transport, formats)
+	cli.ConfigurationAssessment = configuration_assessment.New(transport, formats)
 	cli.CspmRegistration = cspm_registration.New(transport, formats)
 	cli.CustomIoa = custom_ioa.New(transport, formats)
 	cli.D4cRegistration = d4c_registration.New(transport, formats)
@@ -207,6 +209,8 @@ type CrowdStrikeAPISpecification struct {
 	Alerts alerts.ClientService
 
 	CloudConnectAws cloud_connect_aws.ClientService
+
+	ConfigurationAssessment configuration_assessment.ClientService
 
 	CspmRegistration cspm_registration.ClientService
 
@@ -318,6 +322,7 @@ func (c *CrowdStrikeAPISpecification) SetTransport(transport runtime.ClientTrans
 	c.Transport = transport
 	c.Alerts.SetTransport(transport)
 	c.CloudConnectAws.SetTransport(transport)
+	c.ConfigurationAssessment.SetTransport(transport)
 	c.CspmRegistration.SetTransport(transport)
 	c.CustomIoa.SetTransport(transport)
 	c.D4cRegistration.SetTransport(transport)
