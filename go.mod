@@ -1,4 +1,4 @@
-module github.com/bionic-ido/gofalcon
+module github.com/bionicstork/gofalcon
 
 go 1.17
 
